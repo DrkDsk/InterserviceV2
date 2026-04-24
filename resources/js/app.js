@@ -2,6 +2,9 @@ import '../css/app.css';
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import { initTheme } from './composables/useTheme';
+
+initTheme();
 
 createInertiaApp({
     resolve: (name) =>
@@ -9,10 +12,9 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
-            .mount(el);
+        .mount(el);
     },
     progress: {
-        color: '#0f766e',
+        color: '#479cf8',
     },
 });
-
