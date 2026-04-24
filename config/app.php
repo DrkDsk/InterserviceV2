@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'domain' => env('APP_DOMAIN', 'interservice.test'),
+    'subdomain' => env('APP_SUBDOMAIN', 'admin'),
     'name' => env('APP_NAME', 'interservice'),
     'env' => env('APP_ENV', 'production'),
     'debug' => (bool) env('APP_DEBUG', false),
