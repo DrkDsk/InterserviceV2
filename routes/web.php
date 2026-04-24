@@ -28,3 +28,11 @@ Route::get('/components', function () {
 Route::get('/settings', function () {
     return Inertia::render('Settings');
 })->name('settings');
+
+Route::get('test', function () {
+    return "subdomain: " . config('app.subdomain') . " domain: " . config('app.domain');
+});
+
+Route::domain(config('app.subdomain') . '.' . config('app.domain'))->group(function () {
+    require __DIR__ . '/admin.php';
+});
