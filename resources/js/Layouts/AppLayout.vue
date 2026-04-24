@@ -88,10 +88,10 @@ const sidebarWidthClass = computed(() => (collapsedSidebar.value ? 'lg:w-20' : '
             >
                 <div class="flex items-center justify-between border-b border-slate-200 px-4 py-4 dark:border-slate-800">
                     <div class="flex items-center gap-3 overflow-hidden">
-                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-gradient-to-br from-primary-500 to-secondary-500 text-white">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-linear-to-br from-primary-500 to-secondary-500 text-white">
                             <span class="text-sm font-semibold">I</span>
                         </div>
-                        <div class="min-w-0 transition-all duration-200 ease-in-out" :class="collapsedSidebar ? 'max-w-0 opacity-0' : 'max-w-[180px] opacity-100'">
+                        <div class="min-w-0 transition-all duration-200 ease-in-out" :class="collapsedSidebar ? 'max-w-0 opacity-0' : 'max-w-45 opacity-100'">
                             <p class="text-sm font-semibold tracking-tight">{{ appName }}</p>
                             <p class="text-xs text-slate-500 dark:text-slate-400">Minimal SaaS dashboard</p>
                         </div>
