@@ -1,0 +1,35 @@
+services:
+  app:
+    image: drkdsk/interservice-app-prod:1.0.0
+    restart: always
+    volumes:
+      - storage:/var/www/html/storage
+    networks:
+      - laravel
+    environment:
+      - APP_KEY=${APP_KEY}
+      - DB_CONNECTION=${DB_CONNECTION}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT:-5432}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+
+  nginx:
+    image: nginx:stable
+    ports:
+      - ${FORWARD_NGINX_PORT}:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - storage:/var/www/html/storage:ro
+    depends_on:
+      - app
+    restart: always
+    networks:
+      - laravel
+
+volumes:
+  storage:
+
+networks:
+  laravel:
