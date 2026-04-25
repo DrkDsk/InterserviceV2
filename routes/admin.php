@@ -1,14 +1,16 @@
 <?php
 
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ReceptionController;
+use App\Http\Controllers\RepairController;
 use Inertia\Inertia;
 
 Route::redirect('/', '/dashboard');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('repairs', [RepairController::class, 'index'])->name('repairs');
 
 Route::get('/tables', function () {
     return Inertia::render('Tables');
