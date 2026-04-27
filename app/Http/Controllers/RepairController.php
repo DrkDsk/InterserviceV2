@@ -10,4 +10,9 @@ class RepairController extends Controller
     {
         return Inertia::render('Repair/RepairIndex');
     }
+
+    public function create()
+    {
+        return Inertia::render('Repair/RepairCreate');
+    }
 }
