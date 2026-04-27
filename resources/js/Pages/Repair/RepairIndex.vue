@@ -4,11 +4,16 @@ import AppLayout from "../../Layouts/AppLayout.vue";
 import AppCard from "../../Components/ui/AppCard.vue";
 import AppBadge from "../../Components/ui/AppBadge.vue";
 import AppButton from "../../Components/ui/AppButton.vue";
+import {router} from '@inertiajs/vue3'
 
 const breadcrumbs = [
   {label: 'Home', href: '/dashboard'},
   {label: 'Reparaciones'},
 ];
+
+const onCreateRepecetion = () => {
+  router.get('/repair/create');
+}
 
 </script>
 
@@ -18,7 +23,14 @@ const breadcrumbs = [
     description="Gestionar reparaciones"
     :breadcrumbs="breadcrumbs"
   >
+    <div class="flex flex-col gap-4">
+      <AppButton @click="onCreateRepecetion" variant="primary" key="registrar-recepcion" class="py-12 w-full">
+        <span class="text-2xl font-semibold">Registrar Recepcion</span>
+      </AppButton>
+    </div>
+
     <section class="grid gap-4 lg:grid-cols-[1.6fr_0.9fr]">
+
       <AppCard>
         <div class="flex h-full flex-col justify-between gap-6 p-6">
           <div class="space-y-4">
