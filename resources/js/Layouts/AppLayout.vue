@@ -33,13 +33,13 @@ const appName = computed(() => page.props.appName ?? 'Interservice');
 const currentPath = computed(() => page.url.split('?')[0] || '/');
 
 const navItems = [
-  {label: 'Dashboard', href: '/dashboard', icon: 'dashboard'},
-  {label: 'Tables', href: '/tables', icon: 'tables'},
-  {label: 'Forms', href: '/forms', icon: 'forms'},
-  {label: 'Charts', href: '/charts', icon: 'charts'},
-  {label: 'UI Components', href: '/components', icon: 'components'},
-  {label: 'Settings', href: '/settings', icon: 'settings'},
-  {label: 'Reparaciones', href: '/repairs', icon: 'settings'},
+  {label: 'Dashboard', href: 'dashboard', icon: 'dashboard'},
+  {label: 'Tables', href: 'tables', icon: 'tables'},
+  {label: 'Forms', href: 'forms', icon: 'forms'},
+  {label: 'Charts', href: 'charts', icon: 'charts'},
+  {label: 'UI Components', href: 'components', icon: 'components'},
+  {label: 'Settings', href: 'settings', icon: 'settings'},
+  {label: 'Reparaciones', href: 'repairs.home', icon: 'settings'},
 ];
 
 const isActive = (href) => currentPath.value === href;
