@@ -18,4 +18,4 @@
 !/bootstrap/cache/.gitignore
 /.env
 /public/hot
-
+/public/build/*

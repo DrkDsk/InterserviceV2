@@ -1,13 +1,14 @@
 import {defineConfig} from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
+import path from 'path'
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  server: {
-    host: true,
-    hmr: {
-      host: 'admin.interservice.test',
+  resolve: {
+    alias: {
+      'ziggy-js': path.resolve('vendor/tightenco/ziggy'),
+      '@assets': path.resolve(__dirname, 'public/assets')
     }
   },
   plugins: [
