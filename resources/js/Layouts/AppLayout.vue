@@ -39,7 +39,7 @@ const navItems = [
   {label: 'Charts', href: 'charts', icon: 'charts'},
   {label: 'UI Components', href: 'components', icon: 'components'},
   {label: 'Settings', href: 'settings', icon: 'settings'},
-  {label: 'Reparaciones', href: 'repairs.home', icon: 'settings'},
+  {label: 'Reparaciones', href: 'repairs.index', icon: 'settings'},
 ];
 
 const isActive = (href) => currentPath.value === href;
