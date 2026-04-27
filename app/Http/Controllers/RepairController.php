@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\useCases\DeviceCategories\GetDeviceCategoriesUseCase;
 use Inertia\Inertia;
 
 class RepairController extends Controller
@@ -11,9 +12,13 @@ class RepairController extends Controller
         return Inertia::render('Repair/RepairIndex');
     }
 
-    public function create()
+    public function create(GetDeviceCategoriesUseCase $getDeviceCategoriesUseCase)
     {
-        return Inertia::render('Repair/RepairCreate');
+        $deviceCategories = $getDeviceCategoriesUseCase->execute();
+
+        return Inertia::render('Repair/RepairCreate', [
+            'deviceCategories' => $deviceCategories
+        ]);
     }
 
     public function store()
