@@ -137,7 +137,8 @@ const sidebarWidthClass = computed(() => (collapsedSidebar.value ? 'lg:w-20' : '
         </nav>
       </aside>
 
-      <div class="flex min-h-screen flex-1 flex-col">
+      <div class="flex min-h-screen flex-1 flex-col transition-all duration-200 ease-in-out"
+           :class="[collapsedSidebar ? 'lg:ml-20' : 'lg:ml-72']">
         <header
           class="sticky top-0 z-20 border-b border-slate-200 bg-slate-50/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
           <div class="mx-auto flex w-full max-w-400 items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
