@@ -15,7 +15,6 @@ return new class extends Migration {
 
             $table->foreignId('device_category_id')->constrained();
             $table->foreignId('reception_id')->constrained()->cascadeOnDelete();
-
             $table->string('brand')->nullable();
             $table->string('model')->nullable();
             $table->string('serial_number')->nullable()->index();
