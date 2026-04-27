@@ -1,6 +1,6 @@
 <script setup>
-import { computed, nextTick, reactive, ref, watch } from 'vue'
-import { useForm } from '@inertiajs/vue3'
+import {computed, nextTick, reactive, ref, watch} from 'vue'
+import {useForm} from '@inertiajs/vue3'
 import AppLayout from '@/Layouts/AppLayout.vue'
 import AppIcon from '@/Components/AppIcon.vue'
 import AppCard from '@/Components/ui/AppCard.vue'
@@ -21,9 +21,9 @@ const props = defineProps({
 })
 
 const breadcrumbs = [
-  { name: 'Dashboard', href: 'dashboard' },
-  { name: 'Reparaciones', href: 'repairs.index' },
-  { name: 'Crear', href: null },
+  {name: 'Dashboard', href: 'dashboard'},
+  {name: 'Reparaciones', href: 'repairs.index'},
+  {name: 'Crear', href: null},
 ]
 
 const layoutBreadcrumbs = computed(() => (
@@ -34,10 +34,10 @@ const layoutBreadcrumbs = computed(() => (
 ))
 
 const steps = [
-  { id: 1, label: 'Cliente', helper: 'Buscar o capturar' },
-  { id: 2, label: 'Recepcion', helper: 'Notas internas' },
-  { id: 3, label: 'Equipo', helper: 'Datos del dispositivo' },
-  { id: 4, label: 'Confirmar', helper: 'Revision final' },
+  {id: 1, label: 'Cliente', helper: 'Buscar o capturar'},
+  {id: 2, label: 'Recepcion', helper: 'Notas internas'},
+  {id: 3, label: 'Equipo', helper: 'Datos del dispositivo'},
+  {id: 4, label: 'Confirmar', helper: 'Revision final'},
 ]
 
 const currentStep = ref(1)
@@ -307,7 +307,7 @@ const submit = () => {
     description="Registro de recepción y equipo"
     :breadcrumbs="layoutBreadcrumbs"
   >
-    <div class="mx-auto w-full max-w-5xl">
+    <div class="mx-auto w-full">
       <AppCard class="overflow-hidden">
         <div class="border-b border-slate-200 px-6 py-5 dark:border-slate-800 sm:px-8">
           <div class="flex flex-col gap-5">
@@ -324,15 +324,17 @@ const submit = () => {
                 </p>
               </div>
 
-              <div class="hidden min-w-36 rounded-sm border border-slate-200 bg-slate-50 px-4 py-3 text-right dark:border-slate-800 dark:bg-slate-950/60 sm:block">
+              <div
+                class="hidden min-w-36 rounded-sm border border-slate-200 bg-slate-50 px-4 py-3 text-right dark:border-slate-800 dark:bg-slate-950/60 sm:block">
                 <p class="text-xs uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">Progreso</p>
                 <p class="mt-1 text-lg font-semibold text-slate-900 dark:text-slate-100">{{ currentStep }}/4</p>
               </div>
             </div>
 
             <div class="relative">
-              <div class="absolute left-0 right-0 top-5 h-px bg-slate-200 dark:bg-slate-800" />
-              <div class="absolute left-0 top-5 h-px bg-primary-500 transition-all duration-300" :style="{ width: progressWidth }" />
+              <div class="absolute left-0 right-0 top-5 h-px bg-slate-200 dark:bg-slate-800"/>
+              <div class="absolute left-0 top-5 h-px bg-primary-500 transition-all duration-300"
+                   :style="{ width: progressWidth }"/>
 
               <div class="relative grid gap-4 sm:grid-cols-4">
                 <button
@@ -396,8 +398,9 @@ const submit = () => {
                         Buscar cliente
                       </label>
                       <div class="relative">
-                        <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
-                          <AppIcon name="search" class="h-4 w-4" />
+                        <span
+                          class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                          <AppIcon name="search" class="h-4 w-4"/>
                         </span>
                         <input
                           ref="searchInputRef"
@@ -452,7 +455,8 @@ const submit = () => {
                     >
                       <div class="flex items-start justify-between gap-4">
                         <div>
-                          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-primary-600 dark:text-primary-300">
+                          <p
+                            class="text-xs font-semibold uppercase tracking-[0.2em] text-primary-600 dark:text-primary-300">
                             Cliente seleccionado
                           </p>
                           <p class="mt-2 text-base font-semibold text-slate-900 dark:text-slate-100">
@@ -483,7 +487,8 @@ const submit = () => {
                     </div>
                   </div>
 
-                  <div class="rounded-sm border border-dashed border-slate-200 bg-slate-50/80 p-5 dark:border-slate-800 dark:bg-slate-950/50">
+                  <div
+                    class="rounded-sm border border-dashed border-slate-200 bg-slate-50/80 p-5 dark:border-slate-800 dark:bg-slate-950/50">
                     <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
                       Contexto rapido
                     </p>
@@ -639,27 +644,43 @@ const submit = () => {
                       <dl class="mt-4 grid gap-3 text-sm sm:grid-cols-2">
                         <div>
                           <dt class="text-slate-400 dark:text-slate-500">Categoria</dt>
-                          <dd class="mt-1 font-medium text-slate-900 dark:text-slate-100">{{ selectedCategoryName }}</dd>
+                          <dd class="mt-1 font-medium text-slate-900 dark:text-slate-100">{{
+                              selectedCategoryName
+                            }}
+                          </dd>
                         </div>
                         <div>
                           <dt class="text-slate-400 dark:text-slate-500">Marca</dt>
-                          <dd class="mt-1 font-medium text-slate-900 dark:text-slate-100">{{ form.brand || 'Sin dato' }}</dd>
+                          <dd class="mt-1 font-medium text-slate-900 dark:text-slate-100">{{
+                              form.brand || 'Sin dato'
+                            }}
+                          </dd>
                         </div>
                         <div>
                           <dt class="text-slate-400 dark:text-slate-500">Modelo</dt>
-                          <dd class="mt-1 font-medium text-slate-900 dark:text-slate-100">{{ form.model || 'Sin dato' }}</dd>
+                          <dd class="mt-1 font-medium text-slate-900 dark:text-slate-100">{{
+                              form.model || 'Sin dato'
+                            }}
+                          </dd>
                         </div>
                         <div>
                           <dt class="text-slate-400 dark:text-slate-500">Serie</dt>
-                          <dd class="mt-1 font-medium text-slate-900 dark:text-slate-100">{{ form.serial_number || 'Sin dato' }}</dd>
+                          <dd class="mt-1 font-medium text-slate-900 dark:text-slate-100">
+                            {{ form.serial_number || 'Sin dato' }}
+                          </dd>
                         </div>
                         <div>
                           <dt class="text-slate-400 dark:text-slate-500">Inventario</dt>
-                          <dd class="mt-1 font-medium text-slate-900 dark:text-slate-100">{{ form.inventory_number || 'Sin dato' }}</dd>
+                          <dd class="mt-1 font-medium text-slate-900 dark:text-slate-100">
+                            {{ form.inventory_number || 'Sin dato' }}
+                          </dd>
                         </div>
                         <div>
                           <dt class="text-slate-400 dark:text-slate-500">Contrasena</dt>
-                          <dd class="mt-1 font-medium text-slate-900 dark:text-slate-100">{{ form.password || 'Sin dato' }}</dd>
+                          <dd class="mt-1 font-medium text-slate-900 dark:text-slate-100">{{
+                              form.password || 'Sin dato'
+                            }}
+                          </dd>
                         </div>
                       </dl>
                     </div>
@@ -682,7 +703,8 @@ const submit = () => {
                       <p class="mt-3 whitespace-pre-line text-sm text-slate-700 dark:text-slate-200">
                         {{ form.observations || 'Sin observaciones adicionales.' }}
                       </p>
-                      <div class="mt-4 rounded-sm bg-slate-50 px-4 py-3 text-sm text-slate-500 dark:bg-slate-950/70 dark:text-slate-400">
+                      <div
+                        class="mt-4 rounded-sm bg-slate-50 px-4 py-3 text-sm text-slate-500 dark:bg-slate-950/70 dark:text-slate-400">
                         {{ form.notes || 'Sin notas internas para la recepcion.' }}
                       </div>
                     </div>
@@ -693,7 +715,8 @@ const submit = () => {
           </Transition>
         </div>
 
-        <div class="flex flex-col gap-3 border-t border-slate-200 px-6 py-5 dark:border-slate-800 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <div
+          class="flex flex-col gap-3 border-t border-slate-200 px-6 py-5 dark:border-slate-800 sm:flex-row sm:items-center sm:justify-between sm:px-8">
           <div class="text-sm text-slate-500 dark:text-slate-400">
             Los datos se mantienen en un solo formulario y quedan listos para enviarse con Inertia.
           </div>
