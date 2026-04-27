@@ -1,5 +1,4 @@
 <script setup>
-import {Link} from '@inertiajs/vue3';
 import {router} from '@inertiajs/vue3'
 import AppIcon from '../AppIcon.vue';
 import {route} from 'ziggy-js'
