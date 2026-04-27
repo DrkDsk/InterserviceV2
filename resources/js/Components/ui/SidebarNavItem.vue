@@ -1,8 +1,10 @@
 <script setup>
 import {Link} from '@inertiajs/vue3';
+import {router} from '@inertiajs/vue3'
 import AppIcon from '../AppIcon.vue';
+import {route} from 'ziggy-js'
 
-defineProps({
+const props = defineProps({
   href: {
     type: String,
     required: true,
@@ -24,11 +26,16 @@ defineProps({
     default: false,
   },
 });
+
+const navigate = () => {
+  console.log(props.href)
+  router.visit(route(props.href))
+}
 </script>
 
 <template>
-  <Link
-    :href="href"
+  <div
+    @click="navigate()"
     :title="collapsed ? label : undefined"
     class="group relative flex items-center gap-3 rounded-sm px-3 py-2 text-sm transition-all duration-200 ease-in-out"
     :class="active
@@ -49,5 +56,5 @@ defineProps({
           :class="collapsed ? 'max-w-0 opacity-0' : 'max-w-45 opacity-100'">
             {{ label }}
         </span>
-  </Link>
+  </div>
 </template>
