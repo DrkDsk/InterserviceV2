@@ -15,6 +15,6 @@ class Client extends Model
         'address',
         'city',
         'postal_code',
-        'notes'
+        'notes',
     ];
 }
