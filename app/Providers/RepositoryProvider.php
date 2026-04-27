@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Repositories\Contract\DeviceCategoryRepositoryInterface;
 use App\Repositories\Contract\UserRepositoryInterface;
+use App\Repositories\Eloquent\DeviceCategoryRepository;
 use App\Repositories\Eloquent\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,6 +16,7 @@ class RepositoryProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(DeviceCategoryRepositoryInterface::class, DEviceCategoryRepository::class);
     }
 
     /**
