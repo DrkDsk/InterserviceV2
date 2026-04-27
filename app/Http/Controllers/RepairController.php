@@ -13,6 +13,13 @@ class RepairController extends Controller
 
     public function create()
     {
+        
+
         return Inertia::render('Repair/RepairCreate');
+    }
+
+    public function store()
+    {
+
     }
 }
