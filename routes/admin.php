@@ -8,10 +8,11 @@ use Inertia\Inertia;
 
 Route::redirect('/', '/dashboard');
 
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::prefix('repair')->name('repairs.')->group(function () {
     Route::get('/', [RepairController::class, 'index'])->name('home');
+    Route::get('/create', [RepairController::class, 'create'])->name('create');
 });
 
 Route::get('/tables', function () {
