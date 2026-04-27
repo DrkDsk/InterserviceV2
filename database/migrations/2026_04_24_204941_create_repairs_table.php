@@ -16,18 +16,12 @@ return new class extends Migration {
 
             $table->foreignId('reception_id')->constrained()->cascadeOnDelete();
             $table->foreignId('device_id')->constrained()->cascadeOnDelete();
-
             $table->foreignId('technician_id')->constrained('users');
             $table->foreignId('service_id')->nullable()->constrained();
-            $table->foreignId('product_category_id')->nullable()->constrained();
-
-            $table->enum('status', RepairEnum::values())->default('pending');
-
+            $table->enum('status', RepairEnum::values())->default(RepairEnum::Pending->value);
             $table->text('diagnosis')->nullable();
             $table->text('solution')->nullable();
-
             $table->decimal('cost', 10)->nullable();
-
             $table->timestamp('repaired_date')->nullable();
 
             $table->timestamps();
