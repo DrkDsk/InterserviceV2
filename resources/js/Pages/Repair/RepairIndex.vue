@@ -7,11 +7,11 @@ import AppButton from "../../Components/ui/AppButton.vue";
 import {router} from '@inertiajs/vue3'
 
 const breadcrumbs = [
-  {label: 'Home', href: '/dashboard'},
+  {label: 'Home', href: 'dashboard'},
   {label: 'Reparaciones'},
 ];
 
-const onCreateRepecetion = () => {
+const onCreateReception = () => {
   router.get('/repair/create');
 }
 
@@ -24,7 +24,7 @@ const onCreateRepecetion = () => {
     :breadcrumbs="breadcrumbs"
   >
     <div class="flex flex-col gap-4">
-      <AppButton @click="onCreateRepecetion" variant="primary" key="registrar-recepcion" class="py-12 w-full">
+      <AppButton @click="onCreateReception" variant="primary" key="registrar-recepcion" class="py-12 w-full">
         <span class="text-2xl font-semibold">Registrar Recepcion</span>
       </AppButton>
     </div>
