@@ -21,17 +21,10 @@ const props = defineProps({
 })
 
 const breadcrumbs = [
-  {name: 'Dashboard', href: 'dashboard'},
-  {name: 'Reparaciones', href: 'repairs.index'},
-  {name: 'Crear', href: null},
+  {label: 'Dashboard', href: 'dashboard'},
+  {label: 'Reparaciones', href: 'repairs.index'},
+  {label: 'Crear', href: null},
 ]
-
-const layoutBreadcrumbs = computed(() => (
-  breadcrumbs.map((item) => ({
-    label: item.name,
-    href: item.href,
-  }))
-))
 
 const steps = [
   {id: 1, label: 'Cliente', helper: 'Buscar o capturar'},
@@ -48,7 +41,7 @@ const searchInputRef = ref(null)
 const manualNameInputRef = ref(null)
 const notesInputRef = ref(null)
 const issueInputRef = ref(null)
-const submitUrl = '/repairs'
+const submitUrl = 'repairs.store'
 
 const stepErrors = reactive({
   client_id: '',
@@ -297,7 +290,7 @@ const submit = () => {
     return
   }
 
-  form.post(submitUrl)
+  form.post(route(submitUrl))
 }
 </script>
 
@@ -305,7 +298,7 @@ const submit = () => {
   <AppLayout
     title="Nueva reparación"
     description="Registro de recepción y equipo"
-    :breadcrumbs="layoutBreadcrumbs"
+    :breadcrumbs="breadcrumbs"
   >
     <div class="mx-auto w-full">
       <AppCard class="overflow-hidden">
@@ -591,7 +584,7 @@ const submit = () => {
 
                   <AppInput
                     v-model="form.password"
-                    label="Contrasena"
+                    label="Contraseña"
                     placeholder="PIN, patron o clave temporal"
                   />
                 </div>
@@ -716,10 +709,7 @@ const submit = () => {
         </div>
 
         <div
-          class="flex flex-col gap-3 border-t border-slate-200 px-6 py-5 dark:border-slate-800 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-          <div class="text-sm text-slate-500 dark:text-slate-400">
-            Los datos se mantienen en un solo formulario y quedan listos para enviarse con Inertia.
-          </div>
+          class="flex flex-col gap-3 border-t border-slate-200 px-6 py-5 dark:border-slate-800 sm:flex-row sm:items-center sm:justify-end sm:px-8">
 
           <div class="flex items-center gap-3">
             <AppButton
