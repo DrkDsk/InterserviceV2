@@ -10,7 +10,9 @@ Route::redirect('/', '/dashboard');
 
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('repairs', [RepairController::class, 'index'])->name('repairs');
+Route::prefix('repair')->name('repairs.')->group(function () {
+    Route::get('/', [RepairController::class, 'index'])->name('home');
+});
 
 Route::get('/tables', function () {
     return Inertia::render('Tables');
