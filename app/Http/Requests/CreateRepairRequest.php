@@ -15,13 +15,6 @@ class CreateRepairRequest extends FormRequest
         return true;
     }
 
-    public function attributes(): array
-    {
-        return [
-            'client_id' => 'cliente',
-        ];
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -31,10 +24,8 @@ class CreateRepairRequest extends FormRequest
     {
         $clientId = $this->has('client_id');
         $customerName = $this->has('customer_name');
-        $customerPhone = $this->has('customer_phone');
 
-        $needsClient = (!$clientId && (!$customerName && !$customerPhone));
-
+        $needsClient = (!$clientId && (!$customerName));
         $validatorClient = $needsClient ? 'required' : 'nullable';
 
         return [
@@ -50,6 +41,7 @@ class CreateRepairRequest extends FormRequest
             'password' => 'nullable|string',
             'issue' => 'required|string',
             'observations' => 'nullable|string',
+            'accessories' => 'nullable|string',
             'service_id' => 'nullable|exists:services,id',
         ];
     }
@@ -58,11 +50,27 @@ class CreateRepairRequest extends FormRequest
     {
         return [
             'client_id.required' => __('validation.required'),
-            'client_id.exists' => 'El campo :attribute seleccionado no existe.',
-            'customer_name.required' => 'El campo nombre del cliente es obligatorio.',
-            'issue.required' => 'El campo problema es obligatorio.',
-            'service_id.exists' => 'El servicio seleccionado no existe.',
-            'device_category_id.exists' => 'La categoría del dispositivo seleccionada no existe.'
+            'client_id.exists' => __('validation.exists'),
+            'customer_name.required' => __('validation.required'),
+            'issue.required' => __('validation.required'),
+            'service_id.exists' => __('validation.exists'),
+            'device_category_id.exists' => __('validation.exists'),
         ];
+    }
+
+    public function prepareForValidation(): void
+    {
+        $this->merge([
+            "client_id" => $this->client_id ?? null,
+            "device_category_id" => $this->device_category_id ?? null,
+            "notes" => $this->notes ?? null,
+            "brand" => $this->brand ?? null,
+            "model" => $this->model ?? null,
+            "serial_number" => $this->serial_number ?? null,
+            "inventory_number" => $this->inventory_number ?? null,
+            "password" => $this->password ?? null,
+            "observations" => $this->observations ?? null,
+            "accessories" => $this->accessories ?? null,
+        ]);
     }
 }
