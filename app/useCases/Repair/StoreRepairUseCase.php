@@ -58,7 +58,7 @@ readonly class StoreRepairUseCase
                 ];
 
                 $repairData = array_merge($repairData, [
-                    "technician_id" => auth()->id() ?? 1 //FIX WITH AUTH,
+                    "technician_id" => auth()->id(),
                 ]);
 
                 return $this->repairRepository->create($repairData);
