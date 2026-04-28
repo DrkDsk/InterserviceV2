@@ -7,6 +7,7 @@ use App\Http\Resources\ErrorResource;
 use App\useCases\Client\GetClientsUseCase;
 use App\useCases\DeviceCategory\GetDeviceCategoriesUseCase;
 use App\useCases\Repair\StoreRepairUseCase;
+use App\useCases\Service\GetServiceUseCase;
 use Exception;
 use Inertia\Inertia;
 use Throwable;
@@ -18,14 +19,20 @@ class RepairController extends Controller
         return Inertia::render('Repair/RepairIndex');
     }
 
-    public function create(GetDeviceCategoriesUseCase $getDeviceCategoriesUseCase, GetClientsUseCase $getClientsUseCase)
+    public function create(
+        GetDeviceCategoriesUseCase $getDeviceCategoriesUseCase,
+        GetClientsUseCase          $getClientsUseCase,
+        GetServiceUseCase          $getServiceUseCase,
+    )
     {
         $deviceCategories = $getDeviceCategoriesUseCase->execute();
         $clients = $getClientsUseCase->execute();
+        $services = $getServiceUseCase->execute();
 
         return Inertia::render('Repair/RepairCreate', [
             'deviceCategories' => $deviceCategories,
             'clients' => $clients,
+            'services' => $services,
         ]);
     }
 
