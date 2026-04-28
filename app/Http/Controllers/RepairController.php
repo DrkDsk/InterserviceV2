@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateRepairRequest;
+use App\Http\Resources\ErrorResource;
 use App\useCases\Client\GetClientsUseCase;
 use App\useCases\DeviceCategory\GetDeviceCategoriesUseCase;
+use App\useCases\Repair\StoreRepairUseCase;
+use Exception;
 use Inertia\Inertia;
+use Throwable;
 
 class RepairController extends Controller
 {
@@ -25,8 +29,22 @@ class RepairController extends Controller
         ]);
     }
 
-    public function store(CreateRepairRequest $request)
+    /**
+     * @throws Throwable
+     */
+    public function store(
+        CreateRepairRequest $request,
+        StoreRepairUseCase  $storeRepairUseCase,
+    )
     {
-        return response()->json($request->validated());
+        try {
+            $validated = $request->validated();
+
+            $storeRepairUseCase->execute($validated);
+
+            return redirect()->route('repairs.index');
+        } catch (Exception $exception) {
+            return new ErrorResource($exception->getMessage());
+        }
     }
 }
