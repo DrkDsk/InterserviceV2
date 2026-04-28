@@ -14,7 +14,6 @@ return new class extends Migration {
         Schema::create('service_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-
             $table->enum('type', ServiceCategoryEnum::values())->default('local');
 
             $table->timestamps();
