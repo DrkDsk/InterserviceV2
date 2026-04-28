@@ -620,6 +620,7 @@ const submit = () => {
                     label="Falla reportada"
                     :rows="4"
                     hint="Campo obligatorio"
+                    required
                     :error="stepErrors.issue"
                   />
 
