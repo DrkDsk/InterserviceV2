@@ -1,6 +1,6 @@
 <?php
 
-namespace App\useCases\DeviceCategories;
+namespace App\useCases\DeviceCategory;
 
 use App\Repositories\Contract\DeviceCategoryRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
