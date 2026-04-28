@@ -19,7 +19,8 @@ return new class extends Migration {
             $table->foreignId('technician_id')->constrained('users');
             $table->foreignId('service_id')->nullable()->constrained();
             $table->enum('status', RepairEnum::values())->default(RepairEnum::Pending->value);
-            $table->text('diagnosis')->nullable();
+            $table->text('issue')->nullable();
+            $table->text('observations')->nullable();
             $table->text('solution')->nullable();
             $table->decimal('cost', 10)->nullable();
             $table->timestamp('repaired_date')->nullable();
