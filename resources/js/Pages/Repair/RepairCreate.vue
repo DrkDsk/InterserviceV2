@@ -413,7 +413,7 @@ const submit = () => {
 
                       <div
                         v-if="showClientDropdown"
-                        class="absolute z-20 mt-2 w-full overflow-hidden rounded-sm border border-slate-200 bg-white shadow-lg dark:border-slate-800 dark:bg-slate-950"
+                        class="z-20 mt-2 w-full  overflow-hidden rounded-sm border border-slate-200 bg-white shadow-lg dark:border-slate-800 dark:bg-slate-950"
                       >
                         <button
                           v-for="client in filteredClients"
