@@ -63,6 +63,7 @@ const form = useForm({
   password: '',
   issue: '',
   observations: '',
+  accessories: '',
   service_id: null,
 })
 
@@ -603,7 +604,14 @@ const submit = () => {
                     v-model="form.observations"
                     label="Observaciones"
                     :rows="4"
-                    hint="Opcional. Estado fisico, accesorios, golpes, humedad, etc."
+                    hint="Opcional. Estado fisico, golpes, humedad, etc."
+                  />
+
+                  <AppTextarea
+                    v-model="form.accessories"
+                    label="Accesorios"
+                    :rows="4"
+                    hint="Opcional. Cable, Adaptador, teclado, accesorios, etc."
                   />
                 </div>
               </template>
