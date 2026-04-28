@@ -18,6 +18,10 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  services: {
+    type: Array,
+    default: () => [],
+  }
 })
 
 const breadcrumbs = [
@@ -108,6 +112,10 @@ const customerPhoneSummary = computed(() => (
 
 const selectedCategoryName = computed(() => (
   props.deviceCategories.find((category) => `${category.id}` === `${form.device_category_id}`)?.name || 'Sin categoria'
+))
+
+const selectedServiceName = computed(() => (
+  props.services.find((service) => `${service.id}` === `${form.service_id}`)?.name || 'Sin nombre de servicio'
 ))
 
 const focusField = (target) => {
@@ -559,6 +567,21 @@ const submit = () => {
                     </option>
                   </AppSelect>
 
+                  <AppSelect
+                    v-model="form.service_id"
+                    label="Tipo de Servicio"
+                    hint="Requerido"
+                  >
+                    <option :value="null">Selecciona un tipo de servicio</option>
+                    <option
+                      v-for="services in services"
+                      :key="services.id"
+                      :value="services.id"
+                    >
+                      {{ services.name }}
+                    </option>
+                  </AppSelect>
+
                   <AppInput
                     v-model="form.brand"
                     label="Marca"
@@ -688,6 +711,16 @@ const submit = () => {
                   </div>
 
                   <div class="space-y-4">
+
+                    <div class="rounded-sm border border-slate-200 p-5 dark:border-slate-800">
+                      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
+                        Tipo de Servicio
+                      </p>
+                      <p class="mt-3 whitespace-pre-line text-sm text-slate-700 dark:text-slate-200">
+                        {{ selectedServiceName || 'Sin descripcion' }}
+                      </p>
+                    </div>
+
                     <div class="rounded-sm border border-slate-200 p-5 dark:border-slate-800">
                       <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
                         Falla reportada
