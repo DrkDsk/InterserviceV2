@@ -69,12 +69,12 @@ class ServiceImporter implements ToCollection,
             try {
                 $now = now();
 
-                $types = array_unique(array_column($rows, 0));
+                $names = array_unique(array_column($rows, 0));
 
                 $categories = ServiceCategory::query()
-                    ->whereIn('type', $types)
+                    ->whereIn('name', $names)
                     ->get()
-                    ->keyBy('type');
+                    ->keyBy('name');
 
                 $services = [];
 
@@ -100,7 +100,11 @@ class ServiceImporter implements ToCollection,
                 }
 
                 if (!empty($services)) {
-                    DB::table('services')->insert($services);
+                    DB::table('services')->upsert(
+                        $services,
+                        ['name', 'service_category_id'],
+                        []
+                    );
                 }
 
             } catch (Throwable $e) {
