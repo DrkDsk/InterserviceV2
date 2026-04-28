@@ -16,5 +16,6 @@ class Device extends Model
         'password',
         'issue',
         'observations',
+        'accessories',
     ];
 }
