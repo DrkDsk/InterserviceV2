@@ -13,19 +13,15 @@ return new class extends Migration {
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
 
+            $table->foreignId('device_category_id')->nullable()->constrained();
             $table->foreignId('reception_id')->constrained()->cascadeOnDelete();
-
             $table->string('brand')->nullable();
             $table->string('model')->nullable();
             $table->string('serial_number')->nullable()->index();
             $table->string('inventory_number')->nullable();
-
             $table->string('password')->nullable();
-
             $table->text('issue')->nullable();
-
             $table->text('observations')->nullable();
-
             $table->string('accessories')->nullable();
 
             $table->timestamps();

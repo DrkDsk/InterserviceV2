@@ -9,7 +9,7 @@ import AppModal from '../Components/ui/AppModal.vue';
 import AppIcon from '../Components/AppIcon.vue';
 
 const breadcrumbs = [
-  {label: 'Home', href: '/dashboard'},
+  {label: 'Home', href: 'dashboard'},
   {label: 'UI Components'},
 ];
 
@@ -32,7 +32,7 @@ const buttonVariants = [
     :breadcrumbs="breadcrumbs"
   >
     <section class="grid gap-4 xl:grid-cols-2">
-      
+
       <AppCard>
         <div class="border-b border-slate-200 px-5 py-4 dark:border-slate-800">
           <h2 class="text-sm font-semibold text-slate-900 dark:text-slate-100">Buttons</h2>

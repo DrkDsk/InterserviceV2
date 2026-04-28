@@ -15,21 +15,14 @@ return new class extends Migration {
             $table->id();
 
             $table->string('folio')->unique();
-
             $table->foreignId('client_id')->nullable()->constrained()->nullOnDelete();
-
             $table->string('customer_name')->nullable();
             $table->string('customer_phone')->nullable();
-
-            $table->enum('status', ReceptionEnum::values())->default('received');
-
+            $table->enum('status', ReceptionEnum::values())->default(ReceptionEnum::Received->value);
             $table->timestamp('received_at')->useCurrent();
             $table->timestamp('delivered_at')->nullable();
-
             $table->foreignId('created_by')->constrained('users');
-
             $table->text('notes')->nullable();
-
             $table->timestamps();
         });
     }

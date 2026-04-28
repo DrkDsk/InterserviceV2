@@ -14,10 +14,8 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('service_category_id')->constrained();
-
             $table->string('name');
             $table->decimal('price', 10)->nullable();
-
             $table->boolean('requires_diagnosis')->default(false);
             $table->boolean('requires_visit')->default(false);
 

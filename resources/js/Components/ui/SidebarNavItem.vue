@@ -27,7 +27,6 @@ const props = defineProps({
 });
 
 const navigate = () => {
-  console.log(props.href)
   router.visit(route(props.href))
 }
 </script>
