@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class ProductCategoryImporter implements ToModel,
+class DeviceCategoryImporter implements ToModel,
     WithChunkReading,
     WithStartRow,
     WithBatchInserts

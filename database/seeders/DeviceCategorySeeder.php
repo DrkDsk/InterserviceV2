@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Imports\ProductCategoryImporter;
+use App\Imports\DeviceCategoryImporter;
 use Illuminate\Database\Seeder;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -13,6 +13,6 @@ class DeviceCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Excel::import(new ProductCategoryImporter, base_path("storage/app/imports/tablaEquipos.csv"));
+        Excel::import(new DeviceCategoryImporter, base_path("storage/app/imports/tablaEquipos.csv"));
     }
 }
