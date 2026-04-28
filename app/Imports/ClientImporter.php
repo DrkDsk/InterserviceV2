@@ -31,7 +31,7 @@ class ClientImporter implements ToCollection,
 
     public function startRow(): int
     {
-        return 2;
+        return 1;
     }
 
     /**
