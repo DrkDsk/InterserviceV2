@@ -224,7 +224,7 @@ const shareOptions = computed(() => ({
         <div class="flex items-center gap-4 p-5">
           <div
             class="flex h-11 w-11 items-center justify-center rounded-sm bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-300">
-            <AppIcon name="dashboard" class="h-5 w-5"/>
+            <AppIcon name="fa-gauge-high" class="h-5 w-5"/>
           </div>
           <div class="min-w-0 flex-1">
             <p class="text-sm text-slate-500 dark:text-slate-400">{{ stat.label }}</p>

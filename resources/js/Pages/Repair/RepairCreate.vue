@@ -402,7 +402,7 @@ const submit = () => {
                       <div class="relative">
                         <span
                           class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
-                          <AppIcon name="search" class="h-4 w-4"/>
+                          <AppIcon name="fa-magnifying-glass" class="h-4 w-4"/>
                         </span>
                         <input
                           ref="searchInputRef"

@@ -97,11 +97,11 @@ const quickStats = [
         </div>
         <div class="flex flex-wrap gap-3 lg:justify-end">
           <AppButton variant="outline">
-            <AppIcon name="search" class="h-4 w-4"/>
+            <AppIcon name="fa-magnifying-glass" class="h-4 w-4"/>
             Advanced search
           </AppButton>
           <AppButton variant="ghost">
-            <AppIcon name="dashboard" class="h-4 w-4"/>
+            <AppIcon name="fa-gauge-high" class="h-4 w-4"/>
             Create segment
           </AppButton>
         </div>

@@ -30,7 +30,7 @@ const navigate = (href) => {
       </component>
       <AppIcon
         v-if="index < items.length - 1"
-        name="chevronRight"
+        name="fa-chevron-right"
         class="h-3.5 w-3.5 text-slate-300 dark:text-slate-700"
       />
     </template>

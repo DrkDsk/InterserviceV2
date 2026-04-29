@@ -89,15 +89,15 @@ const buttonVariants = [
           <div class="mt-3 flex items-center gap-2">
             <button
               class="rounded-sm border border-slate-200 p-2 text-slate-500 transition hover:bg-slate-50 hover:text-slate-900 dark:border-slate-800 dark:hover:bg-slate-900 dark:hover:text-slate-100">
-              <AppIcon name="dashboard" class="h-4 w-4"/>
+              <AppIcon name="fa-gauge-high" class="h-4 w-4"/>
             </button>
             <button
               class="rounded-sm border border-slate-200 p-2 text-slate-500 transition hover:bg-slate-50 hover:text-slate-900 dark:border-slate-800 dark:hover:bg-slate-900 dark:hover:text-slate-100">
-              <AppIcon name="search" class="h-4 w-4"/>
+              <AppIcon name="fa-magnifying-glass" class="h-4 w-4"/>
             </button>
             <button
               class="rounded-sm border border-slate-200 p-2 text-slate-500 transition hover:bg-slate-50 hover:text-slate-900 dark:border-slate-800 dark:hover:bg-slate-900 dark:hover:text-slate-100">
-              <AppIcon name="bell" class="h-4 w-4"/>
+              <AppIcon name="fa-bell" class="h-4 w-4"/>
             </button>
           </div>
         </div>
