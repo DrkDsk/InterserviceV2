@@ -45,13 +45,13 @@ const displayNavigation = computed(() => props.showNavigation && isAuthenticated
 const userName = computed(() => page.props.auth?.user?.name ?? 'Admin');
 
 const navItems = [
-  {label: 'Dashboard', href: 'dashboard', icon: 'dashboard'},
-  {label: 'Tables', href: 'tables', icon: 'tables'},
-  {label: 'Forms', href: 'forms', icon: 'forms'},
-  {label: 'Charts', href: 'charts', icon: 'charts'},
-  {label: 'UI Components', href: 'components', icon: 'components'},
-  {label: 'Settings', href: 'settings', icon: 'settings'},
-  {label: 'Reparaciones', href: 'repairs.index', icon: 'settings'},
+  {label: 'Dashboard', href: 'dashboard', icon: 'fa-gauge-high'},
+  {label: 'Tables', href: 'tables', icon: 'fa-table-cells'},
+  {label: 'Forms', href: 'forms', icon: 'fa-file'},
+  {label: 'Charts', href: 'charts', icon: 'fa-chart-pie'},
+  {label: 'UI Components', href: 'components', icon: 'fa-brands fa-vuejs'},
+  {label: 'Settings', href: 'settings', icon: 'fa-gear'},
+  {label: 'Reparaciones', href: 'repairs.index', icon: 'fa-screwdriver-wrench'},
 ];
 
 const isActive = (href) => currentPath.value === href;
@@ -170,7 +170,7 @@ onBeforeUnmount(() => {
               class="hidden rounded-sm p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-900 dark:hover:text-slate-100 lg:inline-flex"
               @click="collapsedSidebar = !collapsedSidebar"
             >
-              <AppIcon :name="collapsedSidebar ? 'chevronRight' : 'chevronLeft'" class="h-4 w-4"/>
+              <AppIcon :name="collapsedSidebar ? 'fa-chevron-right' : 'fa-chevron-left'" class="h-4 w-4"/>
             </button>
           </div>
         </div>
@@ -200,7 +200,7 @@ onBeforeUnmount(() => {
                 class="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-slate-200 bg-white/80 text-slate-600 transition hover:bg-slate-50 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-white lg:hidden"
                 @click="mobileSidebarOpen = true"
               >
-                <AppIcon name="menu" class="h-5 w-5"/>
+                <AppIcon name="fa-bars" class="h-5 w-5"/>
               </button>
 
               <div
@@ -229,14 +229,14 @@ onBeforeUnmount(() => {
                 class="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-slate-200 bg-white/80 text-slate-500 transition hover:scale-[1.02] hover:bg-slate-50 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-white"
                 @click="toggleTheme"
               >
-                <AppIcon :name="isDark ? 'sun' : 'moon'" class="h-4 w-4"/>
+                <AppIcon :name="isDark ? 'fa-sun' : 'fa-moon'" class="h-4 w-4"/>
               </button>
 
               <button
                 type="button"
                 class="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-slate-200 bg-white/80 text-slate-500 transition hover:scale-[1.02] hover:bg-slate-50 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-white"
               >
-                <AppIcon name="bell" class="h-4 w-4"/>
+                <AppIcon name="fa-bell" class="h-4 w-4"/>
               </button>
 
               <div
@@ -260,7 +260,7 @@ onBeforeUnmount(() => {
                     <p class="text-xs text-slate-500 dark:text-slate-400">System owner</p>
                   </div>
                   <AppIcon
-                    name="chevronDown"
+                    name="fa-chevron-down"
                     class="h-4 w-4 text-slate-400 transition-transform dark:text-slate-500"
                     :class="profileMenuOpen ? 'rotate-180' : ''"
                   />
@@ -283,7 +283,7 @@ onBeforeUnmount(() => {
                       class="flex w-full items-center gap-3 rounded-sm px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-white"
                       @click="router.get(route('settings'))"
                     >
-                      <AppIcon name="settings" class="h-4 w-4"/>
+                      <AppIcon name="fa-gear" class="h-4 w-4"/>
                       <span>Mi perfil</span>
                     </button>
 
@@ -292,7 +292,7 @@ onBeforeUnmount(() => {
                       class="flex w-full items-center gap-3 rounded-sm px-3 py-2 text-sm text-rose-600 transition hover:bg-rose-50 dark:text-rose-300 dark:hover:bg-rose-500/10"
                       @click="openLogoutModal"
                     >
-                      <AppIcon name="close" class="h-4 w-4"/>
+                      <AppIcon name="fa-xmark" class="h-4 w-4"/>
                       <span>Cerrar sesion</span>
                     </button>
                   </div>
@@ -321,7 +321,8 @@ onBeforeUnmount(() => {
 
       <div class="space-y-3">
         <p class="text-sm text-slate-600 dark:text-slate-300">
-          Se cerrara la sesion de <span class="font-medium text-slate-900 dark:text-slate-100">{{ userName }}</span> y volveras a la pantalla de acceso.
+          Se cerrara la sesion de <span class="font-medium text-slate-900 dark:text-slate-100">{{ userName }}</span> y
+          volveras a la pantalla de acceso.
         </p>
         <p class="text-sm text-slate-500 dark:text-slate-400">
           Asegurate de haber guardado cualquier cambio pendiente antes de continuar.
