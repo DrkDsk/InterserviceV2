@@ -101,6 +101,8 @@ const filteredClients = computed(() => {
     .slice(0, 6)
 })
 
+const issueInput = computed(() => form.issue)
+
 const showManualCustomerFields = computed(() => (
   manualCustomerMode.value || (!!clientSearch.value.trim() && !form.client_id) || !!form.customer_name || !!form.customer_phone
 ))
@@ -188,8 +190,6 @@ watch(normalizedSearch, (value) => {
     })
   }, 300)
 });
-
-const issueInput = computed(() => form.issue)
 
 watch(issueInput, (_) => {
   validateStep3()
