@@ -66,7 +66,7 @@ const stepErrors = reactive({
 })
 
 const form = useForm({
-  client_id: null,
+  client_id: props.selectedClient?.id ?? null,
   customer_name: '',
   customer_phone: '',
   notes: '',
@@ -577,13 +577,13 @@ const submit = () => {
                   </p>
                 </div>
 
-                <div class="grid gap-4 md:grid-cols-2">
+                <div class="grid gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
                   <AppSelect
                     v-model="form.device_category_id"
                     label="Categoria"
                     hint="Opcional"
                   >
-                    <option :value="null">Selecciona una categoria</option>
+                    <option :value="null" selected>Selecciona una categoria</option>
                     <option
                       v-for="category in deviceCategories"
                       :key="category.id"
@@ -639,7 +639,7 @@ const submit = () => {
                   />
                 </div>
 
-                <div class="grid gap-4">
+                <div class="grid gap-4 md:grid-cols-2">
                   <AppTextarea
                     ref="issueInputRef"
                     v-model="form.issue"
