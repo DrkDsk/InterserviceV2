@@ -50,7 +50,6 @@ const steps = [
 const currentStep = ref(1)
 const clientSearch = ref(props.filters?.search ?? '')
 
-
 const showClientDropdown = ref(false)
 const manualCustomerMode = ref(false)
 const searchInputRef = ref(null)
