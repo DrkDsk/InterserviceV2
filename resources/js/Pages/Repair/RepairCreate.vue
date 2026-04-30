@@ -1,6 +1,6 @@
 <script setup>
 import {computed, nextTick, reactive, ref, watch} from 'vue'
-import {useForm} from '@inertiajs/vue3'
+import {router, useForm} from '@inertiajs/vue3'
 import AppLayout from '@/Layouts/AppLayout.vue'
 import AppIcon from '@/Components/AppIcon.vue'
 import AppCard from '@/Components/ui/AppCard.vue'
@@ -14,6 +14,10 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  selectedClient: {
+    type: Object,
+    default: () => ({}),
+  },
   deviceCategories: {
     type: Array,
     default: () => [],
@@ -23,6 +27,8 @@ const props = defineProps({
     default: () => [],
   }
 })
+
+let timeout = null
 
 const breadcrumbs = [
   {label: 'Dashboard', href: 'dashboard'},
@@ -38,7 +44,7 @@ const steps = [
 ]
 
 const currentStep = ref(1)
-const clientSearch = ref('')
+const clientSearch = ref(props.filters?.search ?? '')
 const showClientDropdown = ref(false)
 const manualCustomerMode = ref(false)
 const searchInputRef = ref(null)
@@ -71,9 +77,7 @@ const form = useForm({
   service_id: null,
 })
 
-const selectedClient = computed(() => (
-  props.clients.find((client) => client.id === form.client_id) ?? null
-))
+const selectedClient = computed(() => (props.selectedClient))
 
 const normalizedSearch = computed(() => clientSearch.value.trim().toLowerCase())
 
@@ -91,6 +95,22 @@ const filteredClients = computed(() => {
     })
     .slice(0, 6)
 })
+
+watch(normalizedSearch, (value) => {
+  clearTimeout(timeout)
+
+  timeout = setTimeout(() => {
+    router.reload({
+      data: {
+        search: value,
+        client_id: form.client_id,
+      },
+      only: ['clients', 'selectedClient'],
+      preserveState: true,
+      preserveScroll: true,
+    })
+  }, 300)
+});
 
 const showManualCustomerFields = computed(() => (
   manualCustomerMode.value || (!!clientSearch.value.trim() && !form.client_id) || !!form.customer_name || !!form.customer_phone
@@ -444,7 +464,7 @@ const submit = () => {
                         </button>
 
                         <div
-                          v-if="!filteredClients.length"
+                          v-if="!clients.length"
                           class="px-4 py-4 text-sm text-slate-500 dark:text-slate-400"
                         >
                           No encontramos coincidencias con esa busqueda.
