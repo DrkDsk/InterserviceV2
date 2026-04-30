@@ -376,9 +376,9 @@ const submit = () => {
                     <div
                       class="flex h-10 w-10 items-center justify-center rounded-sm border text-sm font-semibold transition-all duration-200"
                       :class="step.id === currentStep
-                        ? 'border-primary-500 bg-primary-500 text-white shadow-sm'
+                        ? 'border-slate-200 bg-primary-500 text-slate-500 dark:text-slate-200 shadow-sm'
                         : step.id < currentStep
-                          ? 'border-primary-500/30 bg-primary-500/10 text-primary-700 dark:text-primary-200'
+                          ? 'border-primary-500/30 dark:border-gray-700 bg-primary-500/10 text-primary-700 dark:text-primary-200'
                           : 'border-slate-200 bg-white text-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-500'"
                     >
                       {{ step.id }}
@@ -387,7 +387,7 @@ const submit = () => {
                     <div class="min-w-0">
                       <p
                         class="text-sm font-medium"
-                        :class="step.id === currentStep ? 'text-slate-900 dark:text-slate-100' : 'text-slate-500 dark:text-slate-400'"
+                        :class="step.id === currentStep ? 'text-slate-600 dark:text-slate-100' : 'text-slate-400 dark:text-slate-400'"
                       >
                         {{ step.label }}
                       </p>
@@ -479,7 +479,7 @@ const submit = () => {
 
                     <div
                       v-if="selectedClient"
-                      class="rounded-sm border border-primary-500/25 bg-primary-500/5 px-4 py-4 dark:bg-primary-500/10"
+                      class="rounded-sm border border-slate-200 dark:border-slate-800 bg-primary-500/5 px-4 py-4 dark:bg-primary-500/10"
                     >
                       <div class="flex items-start justify-between gap-4">
                         <div>
