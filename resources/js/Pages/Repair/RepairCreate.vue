@@ -38,7 +38,7 @@ const steps = [
 ]
 
 const currentStep = ref(1)
-const search = ref('')
+const clientSearch = ref('')
 const showClientDropdown = ref(false)
 const manualCustomerMode = ref(false)
 const searchInputRef = ref(null)
@@ -75,7 +75,7 @@ const selectedClient = computed(() => (
   props.clients.find((client) => client.id === form.client_id) ?? null
 ))
 
-const normalizedSearch = computed(() => search.value.trim().toLowerCase())
+const normalizedSearch = computed(() => clientSearch.value.trim().toLowerCase())
 
 const filteredClients = computed(() => {
   if (!normalizedSearch.value) {
@@ -93,7 +93,7 @@ const filteredClients = computed(() => {
 })
 
 const showManualCustomerFields = computed(() => (
-  manualCustomerMode.value || (!!search.value.trim() && !form.client_id) || !!form.customer_name || !!form.customer_phone
+  manualCustomerMode.value || (!!clientSearch.value.trim() && !form.client_id) || !!form.customer_name || !!form.customer_phone
 ))
 
 const progressWidth = computed(() => `${((currentStep.value - 1) / (steps.length - 1)) * 100}%`)
@@ -137,7 +137,7 @@ watch(selectedClient, (client) => {
     return
   }
 
-  search.value = `${client.name ?? ''} ${client.last_name ?? ''}`.trim()
+  clientSearch.value = `${client.name ?? ''} ${client.last_name ?? ''}`.trim()
   manualCustomerMode.value = false
 })
 
@@ -173,7 +173,7 @@ const clearStepError = (field) => {
 }
 
 const handleSearchInput = (value) => {
-  search.value = value
+  clientSearch.value = value
   showClientDropdown.value = true
 
   if (form.client_id) {
@@ -187,7 +187,7 @@ const selectClient = (client) => {
   form.client_id = client.id
   form.customer_name = ''
   form.customer_phone = ''
-  search.value = `${client.name ?? ''} ${client.last_name ?? ''}`.trim()
+  clientSearch.value = `${client.name ?? ''} ${client.last_name ?? ''}`.trim()
   showClientDropdown.value = false
   manualCustomerMode.value = false
   clearStepError('client_id')
@@ -197,6 +197,7 @@ const selectClient = (client) => {
 
 const activateManualCustomer = async () => {
   form.client_id = null
+  clientSearch.value = ''
   manualCustomerMode.value = true
   showClientDropdown.value = false
   await nextTick()
@@ -406,7 +407,7 @@ const submit = () => {
                         </span>
                         <input
                           ref="searchInputRef"
-                          :value="search"
+                          :value="clientSearch"
                           type="text"
                           placeholder="Nombre, apellido o telefono"
                           class="block w-full rounded-sm border bg-white py-2 pl-10 pr-4 text-sm text-slate-900 transition duration-200 ease-in-out placeholder:text-slate-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/15 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500"
@@ -724,10 +725,10 @@ const submit = () => {
 
                     <div class="rounded-sm border border-slate-200 p-5 dark:border-slate-800">
                       <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
-                        Falla reportada
+                        Accesorios
                       </p>
                       <p class="mt-3 whitespace-pre-line text-sm text-slate-700 dark:text-slate-200">
-                        {{ form.issue || 'Sin descripcion' }}
+                        {{ form.accessories || 'Sin accesorios' }}
                       </p>
                     </div>
 
@@ -742,6 +743,17 @@ const submit = () => {
                         class="mt-4 rounded-sm bg-slate-50 px-4 py-3 text-sm text-slate-500 dark:bg-slate-950/70 dark:text-slate-400">
                         {{ form.notes || 'Sin notas internas para la recepcion.' }}
                       </div>
+                    </div>
+                  </div>
+
+                  <div class="space-y-4 w-full">
+                    <div class="rounded-sm border border-slate-200 p-5 dark:border-slate-800">
+                      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
+                        Falla reportada
+                      </p>
+                      <p class="mt-3 whitespace-pre-line text-sm text-slate-700 dark:text-slate-200">
+                        {{ form.issue || 'Sin descripcion' }}
+                      </p>
                     </div>
                   </div>
                 </div>
