@@ -18,6 +18,10 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
+  filters: {
+    type: Object,
+    default: () => ({}),
+  },
   deviceCategories: {
     type: Array,
     default: () => [],
@@ -45,6 +49,8 @@ const steps = [
 
 const currentStep = ref(1)
 const clientSearch = ref(props.filters?.search ?? '')
+
+
 const showClientDropdown = ref(false)
 const manualCustomerMode = ref(false)
 const searchInputRef = ref(null)
