@@ -583,7 +583,7 @@ const submit = () => {
                     label="Categoria"
                     hint="Opcional"
                   >
-                    <option :value="null" selected>Selecciona una categoria</option>
+                    <option value="" selected disabled>Selecciona una categoria</option>
                     <option
                       v-for="category in deviceCategories"
                       :key="category.id"
@@ -598,7 +598,7 @@ const submit = () => {
                     label="Tipo de Servicio"
                     hint="Requerido"
                   >
-                    <option :value="null">Selecciona un tipo de servicio</option>
+                    <option value="" selected disabled>Selecciona un tipo de servicio</option>
                     <option
                       v-for="services in services"
                       :key="services.id"
