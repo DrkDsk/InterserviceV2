@@ -378,7 +378,7 @@ const submit = () => {
                       :class="step.id === currentStep
                         ? 'border-slate-200 bg-primary-500 text-slate-500 dark:text-slate-200 shadow-sm'
                         : step.id < currentStep
-                          ? 'border-primary-500/30 dark:border-gray-700 bg-primary-500/10 text-primary-700 dark:text-primary-200'
+                          ? 'border-slate-400 dark:border-gray-700 bg-primary-500/10 text-slate-400 dark:text-slate-400'
                           : 'border-slate-200 bg-white text-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-500'"
                     >
                       {{ step.id }}
