@@ -484,10 +484,10 @@ const submit = () => {
                       <div class="flex items-start justify-between gap-4">
                         <div>
                           <p
-                            class="text-xs font-semibold uppercase tracking-[0.2em] text-primary-600 dark:text-primary-300">
+                            class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
                             Cliente seleccionado
                           </p>
-                          <p class="mt-2 text-base font-semibold text-slate-900 dark:text-slate-100">
+                          <p class="mt-2 text-base font-semibold text-slate-800 dark:text-slate-200">
                             {{ `${selectedClient.name ?? ''} ${selectedClient.last_name ?? ''}`.trim() }}
                           </p>
                           <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
