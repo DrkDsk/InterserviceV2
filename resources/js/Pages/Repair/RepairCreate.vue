@@ -487,7 +487,7 @@ const submit = () => {
                             class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
                             Cliente seleccionado
                           </p>
-                          <p class="mt-2 text-base font-semibold text-slate-800 dark:text-slate-200">
+                          <p class="mt-2 text-base font-semibold text-slate-600 dark:text-slate-300">
                             {{ `${selectedClient.name ?? ''} ${selectedClient.last_name ?? ''}`.trim() }}
                           </p>
                           <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
