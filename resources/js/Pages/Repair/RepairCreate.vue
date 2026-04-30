@@ -387,7 +387,7 @@ const submit = () => {
                     <div class="min-w-0">
                       <p
                         class="text-sm font-medium"
-                        :class="step.id === currentStep ? 'text-slate-600 dark:text-slate-100' : 'text-slate-400 dark:text-slate-400'"
+                        :class="step.id === currentStep ? 'text-slate-600 dark:text-slate-100' : step.id < currentStep ? 'text-slate-600 dark:text-slate-400' : 'text-slate-400 dark:text-slate-400'"
                       >
                         {{ step.label }}
                       </p>
