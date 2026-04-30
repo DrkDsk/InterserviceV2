@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateRepairRequest;
+use App\Http\Requests\SearchClientRequest;
 use App\Http\Resources\ErrorResource;
+use App\useCases\Client\FindClientUseCase;
 use App\useCases\Client\GetClientsUseCase;
 use App\useCases\DeviceCategory\GetDeviceCategoriesUseCase;
 use App\useCases\Repair\StoreRepairUseCase;
@@ -20,19 +22,35 @@ class RepairController extends Controller
     }
 
     public function create(
+        SearchClientRequest        $request,
         GetDeviceCategoriesUseCase $getDeviceCategoriesUseCase,
         GetClientsUseCase          $getClientsUseCase,
         GetServiceUseCase          $getServiceUseCase,
+        FindClientUseCase          $findClientUseCase,
     )
     {
+        $selectedClient = null;
+
+        $formClientId = $request->input('client_id');
+
+        if ($formClientId) {
+            $selectedClient = $findClientUseCase->execute($formClientId);
+        }
+        
+        $search = trim($request->input('search'));
+
         $deviceCategories = $getDeviceCategoriesUseCase->execute();
-        $clients = $getClientsUseCase->execute();
+        $clients = $getClientsUseCase->execute($search);
         $services = $getServiceUseCase->execute();
 
         return Inertia::render('Repair/RepairCreate', [
             'deviceCategories' => $deviceCategories,
             'clients' => $clients,
+            'selectedClient' => $selectedClient,
             'services' => $services,
+            'filters' => [
+                'search' => $search,
+            ],
         ]);
     }
 

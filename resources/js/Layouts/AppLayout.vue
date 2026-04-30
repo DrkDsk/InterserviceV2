@@ -303,7 +303,7 @@ onBeforeUnmount(() => {
         </header>
 
         <main class="flex-1 px-4 py-5 sm:px-6 lg:px-8">
-          <div class="mx-auto flex w-full max-w-400 flex-col gap-6">
+          <div class="mx-auto flex w-full max-w-600 flex-col gap-6">
             <slot/>
           </div>
         </main>

@@ -5,6 +5,7 @@ namespace App\Repositories\Eloquent;
 use App\Repositories\Contract\BaseRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class BaseRepository implements BaseRepositoryInterface
 {
@@ -18,6 +19,11 @@ class BaseRepository implements BaseRepositoryInterface
     public function getAll(): Collection
     {
         return $this->model->all();
+    }
+
+    public function limit(int $limit = 100): Collection
+    {
+        return $this->model->query()->limit($limit)->get();
     }
 
     public function find(int $id): ?Model
@@ -36,5 +42,10 @@ class BaseRepository implements BaseRepositoryInterface
     public function create(array $data): ?Model
     {
         return $this->model->query()->create($data);
+    }
+
+    public function paginate(int $perPage = 10): LengthAwarePaginator
+    {
+        return $this->model->query()->paginate($perPage);
     }
 }

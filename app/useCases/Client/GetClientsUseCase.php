@@ -3,7 +3,7 @@
 namespace App\useCases\Client;
 
 use App\Repositories\Contract\ClientRepositoryInterface;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 readonly class GetClientsUseCase
 {
@@ -11,8 +11,8 @@ readonly class GetClientsUseCase
     {
     }
 
-    public function execute(): Collection
+    public function execute(?string $search = null): Collection
     {
-        return $this->clientRepository->getAll();
+        return $this->clientRepository->search($search);
     }
 }

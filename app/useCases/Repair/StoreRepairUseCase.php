@@ -4,6 +4,7 @@ namespace App\useCases\Repair;
 
 use App\Models\Repair;
 use App\Repositories\Contract\RepairRepositoryInterface;
+use App\useCases\Client\StoreClientUseCase;
 use App\useCases\Device\StoreDeviceUseCase;
 use App\useCases\Reception\StoreReceptionUseCase;
 use Exception;
@@ -14,7 +15,8 @@ readonly class StoreRepairUseCase
 {
     public function __construct(protected RepairRepositoryInterface $repairRepository,
                                 protected StoreReceptionUseCase     $storeReceptionUseCase,
-                                protected StoreDeviceUseCase        $storeDeviceUseCase)
+                                protected StoreDeviceUseCase        $storeDeviceUseCase,
+                                protected StoreClientUseCase        $storeClientUseCase)
     {
     }
 
@@ -25,6 +27,16 @@ readonly class StoreRepairUseCase
     {
         try {
             return DB::transaction(function () use ($validated) {
+
+                if (!$validated['client_id']) {
+                    $client = $this->storeClientUseCase->execute([
+                        "name" => $validated['customer_name'],
+                        "phone" => $validated['customer_phone']
+                    ]);
+
+                    $validated['client_id'] = $client->id;
+                }
+
                 $reception = [
                     "client_id" => $validated['client_id'],
                     "customer_name" => $validated['customer_name'],
