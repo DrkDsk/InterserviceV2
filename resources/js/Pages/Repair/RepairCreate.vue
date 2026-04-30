@@ -101,22 +101,6 @@ const filteredClients = computed(() => {
     .slice(0, 6)
 })
 
-watch(normalizedSearch, (value) => {
-  clearTimeout(timeout)
-
-  timeout = setTimeout(() => {
-    router.reload({
-      data: {
-        search: value,
-        client_id: form.client_id,
-      },
-      only: ['clients', 'selectedClient'],
-      preserveState: true,
-      preserveScroll: true,
-    })
-  }, 300)
-});
-
 const showManualCustomerFields = computed(() => (
   manualCustomerMode.value || (!!clientSearch.value.trim() && !form.client_id) || !!form.customer_name || !!form.customer_phone
 ))
@@ -187,6 +171,28 @@ watch(currentStep, async (step) => {
   if (step === 3) {
     focusField(issueInputRef.value)
   }
+})
+
+watch(normalizedSearch, (value) => {
+  clearTimeout(timeout)
+
+  timeout = setTimeout(() => {
+    router.reload({
+      data: {
+        search: value,
+        client_id: form.client_id,
+      },
+      only: ['clients', 'selectedClient'],
+      preserveState: true,
+      preserveScroll: true,
+    })
+  }, 300)
+});
+
+const issueInput = computed(() => form.issue)
+
+watch(issueInput, (_) => {
+  validateStep3()
 })
 
 const setStepError = (field, message) => {
