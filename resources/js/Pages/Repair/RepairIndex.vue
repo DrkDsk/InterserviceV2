@@ -47,17 +47,15 @@ const onCreateReception = () => {
       </AppButton>
     </div>
 
-    <section class="flex flex-col gap-4">
-      <AppTable
-        title="Lista de reparaciones"
-        description="Buscar y filtrar reparaciones registradas."
-        :columns="columns"
-        :rows="receptionsFiltered"
-        :searchableKeys="['folio']"
-        searchPlaceholder="Busca nombre, número telefónico, etc."
-        rowKey="id">
-      </AppTable>
-    </section>
+    <AppTable
+      title="Lista de reparaciones"
+      description="Buscar y filtrar reparaciones registradas."
+      :columns="columns"
+      :rows="receptionsFiltered"
+      :searchableKeys="['folio']"
+      searchPlaceholder="Busca nombre, número telefónico, etc."
+      rowKey="id">
+    </AppTable>
   </AppLayout>
 </template>
 
