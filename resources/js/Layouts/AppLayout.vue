@@ -334,7 +334,7 @@ onBeforeUnmount(() => {
           Cancelar
         </AppButton>
         <AppButton variant="primary" @click="logout">
-          Confirmar salida
+          <span class="text-red-500">Cerrar Sesión</span>
         </AppButton>
       </template>
     </AppModal>
