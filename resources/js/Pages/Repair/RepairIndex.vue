@@ -43,7 +43,7 @@ const onCreateReception = () => {
   >
     <div class="flex flex-col gap-4">
       <AppButton @click="onCreateReception" variant="primary" key="registrar-recepcion" class="py-12 w-full">
-        <span class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Registrar Recepcion</span>
+        <span class="text-xl lg:text-lg md:text-md">Registrar Recepcion</span>
       </AppButton>
     </div>
 
