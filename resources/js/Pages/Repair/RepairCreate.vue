@@ -606,11 +606,11 @@ const submit = () => {
                   >
                     <option value="" selected disabled>Selecciona un tipo de servicio</option>
                     <option
-                      v-for="services in services"
-                      :key="services.id"
-                      :value="services.id"
+                      v-for="service in services"
+                      :key="service.id"
+                      :value="service.id"
                     >
-                      {{ services.name }}
+                      {{ service.name }}
                     </option>
                   </AppSelect>
 
