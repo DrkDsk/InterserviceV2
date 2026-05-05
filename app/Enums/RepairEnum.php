@@ -15,4 +15,17 @@ enum RepairEnum: string
     {
         return array_column(self::cases(), 'value');
     }
+
+    public function label(): string
+    {
+        return __("repair.{$this->value}");
+    }
+
+    public static function options(): array
+    {
+        return collect(self::cases())->map(fn($case) => [
+            'value' => $case->value,
+            'label' => $case->label(),
+        ])->toArray();
+    }
 }
