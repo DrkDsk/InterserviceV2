@@ -6,11 +6,13 @@ use App\actions\Repairs\FormatRepairsAction;
 use App\Enums\RepairEnum;
 use App\Http\Requests\CreateRepairRequest;
 use App\Http\Requests\SearchClientRequest;
+use App\Http\Requests\UpdateLogRepairRequest;
 use App\Http\Resources\ErrorResource;
+use App\Models\Repair;
+use App\Models\RepairLog;
 use App\useCases\Client\FindClientUseCase;
 use App\useCases\Client\GetClientsUseCase;
 use App\useCases\DeviceCategory\GetDeviceCategoriesUseCase;
-use App\useCases\Reception\PaginateReceptionUseCase;
 use App\useCases\Repair\PaginateRepairsUseCase;
 use App\useCases\Repair\StoreRepairUseCase;
 use App\useCases\Service\GetServiceUseCase;
@@ -83,5 +85,17 @@ class RepairController extends Controller
         } catch (Exception $exception) {
             return new ErrorResource($exception->getMessage());
         }
+    }
+
+    public function edit(Repair $repair)
+    {
+        $repair = $repair->load('reception', 'technician', 'device.deviceCategory', 'service');
+
+        $statuses = RepairEnum::options();
+
+        return Inertia::render('Repair/RepairEdit', [
+            'repair' => $repair,
+            'statuses' => $statuses,
+        ]);
     }
 }
