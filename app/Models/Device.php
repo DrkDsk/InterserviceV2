@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Device extends Model
 {
@@ -18,4 +19,9 @@ class Device extends Model
         'observations',
         'accessories',
     ];
+
+    public function deviceCategory(): BelongsTo
+    {
+        return $this->belongsTo(DeviceCategory::class);
+    }
 }
