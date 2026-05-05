@@ -5,6 +5,8 @@ import AppButton from "../../Components/ui/AppButton.vue";
 import {router} from '@inertiajs/vue3'
 import {route} from 'ziggy-js'
 import AppTable from "@/Components/ui/AppTable.vue";
+import EmptyState from "@/Components/ui/EmptyState.vue";
+import AppBadge from "@/Components/ui/AppBadge.vue";
 
 const props = defineProps({
   repairs: {
@@ -22,6 +24,7 @@ const columns = [
   {key: 'client', label: 'Cliente'},
   {key: 'customer_phone', label: 'Número Telefónico Cliente'},
   {key: 'status', label: 'Estatus'},
+  {key: 'actions', label: 'Acciones'},
 ];
 
 const breadcrumbs = [
@@ -31,6 +34,11 @@ const breadcrumbs = [
 
 const onCreateReception = () => {
   router.visit(route('repairs.create'));
+}
+
+const handleAssignUpdating = (id) => {
+  console.log('id', id)
+  /*router.visit(route('repairs.update', id));*/
 }
 
 </script>
@@ -55,6 +63,23 @@ const onCreateReception = () => {
       :searchableKeys="['folio']"
       searchPlaceholder="Busca nombre, número telefónico, etc."
       rowKey="id">
+      <template #cell-status="{ value }">
+        <AppBadge :variant="value === 'completed' ? 'success' : value === 'in_progress' ? 'primary' : 'warning'">
+          {{ value }}
+        </AppBadge>
+      </template>
+      <template #cell-actions="{ value }">
+        <AppButton variant="outline" size="sm" class="mr-2" @click="handleAssignUpdating()">
+          Actualizar proceso
+        </AppButton>
+      </template>
+      <template #empty>
+        <EmptyState
+          title="No hay reparaciones registradas"
+          description="Intenta limpiar los parámetros de búsqueda o limpia los filtros"
+          icon="fa-table-cells"
+        />
+      </template>
     </AppTable>
   </AppLayout>
 </template>
