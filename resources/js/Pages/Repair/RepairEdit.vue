@@ -39,10 +39,15 @@ const goToRepairLogs = () => {
   router.visit(route("repairs.logs.index", props.repair.id))
 }
 
+const breadcrumbs = [
+  {label: 'Home', href: 'dashboard'},
+  {label: 'Reparaciones', current: true},
+];
+
 </script>
 
 <template>
-  <AppLayout>
+  <AppLayout :breadcrumbs>
     <div class="mx-auto w-full space-y-4">
       <AppCard class="overflow-hidden">
         <div class="px-6 py-6 sm:px-8">
