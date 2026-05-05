@@ -17,6 +17,12 @@ const props = defineProps({
   }
 })
 
+const breadcrumbs = [
+  {label: 'Home', href: 'dashboard'},
+  {label: 'Reparación', href: 'repairs.edit', params: {id: props.repair.id}},
+  {label: 'Historial', current: true},
+];
+
 const logs = ref(props.repair.logs ?? [])
 
 const removeLog = (id) => {
@@ -45,7 +51,7 @@ const upsertLog = (id, message) => {
 </script>
 
 <template>
-  <AppLayout>
+  <AppLayout :breadcrumbs="breadcrumbs">
     <div class="mx-auto w-full space-y-4">
       <AppCard class="overflow-hidden">
         <div class="px-6 py-6 sm:px-8">
