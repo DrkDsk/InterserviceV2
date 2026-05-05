@@ -16,6 +16,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [RepairController::class, 'index'])->name('index');
         Route::get('/create', [RepairController::class, 'create'])->name('create');
         Route::post('/', [RepairController::class, 'store'])->name('store');
+        Route::get('/{repair}', [RepairController::class, 'edit'])->name('edit');
+        Route::get('logs/{repair}', [RepairController::class, 'logs'])->name('logs');
     });
 
     Route::get('/tables', function () {
