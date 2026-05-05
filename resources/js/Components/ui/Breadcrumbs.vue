@@ -10,9 +10,9 @@ const props = defineProps({
   },
 });
 
-const navigate = (href) => {
+const navigate = (href, params) => {
   if (!href) return
-  router.visit(route(href))
+  router.visit(route(href, params ?? {}))
 }
 
 </script>
@@ -22,7 +22,7 @@ const navigate = (href) => {
     <template v-for="(item, index) in items" :key="`${item.label}-${index}`">
       <component
         :is="item.href ? 'a' : 'span'"
-        @click="navigate(item.href)"
+        @click="navigate(item.href, item.params)"
         class="transition hover:text-slate-900 dark:hover:text-slate-100"
         :class="item.href ? 'cursor-pointer' : 'cursor-default text-slate-900 dark:text-slate-100'"
       >

@@ -66,7 +66,7 @@ const stepErrors = reactive({
 })
 
 const form = useForm({
-  client_id: null,
+  client_id: props.selectedClient?.id ?? null,
   customer_name: '',
   customer_phone: '',
   notes: '',
@@ -101,21 +101,7 @@ const filteredClients = computed(() => {
     .slice(0, 6)
 })
 
-watch(normalizedSearch, (value) => {
-  clearTimeout(timeout)
-
-  timeout = setTimeout(() => {
-    router.reload({
-      data: {
-        search: value,
-        client_id: form.client_id,
-      },
-      only: ['clients', 'selectedClient'],
-      preserveState: true,
-      preserveScroll: true,
-    })
-  }, 300)
-});
+const issueInput = computed(() => form.issue)
 
 const showManualCustomerFields = computed(() => (
   manualCustomerMode.value || (!!clientSearch.value.trim() && !form.client_id) || !!form.customer_name || !!form.customer_phone
@@ -187,6 +173,26 @@ watch(currentStep, async (step) => {
   if (step === 3) {
     focusField(issueInputRef.value)
   }
+})
+
+watch(normalizedSearch, (value) => {
+  clearTimeout(timeout)
+
+  timeout = setTimeout(() => {
+    router.reload({
+      data: {
+        search: value,
+        client_id: form.client_id,
+      },
+      only: ['clients', 'selectedClient'],
+      preserveState: true,
+      preserveScroll: true,
+    })
+  }, 300)
+});
+
+watch(issueInput, (_) => {
+  validateStep3()
 })
 
 const setStepError = (field, message) => {
@@ -376,9 +382,9 @@ const submit = () => {
                     <div
                       class="flex h-10 w-10 items-center justify-center rounded-sm border text-sm font-semibold transition-all duration-200"
                       :class="step.id === currentStep
-                        ? 'border-primary-500 bg-primary-500 text-white shadow-sm'
+                        ? 'border-slate-200 bg-primary-500 text-slate-500 dark:text-slate-200 shadow-sm'
                         : step.id < currentStep
-                          ? 'border-primary-500/30 bg-primary-500/10 text-primary-700 dark:text-primary-200'
+                          ? 'border-slate-400 dark:border-gray-700 bg-primary-500/10 text-slate-400 dark:text-slate-400'
                           : 'border-slate-200 bg-white text-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-500'"
                     >
                       {{ step.id }}
@@ -387,7 +393,7 @@ const submit = () => {
                     <div class="min-w-0">
                       <p
                         class="text-sm font-medium"
-                        :class="step.id === currentStep ? 'text-slate-900 dark:text-slate-100' : 'text-slate-500 dark:text-slate-400'"
+                        :class="step.id === currentStep ? 'text-slate-600 dark:text-slate-100' : step.id < currentStep ? 'text-slate-600 dark:text-slate-400' : 'text-slate-400 dark:text-slate-400'"
                       >
                         {{ step.label }}
                       </p>
@@ -479,15 +485,15 @@ const submit = () => {
 
                     <div
                       v-if="selectedClient"
-                      class="rounded-sm border border-primary-500/25 bg-primary-500/5 px-4 py-4 dark:bg-primary-500/10"
+                      class="rounded-sm border border-slate-200 dark:border-slate-800 bg-primary-500/5 px-4 py-4 dark:bg-primary-500/10"
                     >
                       <div class="flex items-start justify-between gap-4">
                         <div>
                           <p
-                            class="text-xs font-semibold uppercase tracking-[0.2em] text-primary-600 dark:text-primary-300">
+                            class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
                             Cliente seleccionado
                           </p>
-                          <p class="mt-2 text-base font-semibold text-slate-900 dark:text-slate-100">
+                          <p class="mt-2 text-base font-semibold text-slate-600 dark:text-slate-300">
                             {{ `${selectedClient.name ?? ''} ${selectedClient.last_name ?? ''}`.trim() }}
                           </p>
                           <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
@@ -577,13 +583,13 @@ const submit = () => {
                   </p>
                 </div>
 
-                <div class="grid gap-4 md:grid-cols-2">
+                <div class="grid gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
                   <AppSelect
                     v-model="form.device_category_id"
                     label="Categoria"
                     hint="Opcional"
                   >
-                    <option :value="null">Selecciona una categoria</option>
+                    <option value="" selected disabled>Selecciona una categoria</option>
                     <option
                       v-for="category in deviceCategories"
                       :key="category.id"
@@ -598,13 +604,13 @@ const submit = () => {
                     label="Tipo de Servicio"
                     hint="Requerido"
                   >
-                    <option :value="null">Selecciona un tipo de servicio</option>
+                    <option value="" selected disabled>Selecciona un tipo de servicio</option>
                     <option
-                      v-for="services in services"
-                      :key="services.id"
-                      :value="services.id"
+                      v-for="service in services"
+                      :key="service.id"
+                      :value="service.id"
                     >
-                      {{ services.name }}
+                      {{ service.name }}
                     </option>
                   </AppSelect>
 
@@ -639,7 +645,7 @@ const submit = () => {
                   />
                 </div>
 
-                <div class="grid gap-4">
+                <div class="grid gap-4 md:grid-cols-2">
                   <AppTextarea
                     ref="issueInputRef"
                     v-model="form.issue"

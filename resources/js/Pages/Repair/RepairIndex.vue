@@ -1,10 +1,31 @@
 <script setup>
 
 import AppLayout from "../../Layouts/AppLayout.vue";
-import AppCard from "../../Components/ui/AppCard.vue";
-import AppBadge from "../../Components/ui/AppBadge.vue";
 import AppButton from "../../Components/ui/AppButton.vue";
 import {router} from '@inertiajs/vue3'
+import {route} from 'ziggy-js'
+import AppTable from "@/Components/ui/AppTable.vue";
+import EmptyState from "@/Components/ui/EmptyState.vue";
+import AppBadge from "@/Components/ui/AppBadge.vue";
+
+const props = defineProps({
+  repairs: {
+    type: Object,
+    default: () => [],
+  },
+})
+
+const receptionsFiltered = props.repairs.data
+
+const columns = [
+  {key: 'id', label: 'ID'},
+  {key: 'issue', label: 'Problema'},
+  {key: 'technician', label: 'Técnico'},
+  {key: 'client', label: 'Cliente'},
+  {key: 'customer_phone', label: 'Número Telefónico Cliente'},
+  {key: 'status', label: 'Estatus'},
+  {key: 'actions', label: 'Acciones'},
+];
 
 const breadcrumbs = [
   {label: 'Home', href: 'dashboard'},
@@ -12,7 +33,12 @@ const breadcrumbs = [
 ];
 
 const onCreateReception = () => {
-  router.get('/repair/create');
+  router.visit(route('repairs.create'));
+}
+
+const handleAssignUpdating = (id) => {
+  console.log('id', id)
+  /*router.visit(route('repairs.update', id));*/
 }
 
 </script>
@@ -25,38 +51,36 @@ const onCreateReception = () => {
   >
     <div class="flex flex-col gap-4">
       <AppButton @click="onCreateReception" variant="primary" key="registrar-recepcion" class="py-12 w-full">
-        <span class="text-2xl font-semibold">Registrar Recepcion</span>
+        <span class="text-xl lg:text-lg md:text-md">Registrar Recepcion</span>
       </AppButton>
     </div>
 
-    <section class="grid gap-4 lg:grid-cols-[1.6fr_0.9fr]">
-
-      <AppCard>
-        <div class="flex h-full flex-col justify-between gap-6 p-6">
-          <div class="space-y-4">
-            <AppBadge variant="primary" class="uppercase tracking-[0.18em]">
-              Live overview
-            </AppBadge>
-            <div class="space-y-3">
-              <h2
-                class="max-w-2xl text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100 sm:text-4xl">
-                A minimal control center with clear signals and calm surfaces.
-              </h2>
-              <p class="max-w-2xl text-sm leading-6 text-slate-500 dark:text-slate-400 sm:text-base">
-                Designed for teams that value fast decisions, sharp visual hierarchy, and a refined interface that stays
-                out of the way.
-              </p>
-            </div>
-          </div>
-
-          <div class="flex flex-wrap gap-3">
-            <AppButton>View reports</AppButton>
-            <AppButton variant="outline">Export data</AppButton>
-            <AppButton variant="ghost">Share dashboard</AppButton>
-          </div>
-        </div>
-      </AppCard>
-    </section>
+    <AppTable
+      title="Lista de reparaciones"
+      description="Buscar y filtrar reparaciones registradas."
+      :columns="columns"
+      :rows="receptionsFiltered"
+      :searchableKeys="['folio']"
+      searchPlaceholder="Busca nombre, número telefónico, etc."
+      rowKey="id">
+      <template #cell-status="{ value }">
+        <AppBadge :variant="value === 'completed' ? 'success' : value === 'in_progress' ? 'primary' : 'warning'">
+          {{ value }}
+        </AppBadge>
+      </template>
+      <template #cell-actions="{ value }">
+        <AppButton variant="outline" size="sm" class="mr-2" @click="handleAssignUpdating()">
+          Actualizar proceso
+        </AppButton>
+      </template>
+      <template #empty>
+        <EmptyState
+          title="No hay reparaciones registradas"
+          description="Intenta limpiar los parámetros de búsqueda o limpia los filtros"
+          icon="fa-table-cells"
+        />
+      </template>
+    </AppTable>
   </AppLayout>
 </template>
 

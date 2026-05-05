@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\actions\Repairs\FormatRepairsAction;
+use App\Enums\RepairEnum;
 use App\Http\Requests\CreateRepairRequest;
 use App\Http\Requests\SearchClientRequest;
+use App\Http\Requests\UpdateLogRepairRequest;
 use App\Http\Resources\ErrorResource;
+use App\Models\Repair;
+use App\Models\RepairLog;
 use App\useCases\Client\FindClientUseCase;
 use App\useCases\Client\GetClientsUseCase;
 use App\useCases\DeviceCategory\GetDeviceCategoriesUseCase;
+use App\useCases\Repair\PaginateRepairsUseCase;
 use App\useCases\Repair\StoreRepairUseCase;
 use App\useCases\Service\GetServiceUseCase;
 use Exception;
@@ -16,9 +22,17 @@ use Throwable;
 
 class RepairController extends Controller
 {
-    public function index()
+    public function index(
+        PaginateRepairsUseCase $paginateRepairsUseCase,
+        FormatRepairsAction    $formatRepairsAction)
     {
-        return Inertia::render('Repair/RepairIndex');
+        $repairs = $paginateRepairsUseCase->execute(50)->toArray();
+
+        $repairs["data"] = $formatRepairsAction->execute($repairs["data"]);
+
+        return Inertia::render('Repair/RepairIndex', [
+            'repairs' => $repairs,
+        ]);
     }
 
     public function create(
@@ -36,7 +50,7 @@ class RepairController extends Controller
         if ($formClientId) {
             $selectedClient = $findClientUseCase->execute($formClientId);
         }
-        
+
         $search = trim($request->input('search'));
 
         $deviceCategories = $getDeviceCategoriesUseCase->execute();
@@ -71,5 +85,17 @@ class RepairController extends Controller
         } catch (Exception $exception) {
             return new ErrorResource($exception->getMessage());
         }
+    }
+
+    public function edit(Repair $repair)
+    {
+        $repair = $repair->load('reception', 'technician', 'device.deviceCategory', 'service');
+
+        $statuses = RepairEnum::options();
+
+        return Inertia::render('Repair/RepairEdit', [
+            'repair' => $repair,
+            'statuses' => $statuses,
+        ]);
     }
 }

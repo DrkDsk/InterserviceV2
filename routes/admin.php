@@ -4,6 +4,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ReceptionController;
 use App\Http\Controllers\RepairController;
+use App\Http\Controllers\RepairLogController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -16,6 +17,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [RepairController::class, 'index'])->name('index');
         Route::get('/create', [RepairController::class, 'create'])->name('create');
         Route::post('/', [RepairController::class, 'store'])->name('store');
+        Route::get('/{repair}', [RepairController::class, 'edit'])->name('edit');
+
+        Route::prefix('logs')->name('logs.')->group(function () {
+            Route::post('/{repair}', [RepairLogController::class, 'store'])->name('store');
+            Route::get('/{repair}', [RepairLogController::class, 'logs'])->name('index');
+            Route::put('/{repairLog}', [RepairLogController::class, 'update'])->name('update');
+        });
     });
 
     Route::get('/tables', function () {
