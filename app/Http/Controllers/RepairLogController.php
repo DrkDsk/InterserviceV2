@@ -18,6 +18,17 @@ class RepairLogController extends Controller
         ]);
     }
 
+    public function store(Repair $repair, UpdateLogRepairRequest $request)
+    {
+        $validated = array_merge($request->validated(), [
+            'created_by' => auth()->id(),
+        ]);
+
+        $repair->logs()->create($validated);
+
+        return redirect()->back();
+    }
+
     public function update(RepairLog $repairLog, UpdateLogRepairRequest $request)
     {
         $repairLog->update($request->validated());
