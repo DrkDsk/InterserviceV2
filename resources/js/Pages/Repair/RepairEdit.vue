@@ -36,7 +36,7 @@ const form = useForm({
 })
 
 const goToRepairLogs = () => {
-  router.visit(route("repairs.logs", props.repair.id))
+  router.visit(route("repairs.logs.index", props.repair.id))
 }
 
 </script>
@@ -120,39 +120,42 @@ const goToRepairLogs = () => {
         <div class="px-6 py-6 sm:px-8 h-full">
           <section class="space-y-6 flex flex-col justify-between h-full">
             <div class="space-y-8">
+
               <div class="space-y-2">
-                <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Solución</h3>
-                <p class="text-sm text-slate-500 dark:text-slate-400">
-                  Modifica el estatus y la solución de la reparación
-                </p>
+                <div class="flex items-center gap-2 justify-between">
+                  <div class="flex flex-col">
+                    <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Solución</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">
+                      Modifica el estatus y la solución de la reparación
+                    </p>
+                  </div>
+                  <AppButton class="xl:w-4xl lg:w-3xl md:w-xl w-fit" variant="outline" @click="goToRepairLogs">
+                    Ver historial
+                  </AppButton>
+                </div>
               </div>
 
-              <AppSelect
-                v-model="form.status"
-                label="Estatus"
-              >
-                <option value="" selected disabled>Selecciona un estatus</option>
-                <option
-                  v-for="status in statuses"
-                  :key="status.value"
-                  :value="status.value"
+              <div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
+                <AppSelect
+                  v-model="form.status"
+                  label="Estatus"
                 >
-                  {{ status.label }}
-                </option>
-              </AppSelect>
+                  <option value="" selected disabled>Selecciona un estatus</option>
+                  <option
+                    v-for="status in statuses"
+                    :key="status.value"
+                    :value="status.value"
+                  >
+                    {{ status.label }}
+                  </option>
+                </AppSelect>
 
-              <AppTextarea
-                v-model="form.solution"
-                label="Solución"
-                :rows="6"
-              />
-
-              <a
-                @click="goToRepairLogs"
-                class=" text-slate-200  hover:text-white/50 cursor-pointer">
-                Registrar histórico
-              </a>
-
+                <AppTextarea
+                  v-model="form.solution"
+                  label="Solución"
+                  :rows="6"
+                />
+              </div>
             </div>
 
             <div class="justify-end gap-4 flex">
