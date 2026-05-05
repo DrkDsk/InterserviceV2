@@ -17,6 +17,9 @@ import {
   faMoon,
   faBell,
   faMagnifyingGlass,
+  faTrash,
+  faPlus,
+  faCircleCheck
 } from '@fortawesome/free-solid-svg-icons'
 
 import {faVuejs} from '@fortawesome/free-brands-svg-icons'
@@ -40,4 +43,7 @@ library.add(
   faMoon,
   faBell,
   faMagnifyingGlass,
+  faTrash,
+  faPlus,
+  faCircleCheck
 )
