@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/{repair}', [RepairController::class, 'edit'])->name('edit');
 
         Route::prefix('logs')->name('logs.')->group(function () {
+            Route::post('/{repair}', [RepairLogController::class, 'store'])->name('store');
             Route::get('/{repair}', [RepairLogController::class, 'logs'])->name('index');
             Route::put('/{repair}', [RepairLogController::class, 'update'])->name('update');
         });
