@@ -100,6 +100,8 @@ class RepairController extends Controller
 
     public function update(Repair $repair, UpdateRepairRequest $request)
     {
+        $repair->update($request->validated());
 
+        return redirect()->back()->with('info', 'Reparación actualizada');
     }
 }
