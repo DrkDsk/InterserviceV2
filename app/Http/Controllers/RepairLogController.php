@@ -11,7 +11,9 @@ class RepairLogController extends Controller
 {
     public function logs(Repair $repair)
     {
-        $repair = $repair->load('logs');
+        $repair->load([
+            'logs' => fn($q) => $q->oldest()
+        ]);
 
         return Inertia::render('Repair/RepairLogs', [
             'repair' => $repair,
