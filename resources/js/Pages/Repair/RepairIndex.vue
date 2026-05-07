@@ -37,8 +37,7 @@ const onCreateReception = () => {
 }
 
 const handleAssignUpdating = (id) => {
-  console.log('id', id)
-  /*router.visit(route('repairs.update', id));*/
+  router.visit(route('repairs.edit', id));
 }
 
 </script>
@@ -68,8 +67,13 @@ const handleAssignUpdating = (id) => {
           {{ value }}
         </AppBadge>
       </template>
-      <template #cell-actions="{ value }">
-        <AppButton variant="outline" size="sm" class="mr-2" @click="handleAssignUpdating()">
+      <template #cell-actions="{ row }">
+        <AppButton
+          variant="outline"
+          size="sm"
+          class="mr-2"
+          @click="handleAssignUpdating(row.id)"
+        >
           Actualizar proceso
         </AppButton>
       </template>
