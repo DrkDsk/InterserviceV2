@@ -2,13 +2,14 @@
 
 import AppLayout from "@/Layouts/AppLayout.vue";
 import AppCard from "@/Components/ui/AppCard.vue";
-import {ref, watch} from "vue";
 import AppTextarea from "@/Components/ui/AppTextarea.vue";
 import AppIcon from "@/Components/AppIcon.vue";
 import AppButton from "@/Components/ui/AppButton.vue";
 import {router} from "@inertiajs/vue3";
 import {route} from "ziggy-js"
 import EmptyState from "@/Components/ui/EmptyState.vue";
+import {computed, ref, watch} from "vue";
+import {useRepairTabs} from "@/composables/useRepairTabs";
 
 const props = defineProps({
   repair: {
@@ -22,10 +23,15 @@ const options = {
   preserveScroll: true,
 }
 
+const repairTitle = computed(() => `Reparación #${props.repair.id}`);
+const repairTabs = useRepairTabs(props.repair.id, {
+  logsCount: computed(() => props.repair.logs_count ?? props.repair.logs?.length ?? 0),
+});
+
 const breadcrumbs = [
-  {label: 'Home', href: 'dashboard'},
-  {label: 'Reparación', href: 'repairs.edit', params: {id: props.repair.id}},
-  {label: 'Historial', current: true},
+  {label: 'Home', href: route('dashboard')},
+  {label: 'Reparaciones', href: route('repairs.index')},
+  {label: `Reparación #${props.repair.id}`},
 ];
 
 const logs = ref([])
@@ -60,7 +66,12 @@ const upsertLog = (id, message) => {
 </script>
 
 <template>
-  <AppLayout :breadcrumbs="breadcrumbs">
+  <AppLayout
+    :breadcrumbs="breadcrumbs"
+    :tabs="repairTabs"
+    :title="repairTitle"
+    description="Administra el historial y las anotaciones operativas de la reparación."
+  >
     <div class="mx-auto w-full space-y-4">
       <AppCard class="overflow-hidden">
         <div class="px-6 py-6 sm:px-8">

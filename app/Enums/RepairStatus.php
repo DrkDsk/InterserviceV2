@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum RepairEnum: string
+enum RepairStatus: string
 {
     case Pending = 'pending';
     case Diagnosing = 'diagnosing';
@@ -11,7 +11,7 @@ enum RepairEnum: string
     case Completed = 'completed';
     case Cancelled = 'cancelled';
 
-    static function values(): array
+    public static function values(): array
     {
         return array_column(self::cases(), 'value');
     }

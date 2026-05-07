@@ -7,6 +7,7 @@ import {route} from 'ziggy-js'
 import AppTable from "@/Components/ui/AppTable.vue";
 import EmptyState from "@/Components/ui/EmptyState.vue";
 import AppBadge from "@/Components/ui/AppBadge.vue";
+import AppIcon from "@/Components/AppIcon.vue";
 
 const props = defineProps({
   repairs: {
@@ -38,6 +39,10 @@ const onCreateReception = () => {
 
 const handleAssignUpdating = (id) => {
   router.visit(route('repairs.edit', id));
+}
+
+const handleOpenSettings = (id) => {
+  router.visit(route('repairs.settings', id));
 }
 
 </script>
@@ -74,7 +79,7 @@ const handleAssignUpdating = (id) => {
           class="mr-2"
           @click="handleAssignUpdating(row.id)"
         >
-          Actualizar proceso
+          <AppIcon name="fa-chevron-right"/>
         </AppButton>
       </template>
       <template #empty>

@@ -1,6 +1,5 @@
 <script setup>
 import AppIcon from '../AppIcon.vue';
-import {route} from 'ziggy-js'
 import {router} from '@inertiajs/vue3'
 
 const props = defineProps({
@@ -10,9 +9,9 @@ const props = defineProps({
   },
 });
 
-const navigate = (href, params) => {
+const navigate = (href) => {
   if (!href) return
-  router.visit(route(href, params ?? {}))
+  router.visit(href)
 }
 
 </script>

@@ -9,6 +9,7 @@ import AppInput from "@/Components/ui/AppInput.vue";
 import {router, useForm} from "@inertiajs/vue3";
 import {route} from "ziggy-js"
 import {computed} from "vue";
+import {useRepairTabs} from "@/composables/useRepairTabs";
 
 const props = defineProps({
   repair: {
@@ -22,8 +23,12 @@ const props = defineProps({
   }
 })
 
+const options = {
+  preserveScroll: true,
+}
+
 const clientName = computed(() => {
-  const name = (props.repair.reception.client.name).toLowerCase();
+  const name = (props.repair.reception.client?.name ?? props.repair.reception.customer_name).toLowerCase();
   return name
     .split(' ')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -38,10 +43,13 @@ const technicianName = computed(() => {
     .join(' ');
 });
 
+const repairTitle = computed(() => `Reparación #${props.repair.id}`);
+const repairTabs = useRepairTabs(props.repair.id, {
+  logsCount: computed(() => props.repair.logs_count ?? 0),
+});
+
 const form = useForm({
   observations: props.repair.observations,
-  solution: props.repair.solution,
-  status: props.repair.status,
   notes: props.repair.reception.notes,
   serial_number: props.repair.device.serial_number,
   accessories: props.repair.device.accessories,
@@ -57,14 +65,29 @@ const goToRepairLogs = () => {
 }
 
 const breadcrumbs = [
-  {label: 'Home', href: 'dashboard'},
-  {label: 'Reparaciones', current: true},
+  {label: 'Home', href: route('dashboard')},
+  {label: 'Reparaciones', href: route('repairs.index')},
+  {label: `Reparación #${props.repair.id}`},
 ];
+
+const solutionForm = useForm({
+  status: props.repair.status,
+  solution: props.repair.solution,
+})
+
+const submitSolution = () => {
+  solutionForm.put(route('repairs.update', props.repair.id), options)
+}
 
 </script>
 
 <template>
-  <AppLayout :breadcrumbs>
+  <AppLayout
+    :breadcrumbs="breadcrumbs"
+    :tabs="repairTabs"
+    :title="repairTitle"
+    description="Consulta los detalles de recepción, equipo y solución de la reparación."
+  >
     <div class="mx-auto w-full space-y-4">
       <AppCard class="overflow-hidden">
         <div class="px-6 py-6 sm:px-8">
@@ -168,15 +191,12 @@ const breadcrumbs = [
                       Modifica el estatus y la solución de la reparación
                     </p>
                   </div>
-                  <AppButton class="xl:w-4xl lg:w-3xl md:w-xl w-fit" variant="outline" @click="goToRepairLogs">
-                    Ver historial
-                  </AppButton>
                 </div>
               </div>
 
               <div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
                 <AppSelect
-                  v-model="form.status"
+                  v-model="solutionForm.status"
                   label="Estatus"
                 >
                   <option value="" selected disabled>Selecciona un estatus</option>
@@ -190,7 +210,7 @@ const breadcrumbs = [
                 </AppSelect>
 
                 <AppTextarea
-                  v-model="form.solution"
+                  v-model="solutionForm.solution"
                   label="Solución"
                   :rows="6"
                 />
@@ -198,7 +218,7 @@ const breadcrumbs = [
             </div>
 
             <div class="justify-end gap-4 flex">
-              <AppButton variant="outline">
+              <AppButton variant="outline" @click="submitSolution">
                 Actualizar
               </AppButton>
             </div>

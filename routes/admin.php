@@ -18,6 +18,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/create', [RepairController::class, 'create'])->name('create');
         Route::post('/', [RepairController::class, 'store'])->name('store');
         Route::get('/{repair}', [RepairController::class, 'edit'])->name('edit');
+        Route::put('/{repair}', [RepairController::class, 'update'])->name('update');
+        Route::delete('/{repair}', [RepairController::class, 'destroy'])->name('destroy');
+        Route::get('/{repair}/settings', [RepairController::class, 'settings'])->name('settings');
+        Route::delete('/{repair}/logs', [RepairController::class, 'destroyLogs'])->name('logs.clear');
 
         Route::prefix('logs')->name('logs.')->group(function () {
             Route::post('/{repair}', [RepairLogController::class, 'store'])->name('store');

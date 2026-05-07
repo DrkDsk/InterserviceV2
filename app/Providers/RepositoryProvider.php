@@ -28,7 +28,7 @@ class RepositoryProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
-        $this->app->bind(DeviceCategoryRepositoryInterface::class, DEviceCategoryRepository::class);
+        $this->app->bind(DeviceCategoryRepositoryInterface::class, DeviceCategoryRepository::class);
         $this->app->bind(ClientRepositoryInterface::class, ClientRepository::class);
         $this->app->bind(RepairRepositoryInterface::class, RepairRepository::class);
         $this->app->bind(DeviceRepositoryInterface::class, DeviceRepository::class);
