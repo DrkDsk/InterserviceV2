@@ -10,9 +10,9 @@ const props = defineProps({
   },
 });
 
-const navigate = (href, params) => {
+const navigate = (href) => {
   if (!href) return
-  router.visit(route(href, params ?? {}))
+  router.visit(href)
 }
 
 </script>
