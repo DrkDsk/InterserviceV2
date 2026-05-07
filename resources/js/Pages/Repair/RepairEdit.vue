@@ -9,6 +9,7 @@ import AppInput from "@/Components/ui/AppInput.vue";
 import {router, useForm} from "@inertiajs/vue3";
 import {route} from "ziggy-js"
 import {computed} from "vue";
+import {useRepairTabs} from "@/composables/useRepairTabs";
 
 const props = defineProps({
   repair: {
@@ -42,6 +43,11 @@ const technicianName = computed(() => {
     .join(' ');
 });
 
+const repairTitle = computed(() => `Reparación #${props.repair.id}`);
+const repairTabs = useRepairTabs(props.repair.id, {
+  logsCount: computed(() => props.repair.logs_count ?? 0),
+});
+
 const form = useForm({
   observations: props.repair.observations,
   notes: props.repair.reception.notes,
@@ -56,10 +62,6 @@ const form = useForm({
 
 const goToRepairLogs = () => {
   router.visit(route("repairs.logs.index", props.repair.id))
-}
-
-const goToRepairSettings = () => {
-  router.visit(route("repairs.settings", props.repair.id))
 }
 
 const breadcrumbs = [
@@ -80,7 +82,12 @@ const submitSolution = () => {
 </script>
 
 <template>
-  <AppLayout :breadcrumbs>
+  <AppLayout
+    :breadcrumbs="breadcrumbs"
+    :tabs="repairTabs"
+    :title="repairTitle"
+    description="Consulta los detalles de recepción, equipo y solución de la reparación."
+  >
     <div class="mx-auto w-full space-y-4">
       <AppCard class="overflow-hidden">
         <div class="px-6 py-6 sm:px-8">
@@ -183,14 +190,6 @@ const submitSolution = () => {
                     <p class="text-sm text-slate-500 dark:text-slate-400">
                       Modifica el estatus y la solución de la reparación
                     </p>
-                  </div>
-                  <div class="flex flex-wrap items-center justify-end gap-3">
-                    <AppButton class="w-fit" variant="outline" @click="goToRepairLogs">
-                      Ver historial
-                    </AppButton>
-                    <AppButton class="w-fit" variant="outline" @click="goToRepairSettings">
-                      Configuración
-                    </AppButton>
                   </div>
                 </div>
               </div>
