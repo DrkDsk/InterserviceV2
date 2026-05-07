@@ -28,7 +28,7 @@ class RepairController extends Controller
 {
     public function index(
         PaginateRepairsUseCase $paginateRepairsUseCase,
-        FormatRepairsAction    $formatRepairsAction): Response
+        FormatRepairsAction $formatRepairsAction): Response
     {
         $repairs = $paginateRepairsUseCase->execute(50)->toArray();
 
@@ -40,13 +40,12 @@ class RepairController extends Controller
     }
 
     public function create(
-        SearchClientRequest        $request,
+        SearchClientRequest $request,
         GetDeviceCategoriesUseCase $getDeviceCategoriesUseCase,
-        GetClientsUseCase          $getClientsUseCase,
-        GetServiceUseCase          $getServiceUseCase,
-        FindClientUseCase          $findClientUseCase,
-    ): Response
-    {
+        GetClientsUseCase $getClientsUseCase,
+        GetServiceUseCase $getServiceUseCase,
+        FindClientUseCase $findClientUseCase,
+    ): Response {
         $selectedClient = null;
 
         $formClientId = $request->input('client_id');
@@ -77,9 +76,8 @@ class RepairController extends Controller
      */
     public function store(
         CreateRepairRequest $request,
-        StoreRepairUseCase  $storeRepairUseCase,
-    )
-    {
+        StoreRepairUseCase $storeRepairUseCase,
+    ) {
         try {
             $validated = $request->validated();
 
@@ -93,7 +91,7 @@ class RepairController extends Controller
 
     public function edit(Repair $repair): Response
     {
-        $repair = $repair->load('reception.client', 'technician', 'device.deviceCategory', 'service');
+        $repair = $repair->load('reception.client', 'technician', 'device.deviceCategory', 'service')->loadCount('logs');
 
         $statuses = RepairStatus::options();
 
@@ -123,11 +121,10 @@ class RepairController extends Controller
      * @throws Throwable
      */
     public function destroy(
-        Repair                                $repair,
+        Repair $repair,
         ConfirmRepairDestructiveActionRequest $request,
-        DeleteRepairUseCase                   $deleteRepairUseCase,
-    ): RedirectResponse
-    {
+        DeleteRepairUseCase $deleteRepairUseCase,
+    ): RedirectResponse {
         $request->validated();
         $deleteRepairUseCase->execute($repair);
 
@@ -140,11 +137,10 @@ class RepairController extends Controller
      * @throws Throwable
      */
     public function destroyLogs(
-        Repair                                $repair,
+        Repair $repair,
         ConfirmRepairDestructiveActionRequest $request,
-        DeleteRepairLogsUseCase               $deleteRepairLogsUseCase,
-    ): RedirectResponse
-    {
+        DeleteRepairLogsUseCase $deleteRepairLogsUseCase,
+    ): RedirectResponse {
         $request->validated();
         $deleteRepairLogsUseCase->execute($repair);
 
