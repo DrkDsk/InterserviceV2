@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\ReceptionEnum;
+use App\Enums\ReceptionStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->foreignId('client_id')->nullable()->constrained()->nullOnDelete();
             $table->string('customer_name')->nullable();
             $table->string('customer_phone')->nullable();
-            $table->enum('status', ReceptionEnum::values())->default(ReceptionEnum::Received->value);
+            $table->enum('status', ReceptionStatus::values())->default(ReceptionStatus::Received->value);
             $table->timestamp('received_at')->useCurrent();
             $table->timestamp('delivered_at')->nullable();
             $table->foreignId('created_by')->constrained('users');

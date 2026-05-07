@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\ServiceCategoryEnum;
+use App\Enums\ServiceCategoryType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +14,7 @@ return new class extends Migration {
         Schema::create('service_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('type', ServiceCategoryEnum::values())->default(ServiceCategoryEnum::Local->value);
+            $table->enum('type', ServiceCategoryType::values())->default(ServiceCategoryType::Local->value);
 
             $table->timestamps();
         });
