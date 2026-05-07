@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\actions\Repairs\FormatRepairsAction;
-use App\Enums\RepairEnum;
+use App\Enums\RepairStatus;
 use App\Http\Requests\CreateRepairRequest;
 use App\Http\Requests\SearchClientRequest;
-use App\Http\Requests\UpdateLogRepairRequest;
+use App\Http\Requests\UpdateRepairRequest;
 use App\Http\Resources\ErrorResource;
 use App\Models\Repair;
-use App\Models\RepairLog;
 use App\useCases\Client\FindClientUseCase;
 use App\useCases\Client\GetClientsUseCase;
 use App\useCases\DeviceCategory\GetDeviceCategoriesUseCase;
@@ -91,11 +90,16 @@ class RepairController extends Controller
     {
         $repair = $repair->load('reception.client', 'technician', 'device.deviceCategory', 'service');
 
-        $statuses = RepairEnum::options();
+        $statuses = RepairStatus::options();
 
         return Inertia::render('Repair/RepairEdit', [
             'repair' => $repair,
             'statuses' => $statuses,
         ]);
+    }
+
+    public function update(Repair $repair, UpdateRepairRequest $request)
+    {
+
     }
 }
