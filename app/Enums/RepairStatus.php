@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum RepairEnum: string
+enum RepairStatus: string
 {
     case Pending = 'pending';
     case Diagnosing = 'diagnosing';
