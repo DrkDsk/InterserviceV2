@@ -10,6 +10,7 @@ import AppCard from "@/Components/ui/AppCard.vue";
 import AppIcon from "@/Components/AppIcon.vue";
 import AppInput from "@/Components/ui/AppInput.vue";
 import AppModal from "@/Components/ui/AppModal.vue";
+import {useRepairTabs} from "@/composables/useRepairTabs";
 
 const confirmationWord = 'Eliminar';
 
@@ -51,12 +52,15 @@ const deleteLogsDisabled = computed(() => {
 });
 
 const hasLogs = computed(() => (props.repair.logs_count ?? 0) > 0);
+const repairTitle = computed(() => `Reparación #${props.repair.id}`);
+const repairTabs = useRepairTabs(props.repair.id, {
+  logsCount: computed(() => props.repair.logs_count ?? 0),
+});
 
 const breadcrumbs = computed(() => ([
   {label: 'Home', href: route('dashboard')},
   {label: 'Reparaciones', href: route('repairs.index')},
-  {label: `Reparación ${repairLabel.value}`, href: route('repairs.edit', props.repair.id)},
-  {label: 'Configuración'},
+  {label: `Reparación #${props.repair.id}`},
 ]));
 
 const closeDeleteRepairModal = () => {
@@ -92,9 +96,10 @@ const submitDeleteLogs = () => {
 
 <template>
   <AppLayout
-    title="Configuración de reparación"
+    :title="repairTitle"
     description="Administra acciones sensibles y permanentes para esta reparación."
     :breadcrumbs="breadcrumbs"
+    :tabs="repairTabs"
   >
     <div class="mx-auto w-full space-y-4">
       <AppCard class="overflow-hidden">
