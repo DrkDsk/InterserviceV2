@@ -17,13 +17,13 @@ const navigate = (href) => {
 </script>
 
 <template>
-  <nav class="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
+  <nav class="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
     <template v-for="(item, index) in items" :key="`${item.label}-${index}`">
       <component
         :is="item.href ? 'a' : 'span'"
         @click="navigate(item.href, item.params)"
-        class="transition hover:text-slate-900 dark:hover:text-slate-100"
-        :class="item.href ? 'cursor-pointer' : 'cursor-default text-slate-900 dark:text-slate-100'"
+        class="transition"
+        :class="item.href ? 'cursor-pointer hover:text-primary-600 dark:hover:text-primary-300' : 'cursor-default font-medium text-slate-900 dark:text-slate-100'"
       >
         {{ item.label }}
       </component>

@@ -113,13 +113,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="relative min-h-screen overflow-hidden bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-    <div class="pointer-events-none absolute inset-0 overflow-hidden">
-      <div class="absolute -left-24 top-0 h-72 w-72 rounded-full bg-primary-500/10 blur-3xl dark:bg-primary-500/10"/>
-      <div
-        class="absolute right-0 top-32 h-72 w-72 rounded-full bg-secondary-500/10 blur-3xl dark:bg-secondary-500/10"/>
-    </div>
-
+  <div class="ui-shell relative min-h-screen overflow-hidden">
+    
     <ToastStack/>
 
     <div class="relative flex min-h-screen">
@@ -141,38 +136,33 @@ onBeforeUnmount(() => {
 
       <aside
         v-if="displayNavigation"
-        class="fixed inset-y-0 left-0 z-40 w-72 flex flex-col
-         border-r border-slate-200 bg-white/90 text-slate-900
-         shadow-sm backdrop-blur
-         transition-all duration-200 ease-in-out
-       dark:border-slate-800 dark:bg-slate-950/90 dark:text-slate-100
-         overflow-y-auto"
+        class="ui-sidebar fixed inset-y-0 left-0 z-40 flex w-72 flex-col overflow-y-auto text-slate-900 transition-all duration-200 ease-in-out dark:text-slate-100"
         :class="[sidebarWidthClass, mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0']"
       >
-        <div class="flex items-center justify-between border-b border-slate-200 px-4 py-4 dark:border-slate-800">
+        <div class="ui-divider flex items-center justify-between border-b px-4 py-4">
           <div class="flex items-center gap-3 overflow-hidden">
             <div
-              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-linear-to-br from-primary-500 to-secondary-500 text-white">
+              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-primary-500 via-primary-500 to-secondary-500 text-white shadow-[0_16px_35px_rgba(75,143,227,0.22)]">
               <span class="text-sm font-semibold">I</span>
             </div>
             <div class="min-w-0 transition-all duration-200 ease-in-out"
                  :class="collapsedSidebar ? 'max-w-0 opacity-0' : 'max-w-45 opacity-100'">
               <p class="text-sm font-semibold tracking-tight">{{ appName }}</p>
-              <p class="text-xs text-slate-500 dark:text-slate-400">Minimal SaaS dashboard</p>
+              <p class="text-xs tracking-[0.16em] text-slate-500 uppercase dark:text-slate-400">Command center</p>
             </div>
           </div>
 
           <div class="flex items-center gap-1">
             <button
               type="button"
-              class="rounded-sm p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-900 dark:hover:text-slate-100 lg:hidden"
+              class="ui-toolbar-button rounded-xl p-2 transition lg:hidden"
               @click="mobileSidebarOpen = false"
             >
               <AppIcon name="close" class="h-4 w-4"/>
             </button>
             <button
               type="button"
-              class="hidden rounded-sm p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-900 dark:hover:text-slate-100 lg:inline-flex"
+              class="ui-toolbar-button hidden rounded-xl p-2 transition lg:inline-flex"
               @click="collapsedSidebar = !collapsedSidebar"
             >
               <AppIcon :name="collapsedSidebar ? 'fa-chevron-right' : 'fa-chevron-left'" class="h-4 w-4"/>
@@ -196,13 +186,13 @@ onBeforeUnmount(() => {
       <div class="flex min-h-screen flex-1 flex-col transition-all duration-200 ease-in-out"
            :class="[displayNavigation ? (collapsedSidebar ? 'lg:ml-20' : 'lg:ml-72') : '']">
         <header
-          class="sticky top-0 z-20 border-b border-slate-200 bg-slate-50/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
+          class="sticky top-0 z-20 border-b border-[color:var(--border)] bg-[var(--background-elevated)] backdrop-blur-xl">
           <div class="mx-auto flex w-full max-w-400 items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
             <div class="flex min-w-0 items-center gap-3">
               <button
                 v-if="displayNavigation"
                 type="button"
-                class="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-slate-200 bg-white/80 text-slate-600 transition hover:bg-slate-50 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-white lg:hidden"
+                class="ui-toolbar-button inline-flex h-10 w-10 items-center justify-center rounded-xl transition lg:hidden"
                 @click="mobileSidebarOpen = true"
               >
                 <AppIcon name="fa-bars" class="h-5 w-5"/>
@@ -210,7 +200,7 @@ onBeforeUnmount(() => {
 
               <div
                 v-else
-                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-linear-to-br from-primary-500 to-secondary-500 text-white"
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-primary-500 via-primary-500 to-secondary-500 text-white shadow-[0_16px_35px_rgba(75,143,227,0.22)]"
               >
                 <span class="text-sm font-semibold">I</span>
               </div>
@@ -231,7 +221,7 @@ onBeforeUnmount(() => {
             <div class="flex items-center gap-2">
               <button
                 type="button"
-                class="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-slate-200 bg-white/80 text-slate-500 transition hover:scale-[1.02] hover:bg-slate-50 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-white"
+                class="ui-toolbar-button inline-flex h-10 w-10 items-center justify-center rounded-xl transition"
                 @click="toggleTheme"
               >
                 <AppIcon :name="isDark ? 'fa-sun' : 'fa-moon'" class="h-4 w-4"/>
@@ -239,7 +229,7 @@ onBeforeUnmount(() => {
 
               <button
                 type="button"
-                class="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-slate-200 bg-white/80 text-slate-500 transition hover:scale-[1.02] hover:bg-slate-50 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-white"
+                class="ui-toolbar-button inline-flex h-10 w-10 items-center justify-center rounded-xl transition"
               >
                 <AppIcon name="fa-bell" class="h-4 w-4"/>
               </button>
@@ -251,11 +241,11 @@ onBeforeUnmount(() => {
               >
                 <button
                   type="button"
-                  class="flex items-center gap-3 rounded-sm border border-slate-200 bg-white/80 px-3 py-2 text-left text-sm transition hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900/70 dark:hover:bg-slate-900"
+                  class="ui-toolbar-button flex items-center gap-3 rounded-2xl px-3 py-2 text-left text-sm transition"
                   @click.stop="toggleProfileMenu"
                 >
                   <div
-                    class="flex h-8 w-8 items-center justify-center rounded-sm bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-300">
+                    class="flex h-8 w-8 items-center justify-center rounded-xl bg-primary-50 text-primary-600 dark:bg-primary-500/14 dark:text-primary-200">
                     <AppIcon name="user" class="h-4 w-4"/>
                   </div>
                   <div class="leading-tight">
@@ -281,11 +271,11 @@ onBeforeUnmount(() => {
                 >
                   <div
                     v-if="profileMenuOpen"
-                    class="absolute right-0 top-full z-30 mt-2 w-56 rounded-sm border border-slate-200 bg-white/95 p-1 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-950/95"
+                    class="ui-panel-strong absolute right-0 top-full z-30 mt-2 w-56 rounded-2xl p-1.5 shadow-floating"
                   >
                     <button
                       type="button"
-                      class="flex w-full items-center gap-3 rounded-sm px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-white"
+                      class="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm text-slate-600 transition hover:bg-primary-50 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white"
                       @click="router.get(route('settings'))"
                     >
                       <AppIcon name="fa-gear" class="h-4 w-4"/>
@@ -294,7 +284,7 @@ onBeforeUnmount(() => {
 
                     <button
                       type="button"
-                      class="flex w-full items-center gap-3 rounded-sm px-3 py-2 text-sm text-rose-600 transition hover:bg-rose-50 dark:text-rose-300 dark:hover:bg-rose-500/10"
+                      class="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm text-danger-600 transition hover:bg-danger-50 dark:text-danger-300 dark:hover:bg-danger-500/10"
                       @click="openLogoutModal"
                     >
                       <AppIcon name="fa-xmark" class="h-4 w-4"/>
@@ -310,7 +300,7 @@ onBeforeUnmount(() => {
             v-if="tabs.length"
             class="mx-auto w-full max-w-400 px-4 sm:px-6 lg:px-8"
           >
-            <div class="border-t border-slate-200 dark:border-slate-800">
+            <div class="border-t border-[color:var(--border)] pt-2">
               <EntityTabs :items="tabs"/>
             </div>
           </div>
@@ -348,7 +338,7 @@ onBeforeUnmount(() => {
           Cancelar
         </AppButton>
         <AppButton variant="primary" @click="logout">
-          <span class="text-red-500">Cerrar Sesión</span>
+          Cerrar sesión
         </AppButton>
       </template>
     </AppModal>

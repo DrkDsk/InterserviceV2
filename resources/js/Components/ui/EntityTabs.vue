@@ -21,15 +21,15 @@ const navigate = (href) => {
 
 <template>
   <nav class="overflow-x-auto" aria-label="Navegación contextual">
-    <div class="flex min-w-max items-center gap-1">
+    <div class="flex min-w-max items-center gap-2">
       <button
         v-for="(item, index) in items"
         :key="`${item.label}-${index}`"
         type="button"
-        class="group inline-flex items-center gap-2 border-b-2 px-3 py-3 text-sm font-medium whitespace-nowrap transition-colors"
+        class="group inline-flex items-center gap-2 rounded-xl border px-3.5 py-2.5 text-sm font-medium whitespace-nowrap transition-all"
         :class="item.active
-          ? 'border-primary-500 text-slate-900 dark:text-slate-100'
-          : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900 dark:text-slate-400 dark:hover:border-slate-700 dark:hover:text-slate-100'"
+          ? 'border-primary-200 bg-primary-50 text-slate-900 shadow-soft dark:border-primary-400/15 dark:bg-primary-500/12 dark:text-slate-100'
+          : 'border-[color:var(--border)] bg-transparent text-slate-500 hover:border-[color:var(--border-strong)] hover:bg-white/60 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-slate-100'"
         @click="navigate(item.href)"
       >
         <AppIcon

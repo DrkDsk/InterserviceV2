@@ -35,10 +35,10 @@ const navigate = () => {
   <div
     @click="navigate()"
     :title="collapsed ? label : undefined"
-    class="group relative flex items-center gap-3 rounded-sm px-3 py-2 text-sm transition-all duration-200 ease-in-out"
+    class="group relative flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm transition-all duration-200 ease-in-out"
     :class="active
-            ? 'bg-slate-900/5 text-slate-900 dark:bg-white/5 dark:text-white'
-            : 'text-slate-600 hover:bg-slate-900/3 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/3 dark:hover:text-slate-100'"
+            ? 'bg-primary-50/85 text-slate-900 shadow-soft dark:bg-primary-500/12 dark:text-white'
+            : 'text-slate-600 hover:bg-white/60 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/4 dark:hover:text-slate-100'"
   >
         <span
           v-if="active"
@@ -46,7 +46,8 @@ const navigate = () => {
         />
 
     <span
-      class="flex h-12 w-12 shrink-0 items-center justify-center rounded-sm border border-slate-200 bg-white/70 text-slate-500 transition group-hover:border-slate-300 group-hover:text-slate-700 dark:border-slate-800 dark:bg-slate-950/70 dark:text-slate-400 dark:group-hover:border-slate-700 dark:group-hover:text-slate-200">
+      class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[color:var(--border)] bg-[var(--surface)] text-slate-500 transition group-hover:border-[color:var(--border-strong)] group-hover:text-slate-700 dark:text-slate-400 dark:group-hover:text-slate-200"
+      :class="active ? 'border-primary-200 bg-primary-50 text-primary-600 dark:border-primary-400/20 dark:bg-primary-500/14 dark:text-primary-200' : ''">
             <AppIcon :name="icon" class="h-6 w-6"/>
         </span>
 

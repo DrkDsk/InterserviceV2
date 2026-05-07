@@ -1,5 +1,5 @@
 <template>
-    <section class="rounded-sm border border-slate-200 bg-white/80 shadow-soft backdrop-blur dark:border-slate-800 dark:bg-slate-900/75">
+    <section class="ui-panel rounded-2xl">
         <slot />
     </section>
 </template>

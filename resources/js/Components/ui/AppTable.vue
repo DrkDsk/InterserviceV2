@@ -89,9 +89,9 @@ const setPage = (page) => {
 
 <template>
   <section
-    class="rounded-sm border border-slate-200 bg-white/80 shadow-soft backdrop-blur dark:border-slate-800 dark:bg-slate-900/75">
+    class="ui-panel overflow-hidden rounded-2xl">
     <div
-      class="flex flex-col gap-4 border-b border-slate-200 px-5 py-4 dark:border-slate-800 lg:flex-row lg:items-center lg:justify-between">
+      class="ui-divider flex flex-col gap-4 border-b px-5 py-4 lg:flex-row lg:items-center lg:justify-between">
       <div class="space-y-1">
         <h2 v-if="title" class="text-sm font-semibold text-slate-900 dark:text-slate-100">
           {{ title }}
@@ -108,25 +108,25 @@ const setPage = (page) => {
           v-model="query"
           type="search"
           :placeholder="searchPlaceholder"
-          class="w-full rounded-sm border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/15 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+          class="ui-control w-full rounded-xl py-2.5 pl-9 pr-3 text-sm"
         >
       </label>
     </div>
 
     <div class="overflow-x-auto">
-      <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-800">
-        <thead class="bg-slate-50/80 dark:bg-slate-950/70">
+      <table class="min-w-full divide-y divide-[color:var(--border)]">
+        <thead class="bg-[var(--surface-muted)]">
         <tr>
           <th
             v-for="column in columns"
             :key="column.key"
-            class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400"
+            class="px-5 py-3 text-left text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400"
           >
             {{ column.label }}
           </th>
         </tr>
         </thead>
-        <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+        <tbody class="divide-y divide-[color:var(--border)]">
         <tr v-if="!paginatedRows.length">
           <td :colspan="columns.length" class="px-5 py-10 text-center text-sm text-slate-500 dark:text-slate-400">
             <slot name="empty">
@@ -137,7 +137,7 @@ const setPage = (page) => {
         <tr
           v-for="row in paginatedRows"
           :key="row[rowKey]"
-          class="transition hover:bg-slate-50/70 dark:hover:bg-slate-900/80"
+          class="transition hover:bg-[var(--primary-soft)]"
         >
           <td
             v-for="column in columns"
@@ -160,14 +160,14 @@ const setPage = (page) => {
     </div>
 
     <div
-      class="flex flex-col gap-4 border-t border-slate-200 px-5 py-4 dark:border-slate-800 sm:flex-row sm:items-center sm:justify-between">
+      class="ui-divider flex flex-col gap-4 border-t px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
       <p class="text-sm text-slate-500 dark:text-slate-400">
         {{ rangeLabel }}
       </p>
       <div class="flex items-center gap-2">
         <button
           type="button"
-          class="inline-flex h-9 w-9 items-center justify-center rounded-sm border border-slate-200 text-slate-500 transition hover:bg-slate-50 hover:text-slate-900 disabled:opacity-40 dark:border-slate-800 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-100"
+          class="ui-toolbar-button inline-flex h-9 w-9 items-center justify-center rounded-xl transition disabled:opacity-40"
           :disabled="currentPage === 1"
           @click="setPage(currentPage - 1)"
         >
@@ -178,7 +178,7 @@ const setPage = (page) => {
                 </span>
         <button
           type="button"
-          class="inline-flex h-9 w-9 items-center justify-center rounded-sm border border-slate-200 text-slate-500 transition hover:bg-slate-50 hover:text-slate-900 disabled:opacity-40 dark:border-slate-800 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-100"
+          class="ui-toolbar-button inline-flex h-9 w-9 items-center justify-center rounded-xl transition disabled:opacity-40"
           :disabled="currentPage === totalPages"
           @click="setPage(currentPage + 1)"
         >

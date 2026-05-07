@@ -45,9 +45,9 @@ onBeforeUnmount(() => {
 });
 
 const variants = {
-  success: 'border-green-200 bg-white text-slate-900 dark:border-brand-500/20 dark:bg-slate-950 dark:text-slate-100',
-  error: 'border-rose-200 bg-white text-slate-900 dark:border-rose-500/20 dark:bg-slate-950 dark:text-slate-100',
-  info: 'border-blue-200 bg-white text-slate-900 dark:border-primary-500/20 dark:bg-slate-950 dark:text-slate-100',
+  success: 'border-success-200 bg-[var(--surface-strong)] text-slate-900 dark:border-success-400/20 dark:text-slate-100',
+  error: 'border-danger-200 bg-[var(--surface-strong)] text-slate-900 dark:border-danger-400/20 dark:text-slate-100',
+  info: 'border-primary-200 bg-[var(--surface-strong)] text-slate-900 dark:border-primary-400/20 dark:text-slate-100',
 };
 </script>
 
@@ -64,13 +64,13 @@ const variants = {
       <div
         v-for="toast in toasts"
         :key="toast.id"
-        class="rounded-sm border px-4 py-3 shadow-sm backdrop-blur"
+        class="rounded-2xl border px-4 py-3 shadow-panel backdrop-blur-xl"
         :class="variants[toast.type] ?? variants.info"
       >
         <div class="flex items-start gap-3">
           <div
-            class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-sm"
-            :class="toast.type === 'success' ? 'bg-green-100 text-green-400 dark:text-brand-300' : toast.type === 'error' ? 'bg-rose-500/40 text-rose-400 dark:text-rose-300' : 'bg-blue-400/40 text-blue-400 dark:text-primary-300'"
+            class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl"
+            :class="toast.type === 'success' ? 'bg-success-100 text-success-600 dark:bg-success-500/14 dark:text-success-300' : toast.type === 'error' ? 'bg-danger-100 text-danger-600 dark:bg-danger-500/14 dark:text-danger-300' : 'bg-primary-100 text-primary-600 dark:bg-primary-500/14 dark:text-primary-300'"
           >
             <AppIcon :name="toast.type === 'success' ? 'fa-gauge-high' : 'fa-bell'" class="h-4 w-4"/>
           </div>

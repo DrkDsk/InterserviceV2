@@ -65,8 +65,8 @@ const revenueData = computed(() => ({
     {
       label: 'Revenue',
       data: [18000, 24000, 21600, 27800, 31200, 33500, 40200],
-      borderColor: '#479cf8',
-      backgroundColor: 'rgba(71, 156, 248, 0.12)',
+      borderColor: '#4b8fe3',
+      backgroundColor: 'rgba(75, 143, 227, 0.12)',
       fill: true,
       tension: 0.35,
       pointRadius: 2,
@@ -74,8 +74,8 @@ const revenueData = computed(() => ({
     {
       label: 'Expenses',
       data: [9000, 11000, 9800, 12400, 14000, 13500, 16000],
-      borderColor: '#3cb74b',
-      backgroundColor: 'rgba(60, 183, 75, 0.1)',
+      borderColor: '#4f8290',
+      backgroundColor: 'rgba(79, 130, 144, 0.1)',
       fill: true,
       tension: 0.35,
       pointRadius: 2,
@@ -120,7 +120,7 @@ const ordersData = computed(() => ({
     {
       label: 'Requests',
       data: [42, 58, 36, 29, 19],
-      backgroundColor: ['#479cf8', '#3cb74b', '#80bfff', '#6fd279', '#1f5290'],
+      backgroundColor: ['#4b8fe3', '#4f8290', '#93c5fb', '#7fd9b2', '#26436d'],
       borderRadius: 4,
     },
   ],
@@ -149,7 +149,7 @@ const shareData = computed(() => ({
   datasets: [
     {
       data: [41, 23, 21, 15],
-      backgroundColor: ['#479cf8', '#3cb74b', '#86b8ff', '#9ee3a7'],
+      backgroundColor: ['#4b8fe3', '#eb5f56', '#6ea8ee', '#4f8290'],
       borderWidth: 0,
     },
   ],
