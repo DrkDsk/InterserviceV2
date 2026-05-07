@@ -5,6 +5,7 @@ import AppIcon from '../Components/AppIcon.vue';
 import AppButton from '../Components/ui/AppButton.vue';
 import AppModal from '../Components/ui/AppModal.vue';
 import Breadcrumbs from '../Components/ui/Breadcrumbs.vue';
+import EntityTabs from '../Components/ui/EntityTabs.vue';
 import SidebarNavItem from '../Components/ui/SidebarNavItem.vue';
 import ToastStack from '../Components/ui/ToastStack.vue';
 import {useTheme} from '../composables/useTheme';
@@ -19,6 +20,10 @@ const props = defineProps({
     default: '',
   },
   breadcrumbs: {
+    type: Array,
+    default: () => [],
+  },
+  tabs: {
     type: Array,
     default: () => [],
   },
@@ -298,6 +303,15 @@ onBeforeUnmount(() => {
                   </div>
                 </Transition>
               </div>
+            </div>
+          </div>
+
+          <div
+            v-if="tabs.length"
+            class="mx-auto w-full max-w-400 px-4 sm:px-6 lg:px-8"
+          >
+            <div class="border-t border-slate-200 dark:border-slate-800">
+              <EntityTabs :items="tabs"/>
             </div>
           </div>
         </header>
