@@ -59,8 +59,9 @@ const goToRepairLogs = () => {
 }
 
 const breadcrumbs = [
-  {label: 'Home', href: 'dashboard'},
+  {label: 'Home', href: route('dashboard')},
   {label: 'Reparaciones', current: true},
+  {label: 'Configuración', href: route('repairs.settings', props.repair.id)},
 ];
 
 const solutionForm = useForm({
