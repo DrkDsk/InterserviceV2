@@ -18,6 +18,10 @@ const props = defineProps({
   }
 })
 
+const options = {
+  preserveScroll: true,
+}
+
 const breadcrumbs = [
   {label: 'Home', href: 'dashboard'},
   {label: 'Reparación', href: 'repairs.edit', params: {id: props.repair.id}},
@@ -35,14 +39,6 @@ watch(
 )
 
 const removeLog = (id) => {
-  const options = {
-    preserveScroll: true,
-    onSuccess: () => {
-      router.reload({
-        only: ['repair'],
-      })
-    },
-  }
   router.delete(route("repairs.logs.destroy", id), options)
 }
 
@@ -54,15 +50,6 @@ const addLog = () => {
 }
 
 const upsertLog = (id, message) => {
-  const options = {
-    preserveScroll: true,
-    onSuccess: () => {
-      router.reload({
-        only: ['repair'],
-      })
-    },
-  }
-
   if (id == null) {
     router.post(route("repairs.logs.store", props.repair.id), {message}, options)
   } else {
