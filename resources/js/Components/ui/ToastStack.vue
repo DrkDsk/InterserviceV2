@@ -23,14 +23,18 @@ const pushToast = (message, type = 'info') => {
 };
 
 watch(
-  () => [flash.value.success, flash.value.error],
-  ([success, error]) => {
+  () => [flash.value.success, flash.value.error, flash.value.info],
+  ([success, error, info]) => {
     if (success) {
       pushToast(success, 'success');
     }
 
     if (error) {
       pushToast(error, 'error');
+    }
+
+    if (info) {
+      pushToast(info);
     }
   },
   {immediate: true},
@@ -41,9 +45,9 @@ onBeforeUnmount(() => {
 });
 
 const variants = {
-  success: 'border-brand-200 bg-white text-slate-900 dark:border-brand-500/20 dark:bg-slate-950 dark:text-slate-100',
+  success: 'border-green-200 bg-white text-slate-900 dark:border-brand-500/20 dark:bg-slate-950 dark:text-slate-100',
   error: 'border-rose-200 bg-white text-slate-900 dark:border-rose-500/20 dark:bg-slate-950 dark:text-slate-100',
-  info: 'border-primary-200 bg-white text-slate-900 dark:border-primary-500/20 dark:bg-slate-950 dark:text-slate-100',
+  info: 'border-blue-200 bg-white text-slate-900 dark:border-primary-500/20 dark:bg-slate-950 dark:text-slate-100',
 };
 </script>
 
@@ -66,7 +70,7 @@ const variants = {
         <div class="flex items-start gap-3">
           <div
             class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-sm"
-            :class="toast.type === 'success' ? 'bg-brand-500/10 text-brand-600 dark:text-brand-300' : toast.type === 'error' ? 'bg-rose-500/10 text-rose-600 dark:text-rose-300' : 'bg-primary-500/10 text-primary-600 dark:text-primary-300'"
+            :class="toast.type === 'success' ? 'bg-green-100 text-green-400 dark:text-brand-300' : toast.type === 'error' ? 'bg-rose-500/10 text-rose-600 dark:text-rose-300' : 'bg-blue-200 text-blue-400 dark:text-primary-300'"
           >
             <AppIcon :name="toast.type === 'success' ? 'fa-gauge-high' : 'fa-bell'" class="h-4 w-4"/>
           </div>
