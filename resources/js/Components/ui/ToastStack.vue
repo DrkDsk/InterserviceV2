@@ -70,7 +70,7 @@ const variants = {
         <div class="flex items-start gap-3">
           <div
             class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-sm"
-            :class="toast.type === 'success' ? 'bg-green-100 text-green-400 dark:text-brand-300' : toast.type === 'error' ? 'bg-rose-500/10 text-rose-600 dark:text-rose-300' : 'bg-blue-200 text-blue-400 dark:text-primary-300'"
+            :class="toast.type === 'success' ? 'bg-green-100 text-green-400 dark:text-brand-300' : toast.type === 'error' ? 'bg-rose-500/40 text-rose-600 dark:text-rose-300' : 'bg-blue-400/40 text-blue-400 dark:text-primary-300'"
           >
             <AppIcon :name="toast.type === 'success' ? 'fa-gauge-high' : 'fa-bell'" class="h-4 w-4"/>
           </div>
