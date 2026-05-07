@@ -1,6 +1,5 @@
 <script setup>
 import AppIcon from '../AppIcon.vue';
-import {route} from 'ziggy-js'
 import {router} from '@inertiajs/vue3'
 
 const props = defineProps({
