@@ -29,6 +29,7 @@ const variants = {
   secondary: 'bg-slate-500 text-white dark:bg-white/90 dark:text-slate-800 hover:bg-white hover:text-slate-500 border border-slate-500 dark:hover:bg-slate-500 dark:hover:text-white',
   ghost: 'bg-transparent text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800 border border-transparent',
   outline: 'bg-transparent text-slate-700 hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-slate-900 border border-slate-200 dark:border-slate-800',
+  danger: 'border border-rose-500 bg-rose-500 text-white hover:bg-rose-600 hover:text-white dark:border-rose-500 dark:bg-rose-500 dark:text-white dark:hover:bg-rose-600',
 };
 
 const sizes = {
