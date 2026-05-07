@@ -22,6 +22,10 @@ const props = defineProps({
   }
 })
 
+const options = {
+  preserveScroll: true,
+}
+
 const clientName = computed(() => {
   const name = (props.repair.reception.client.name).toLowerCase();
   return name
@@ -40,8 +44,6 @@ const technicianName = computed(() => {
 
 const form = useForm({
   observations: props.repair.observations,
-  solution: props.repair.solution,
-  status: props.repair.status,
   notes: props.repair.reception.notes,
   serial_number: props.repair.device.serial_number,
   accessories: props.repair.device.accessories,
@@ -60,6 +62,15 @@ const breadcrumbs = [
   {label: 'Home', href: 'dashboard'},
   {label: 'Reparaciones', current: true},
 ];
+
+const solutionForm = useForm({
+  status: props.repair.status,
+  solution: props.repair.solution,
+})
+
+const submitSolution = () => {
+  solutionForm.put(route('repairs.update', props.repair.id), options)
+}
 
 </script>
 
@@ -176,7 +187,7 @@ const breadcrumbs = [
 
               <div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
                 <AppSelect
-                  v-model="form.status"
+                  v-model="solutionForm.status"
                   label="Estatus"
                 >
                   <option value="" selected disabled>Selecciona un estatus</option>
@@ -190,7 +201,7 @@ const breadcrumbs = [
                 </AppSelect>
 
                 <AppTextarea
-                  v-model="form.solution"
+                  v-model="solutionForm.solution"
                   label="Solución"
                   :rows="6"
                 />
@@ -198,7 +209,7 @@ const breadcrumbs = [
             </div>
 
             <div class="justify-end gap-4 flex">
-              <AppButton variant="outline">
+              <AppButton variant="outline" @click="submitSolution">
                 Actualizar
               </AppButton>
             </div>
