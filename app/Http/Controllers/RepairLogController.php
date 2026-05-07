@@ -33,6 +33,13 @@ class RepairLogController extends Controller
     {
         $repairLog->update($request->validated());
 
-        return redirect()->back()->with('success', 'Reparación actualizada');
+        return redirect()->back()->with('info', 'Reparación actualizada');
+    }
+
+    public function destroy(RepairLog $repairLog)
+    {
+        $repairLog->delete();
+
+        return redirect()->back()->with('error', 'Reparación eliminada');
     }
 }
