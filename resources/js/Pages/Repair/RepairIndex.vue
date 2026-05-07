@@ -40,6 +40,10 @@ const handleAssignUpdating = (id) => {
   router.visit(route('repairs.edit', id));
 }
 
+const handleOpenSettings = (id) => {
+  router.visit(route('repairs.settings', id));
+}
+
 </script>
 
 <template>
@@ -75,6 +79,13 @@ const handleAssignUpdating = (id) => {
           @click="handleAssignUpdating(row.id)"
         >
           Actualizar proceso
+        </AppButton>
+        <AppButton
+          variant="outline"
+          size="sm"
+          @click="handleOpenSettings(row.id)"
+        >
+          Configuración
         </AppButton>
       </template>
       <template #empty>
