@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum ReceptionEnum: string
+enum ReceptionStatus: string
 {
     case Received = 'received';
     case Repairing = 'repairing';

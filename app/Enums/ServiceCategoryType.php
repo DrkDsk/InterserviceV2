@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum ServiceCategoryEnum: string
+enum ServiceCategoryType: string
 {
     case Local = 'local';
     case FieldService = 'field_service';
