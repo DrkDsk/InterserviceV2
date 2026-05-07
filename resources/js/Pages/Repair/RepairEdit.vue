@@ -30,6 +30,14 @@ const clientName = computed(() => {
     .join(' ');
 });
 
+const technicianName = computed(() => {
+  const name = (props.repair.technician.name).toLowerCase();
+  return name
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+});
+
 const form = useForm({
   observations: props.repair.observations,
   solution: props.repair.solution,
@@ -61,7 +69,7 @@ const breadcrumbs = [
       <AppCard class="overflow-hidden">
         <div class="px-6 py-6 sm:px-8">
           <section class="space-y-6">
-            <div class="grid grid-cols-2 ">
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-4">
 
               <div class="space-y-2">
                 <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Recepción</h3>
@@ -74,6 +82,13 @@ const breadcrumbs = [
                 <p class="text-slate-500 dark:text-slate-400">Cliente:</p>
                 <p class="text-5xl text-slate-500 font-semibold">
                   {{ clientName }}
+                </p>
+              </div>
+
+              <div class="flex-col">
+                <p class="text-slate-500 dark:text-slate-400">Técnico:</p>
+                <p class="text-5xl text-slate-500 font-semibold">
+                  {{ technicianName }}
                 </p>
               </div>
             </div>
