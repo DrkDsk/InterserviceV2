@@ -19,7 +19,7 @@ import {
   faMagnifyingGlass,
   faTrash,
   faPlus,
-  faCircleCheck
+  faCircleCheck,
 } from '@fortawesome/free-solid-svg-icons'
 
 import {faVuejs} from '@fortawesome/free-brands-svg-icons'
@@ -45,5 +45,5 @@ library.add(
   faMagnifyingGlass,
   faTrash,
   faPlus,
-  faCircleCheck
+  faCircleCheck,
 )
