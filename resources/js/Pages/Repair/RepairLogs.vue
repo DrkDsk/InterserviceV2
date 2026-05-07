@@ -2,12 +2,13 @@
 
 import AppLayout from "@/Layouts/AppLayout.vue";
 import AppCard from "@/Components/ui/AppCard.vue";
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import AppTextarea from "@/Components/ui/AppTextarea.vue";
 import AppIcon from "@/Components/AppIcon.vue";
 import AppButton from "@/Components/ui/AppButton.vue";
 import {router} from "@inertiajs/vue3";
 import {route} from "ziggy-js"
+import EmptyState from "@/Components/ui/EmptyState.vue";
 
 const props = defineProps({
   repair: {
@@ -23,10 +24,26 @@ const breadcrumbs = [
   {label: 'Historial', current: true},
 ];
 
-const logs = ref(props.repair.logs ?? [])
+const logs = ref([])
+
+watch(
+  () => props.repair.logs,
+  (newLogs) => {
+    logs.value = [...newLogs]
+  },
+  {immediate: true}
+)
 
 const removeLog = (id) => {
-  logs.value = logs.value.filter(log => log.id !== id);
+  const options = {
+    preserveScroll: true,
+    onSuccess: () => {
+      router.reload({
+        only: ['repair'],
+      })
+    },
+  }
+  router.delete(route("repairs.logs.destroy", id), options)
 }
 
 const addLog = () => {
@@ -37,14 +54,19 @@ const addLog = () => {
 }
 
 const upsertLog = (id, message) => {
+  const options = {
+    preserveScroll: true,
+    onSuccess: () => {
+      router.reload({
+        only: ['repair'],
+      })
+    },
+  }
+
   if (id == null) {
-    router.post(route("repairs.logs.store", props.repair.id), {
-      message
-    })
+    router.post(route("repairs.logs.store", props.repair.id), {message}, options)
   } else {
-    router.put(route("repairs.logs.update", id), {
-      message
-    })
+    router.put(route("repairs.logs.update", id), {message}, options)
   }
 }
 
@@ -69,6 +91,13 @@ const upsertLog = (id, message) => {
                          name="fa-circle-check"/>
               </div>
             </div>
+
+            <template v-if="logs.length === 0">
+              <EmptyState
+                title="No hay reparaciones registradas"
+                icon="fa-screwdriver-wrench"
+              />
+            </template>
           </section>
         </div>
       </AppCard>
