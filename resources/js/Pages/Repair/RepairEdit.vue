@@ -27,7 +27,7 @@ const options = {
 }
 
 const clientName = computed(() => {
-  const name = (props.repair.reception.client.name).toLowerCase();
+  const name = (props.repair.reception.client?.name ?? props.repair.reception.customer_name).toLowerCase();
   return name
     .split(' ')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -58,10 +58,14 @@ const goToRepairLogs = () => {
   router.visit(route("repairs.logs.index", props.repair.id))
 }
 
+const goToRepairSettings = () => {
+  router.visit(route("repairs.settings", props.repair.id))
+}
+
 const breadcrumbs = [
   {label: 'Home', href: route('dashboard')},
-  {label: 'Reparaciones', current: true},
-  {label: 'Configuración', href: route('repairs.settings', props.repair.id)},
+  {label: 'Reparaciones', href: route('repairs.index')},
+  {label: `Reparación #${props.repair.id}`},
 ];
 
 const solutionForm = useForm({
@@ -180,9 +184,14 @@ const submitSolution = () => {
                       Modifica el estatus y la solución de la reparación
                     </p>
                   </div>
-                  <AppButton class="xl:w-4xl lg:w-3xl md:w-xl w-fit" variant="outline" @click="goToRepairLogs">
-                    Ver historial
-                  </AppButton>
+                  <div class="flex flex-wrap items-center justify-end gap-3">
+                    <AppButton class="w-fit" variant="outline" @click="goToRepairLogs">
+                      Ver historial
+                    </AppButton>
+                    <AppButton class="w-fit" variant="outline" @click="goToRepairSettings">
+                      Configuración
+                    </AppButton>
+                  </div>
                 </div>
               </div>
 
