@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Enums\ServiceCategoryEnum;
+use App\Enums\ServiceCategoryType;
 use App\Models\ServiceCategory;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -86,7 +86,7 @@ class ServiceImporter implements ToCollection,
                         continue;
                     }
 
-                    $isLocal = $type == ServiceCategoryEnum::Local->value;
+                    $isLocal = $type == ServiceCategoryType::Local->value;
 
                     $services[] = [
                         'service_category_id' => $serviceCategory->id,

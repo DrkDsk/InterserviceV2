@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Enums\ServiceCategoryEnum;
+use App\Enums\ServiceCategoryType;
 use App\Models\ServiceCategory;
 use Illuminate\Database\Seeder;
 
@@ -31,14 +31,14 @@ class ServiceCategorySeeder extends Seeder
         foreach ($localPrices as $name) {
             ServiceCategory::query()->create([
                 'name' => $name,
-                'type' => ServiceCategoryEnum::Local->value
+                'type' => ServiceCategoryType::Local->value
             ]);
         }
 
         foreach ($foreignPrices as $name) {
             ServiceCategory::query()->create([
                 'name' => $name,
-                'type' => ServiceCategoryEnum::Remote->value
+                'type' => ServiceCategoryType::Remote->value
             ]);
         }
     }
