@@ -16,14 +16,16 @@ use App\useCases\Repair\PaginateRepairsUseCase;
 use App\useCases\Repair\StoreRepairUseCase;
 use App\useCases\Service\GetServiceUseCase;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
+use Inertia\Response;
 use Throwable;
 
 class RepairController extends Controller
 {
     public function index(
         PaginateRepairsUseCase $paginateRepairsUseCase,
-        FormatRepairsAction    $formatRepairsAction)
+        FormatRepairsAction    $formatRepairsAction): Response
     {
         $repairs = $paginateRepairsUseCase->execute(50)->toArray();
 
@@ -40,7 +42,7 @@ class RepairController extends Controller
         GetClientsUseCase          $getClientsUseCase,
         GetServiceUseCase          $getServiceUseCase,
         FindClientUseCase          $findClientUseCase,
-    )
+    ): Response
     {
         $selectedClient = null;
 
@@ -86,7 +88,7 @@ class RepairController extends Controller
         }
     }
 
-    public function edit(Repair $repair)
+    public function edit(Repair $repair): Response
     {
         $repair = $repair->load('reception.client', 'technician', 'device.deviceCategory', 'service');
 
@@ -98,10 +100,17 @@ class RepairController extends Controller
         ]);
     }
 
-    public function update(Repair $repair, UpdateRepairRequest $request)
+    public function update(Repair $repair, UpdateRepairRequest $request): RedirectResponse
     {
         $repair->update($request->validated());
 
         return redirect()->back()->with('info', 'Reparación actualizada');
+    }
+
+    public function settings(Repair $repair): Response
+    {
+        return Inertia::render('Repair/RepairSettings', [
+            'repair' => $repair,
+        ]);
     }
 }
