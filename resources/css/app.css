@@ -7,9 +7,9 @@
 @layer base {
   :root {
     color-scheme: light;
-    --background: #f4f7fb;
-    --background-elevated: rgba(255, 255, 255, 0.74);
-    --background-subtle: #eef3f9;
+    --background: #e4effd;
+    --background-elevated: rgba(243, 248, 255, 0.8);
+    --background-subtle: #d8e8fb;
     --surface: rgba(255, 255, 255, 0.8);
     --surface-strong: rgba(255, 255, 255, 0.94);
     --surface-muted: rgba(244, 248, 252, 0.92);
@@ -38,13 +38,13 @@
 
   .dark {
     color-scheme: dark;
-    --background: #0b111b;
-    --background-elevated: rgba(16, 24, 38, 0.82);
-    --background-subtle: #111a28;
-    --surface: rgba(16, 24, 38, 0.78);
-    --surface-strong: rgba(19, 29, 44, 0.94);
-    --surface-muted: rgba(18, 27, 41, 0.86);
-    --surface-inset: rgba(10, 16, 27, 0.88);
+    --background: #0d1730;
+    --background-elevated: rgba(16, 26, 46, 0.84);
+    --background-subtle: #13203b;
+    --surface: rgba(18, 29, 51, 0.8);
+    --surface-strong: rgba(21, 34, 58, 0.94);
+    --surface-muted: rgba(19, 31, 53, 0.88);
+    --surface-inset: rgba(12, 20, 37, 0.9);
     --foreground: #edf3fb;
     --foreground-muted: #a0aec3;
     --foreground-soft: #748399;
@@ -87,15 +87,15 @@
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
-    background: radial-gradient(circle at top left, rgba(75, 143, 227, 0.14), transparent 26%),
-    radial-gradient(circle at top right, rgba(235, 95, 86, 0.08), transparent 22%),
-    linear-gradient(180deg, #f8fbfe 0%, #eef3f9 100%);
+    background: radial-gradient(circle at top left, rgba(75, 143, 227, 0.22), transparent 24%),
+    radial-gradient(circle at top right, rgba(110, 168, 238, 0.14), transparent 18%),
+    linear-gradient(180deg, #eef5fe 0%, #dceafb 100%);
   }
 
   .dark body {
-    background: radial-gradient(circle at top left, rgba(75, 143, 227, 0.18), transparent 24%),
-    radial-gradient(circle at top right, rgba(235, 95, 86, 0.11), transparent 20%),
-    linear-gradient(180deg, #08101b 0%, #0b111b 100%);
+    background: radial-gradient(circle at top left, rgba(110, 168, 238, 0.22), transparent 24%),
+    radial-gradient(circle at top right, rgba(75, 143, 227, 0.16), transparent 22%),
+    linear-gradient(180deg, #0c1730 0%, #0d1730 52%, #101c38 100%);
   }
 
   a {
