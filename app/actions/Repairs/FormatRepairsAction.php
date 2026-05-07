@@ -2,7 +2,7 @@
 
 namespace App\actions\Repairs;
 
-use App\Enums\RepairEnum;
+use App\Enums\RepairStatus;
 
 class FormatRepairsAction
 {
@@ -13,17 +13,17 @@ class FormatRepairsAction
 
             $status = $repair["status"];
 
-            if ($status == RepairEnum::Pending->value) {
+            if ($status == RepairStatus::Pending->value) {
                 $repair["status"] = "Pendiente";
-            } else if ($status == RepairEnum::Diagnosing->value) {
+            } else if ($status == RepairStatus::Diagnosing->value) {
                 $repair["status"] = "Diagnóstico";
-            } else if ($status == RepairEnum::WaitingParts->value) {
+            } else if ($status == RepairStatus::WaitingParts->value) {
                 $repair["status"] = "Esperando Partes";
-            } else if ($status == RepairEnum::InProgress->value) {
+            } else if ($status == RepairStatus::InProgress->value) {
                 $repair["status"] = "En Progreso";
-            } else if ($status == RepairEnum::Cancelled->value) {
+            } else if ($status == RepairStatus::Cancelled->value) {
                 $repair["status"] = "Cancelado";
-            } else if ($status == RepairEnum::Completed->value) {
+            } else if ($status == RepairStatus::Completed->value) {
                 $repair["status"] = "Completado";
             }
 
