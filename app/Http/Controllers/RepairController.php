@@ -89,7 +89,7 @@ class RepairController extends Controller
 
     public function edit(Repair $repair)
     {
-        $repair = $repair->load('reception', 'technician', 'device.deviceCategory', 'service');
+        $repair = $repair->load('reception.client', 'technician', 'device.deviceCategory', 'service');
 
         $statuses = RepairEnum::options();
 
