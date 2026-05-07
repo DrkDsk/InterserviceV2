@@ -8,6 +8,7 @@ import AppTextarea from "@/Components/ui/AppTextarea.vue";
 import AppInput from "@/Components/ui/AppInput.vue";
 import {router, useForm} from "@inertiajs/vue3";
 import {route} from "ziggy-js"
+import {computed} from "vue";
 
 const props = defineProps({
   repair: {
@@ -20,6 +21,14 @@ const props = defineProps({
     default: () => []
   }
 })
+
+const clientName = computed(() => {
+  const name = (props.repair.reception.client.name).toLowerCase();
+  return name
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+});
 
 const form = useForm({
   observations: props.repair.observations,
@@ -52,11 +61,21 @@ const breadcrumbs = [
       <AppCard class="overflow-hidden">
         <div class="px-6 py-6 sm:px-8">
           <section class="space-y-6">
-            <div class="space-y-2">
-              <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Recepción</h3>
-              <p class="text-sm text-slate-500 dark:text-slate-400">
-                Agrega solo las notas necesarias para contextualizar el ingreso.
-              </p>
+            <div class="grid grid-cols-2 ">
+
+              <div class="space-y-2">
+                <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Recepción</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400">
+                  Agrega solo las notas necesarias para contextualizar el ingreso.
+                </p>
+              </div>
+
+              <div class="flex-col">
+                <p class="text-slate-500 dark:text-slate-400">Cliente:</p>
+                <p class="text-5xl text-slate-500 font-semibold">
+                  {{ clientName }}
+                </p>
+              </div>
             </div>
 
             <div class="grid gap-4 lg:grid-cols-2">

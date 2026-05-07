@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('logs')->name('logs.')->group(function () {
             Route::post('/{repair}', [RepairLogController::class, 'store'])->name('store');
             Route::get('/{repair}', [RepairLogController::class, 'logs'])->name('index');
+            Route::delete('/{repairLog}', [RepairLogController::class, 'destroy'])->name('destroy');
             Route::put('/{repairLog}', [RepairLogController::class, 'update'])->name('update');
         });
     });

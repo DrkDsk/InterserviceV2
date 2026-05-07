@@ -11,7 +11,9 @@ class RepairLogController extends Controller
 {
     public function logs(Repair $repair)
     {
-        $repair = $repair->load('logs');
+        $repair->load([
+            'logs' => fn($q) => $q->oldest()
+        ]);
 
         return Inertia::render('Repair/RepairLogs', [
             'repair' => $repair,
@@ -26,13 +28,20 @@ class RepairLogController extends Controller
 
         $repair->logs()->create($validated);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Reparación actualizada');
     }
 
     public function update(RepairLog $repairLog, UpdateLogRepairRequest $request)
     {
         $repairLog->update($request->validated());
 
-        return redirect()->back();
+        return redirect()->back()->with('info', 'Reparación actualizada');
+    }
+
+    public function destroy(RepairLog $repairLog)
+    {
+        $repairLog->delete();
+
+        return redirect()->back()->with('error', 'Reparación eliminada');
     }
 }
