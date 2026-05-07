@@ -16,14 +16,14 @@ const props = defineProps({
 const emits = defineEmits(['dismiss']);
 
 const variants = {
-  info: 'border-primary-200 bg-primary-50 text-primary-900 dark:border-primary-500/20 dark:bg-primary-500/10 dark:text-primary-100',
-  success: 'border-brand-200 bg-brand-50 text-brand-900 dark:border-brand-500/20 dark:bg-brand-500/10 dark:text-brand-100',
-  warning: 'border-amber-200 bg-amber-50 text-amber-900 dark:border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-100',
-  danger: 'border-rose-200 bg-rose-50 text-rose-900 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-100',
+  info: 'border-primary-200 bg-primary-50/90 text-primary-900 dark:border-primary-400/20 dark:bg-primary-500/12 dark:text-primary-100',
+  success: 'border-success-200 bg-success-50/90 text-success-900 dark:border-success-400/20 dark:bg-success-500/12 dark:text-success-100',
+  warning: 'border-warning-200 bg-warning-50/95 text-warning-900 dark:border-warning-400/20 dark:bg-warning-500/12 dark:text-warning-100',
+  danger: 'border-danger-200 bg-danger-50/95 text-danger-900 dark:border-danger-400/20 dark:bg-danger-500/12 dark:text-danger-100',
 };
 
 const classes = computed(() => [
-  'rounded-sm border px-4 py-3 text-sm',
+  'rounded-2xl border px-4 py-3 text-sm shadow-soft',
   variants[props.variant] ?? variants.info,
 ]);
 </script>
@@ -40,7 +40,7 @@ const classes = computed(() => [
       <button
         v-if="dismissible"
         type="button"
-        class="rounded-sm p-1 transition hover:bg-black/5 dark:hover:bg-white/5"
+        class="rounded-lg p-1 transition hover:bg-black/5 dark:hover:bg-white/5"
         @click="emits('dismiss')"
       >
         <AppIcon name="fa-xmark" class="h-4 w-4"/>

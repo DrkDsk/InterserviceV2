@@ -65,8 +65,8 @@ watch(
           leave-to-class="translate-y-4 scale-[0.98] opacity-0"
         >
           <div
-            class="relative z-10 w-full max-w-2xl rounded-md border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-950">
-            <div class="flex items-center justify-between border-b border-slate-200 px-5 py-4 dark:border-slate-800">
+            class="ui-panel-strong relative z-10 w-full max-w-2xl rounded-[1.35rem] shadow-floating">
+            <div class="ui-divider flex items-center justify-between border-b px-5 py-4">
               <div>
                 <h3 class="text-base font-semibold text-slate-900 dark:text-slate-100">
                   {{ title }}
@@ -77,7 +77,7 @@ watch(
               </div>
               <button
                 type="button"
-                class="rounded-sm p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-slate-900 dark:hover:text-slate-200"
+                class="ui-toolbar-button rounded-xl p-2 transition"
                 @click="emits('close')"
               >
                 <AppIcon name="fa-xmark" class="h-4 w-4"/>
@@ -89,7 +89,7 @@ watch(
             </div>
 
             <div v-if="$slots.footer"
-                 class="flex items-center justify-end gap-3 border-t border-slate-200 px-5 py-4 dark:border-slate-800">
+                 class="ui-divider flex items-center justify-end gap-3 border-t px-5 py-4">
               <slot name="footer"/>
             </div>
           </div>
