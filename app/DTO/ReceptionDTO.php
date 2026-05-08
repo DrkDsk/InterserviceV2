@@ -10,7 +10,6 @@ class ReceptionDTO
 {
     public function __construct(
         public string          $folio,
-        public ?int            $client_id,
         public ?string         $customer_name,
         public ?string         $customer_phone,
         public ReceptionStatus $status,
@@ -29,7 +28,6 @@ class ReceptionDTO
 
         return new self(
             folio: $reception->folio,
-            client_id: $reception->client_id,
             customer_name: $reception->client?->name ?? $reception->customer_name,
             customer_phone: $reception->client?->phone ?? $reception->customer_phone,
             status: ReceptionStatus::from($reception->status),
