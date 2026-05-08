@@ -11,8 +11,8 @@ class RepairDTO
     public function __construct(
         public int     $id,
         public int     $reception_id,
-        public int     $device_id,
-        public int     $technician_id,
+        public string  $device_name,
+        public string  $technician_name,
         public ?int    $service_id,
         public string  $status,
         public ?string $issue,
@@ -27,12 +27,13 @@ class RepairDTO
     public static function fromRepair(Repair $repair): self
     {
         $repairedAt = $repair->repaired_date;
+        $deviceName = "{$repair->device->brand}" . " - " . "{$repair->device->model}";
 
         return new self(
             id: $repair->id,
             reception_id: $repair->reception->id,
-            device_id: $repair->device_id,
-            technician_id: $repair->technician_id,
+            device_name: $deviceName,
+            technician_name: $repair->technician->name,
             service_id: $repair->service_id,
             status: $repair->status,
             issue: $repair->issue,
