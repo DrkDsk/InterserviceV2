@@ -7,19 +7,17 @@ use App\Enums\PDFRepairTypeEnum;
 use App\Http\Requests\RepairPDFGeneratorRequest;
 use App\Models\Repair;
 use Exception;
-use Illuminate\Http\JsonResponse;
+use Spatie\LaravelPdf\PdfBuilder;
 
 class RepairPDFGeneratorController extends Controller
 {
     /**
      * @throws Exception
      */
-    public function generate(Repair $repair, RepairPDFGeneratorRequest $request, PDFGenerateAction $PDFGenerateAction): JsonResponse
+    public function generate(Repair $repair, RepairPDFGeneratorRequest $request, PDFGenerateAction $PDFGenerateAction): PdfBuilder
     {
         $type = $request->validated('type');
 
-        $PDF = $PDFGenerateAction->execute($repair, PDFRepairTypeEnum::from($type));
-
-        return response()->json($PDF);
+        return $PDFGenerateAction->execute($repair, PDFRepairTypeEnum::from($type))->inline("repair-{$repair->id}-{$type}");
     }
 }
