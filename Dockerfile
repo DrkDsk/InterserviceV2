@@ -4,6 +4,13 @@
 FROM php:8.4-fpm-alpine AS base
 
 RUN apk add --no-cache \
+    nodejs \
+    npm \
+    chromium \
+    nss \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont \
     autoconf \
     g++ \
     make \
@@ -31,16 +38,23 @@ RUN apk add --no-cache \
         pcntl \
     && apk del .build-deps
 
+# Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# Puppeteer
+RUN npm install -g puppeteer
+
+ENV CHROME_PATH=/usr/bin/chromium-browser
+
 WORKDIR /var/www/html
 
 # ----------------------------------------------------------
-# STAGE 2: Composer
+# STAGE 2: Vendor
 # ----------------------------------------------------------
-FROM composer:2 AS vendor
+FROM base AS vendor
 
 WORKDIR /var/www/html
 
-# Copiar solo archivos necesarios primero (mejor cache)
 COPY composer.json composer.lock ./
 
 RUN composer install \
@@ -49,13 +63,12 @@ RUN composer install \
     --prefer-dist \
     --optimize-autoloader
 
-# Ahora copiar el resto del proyecto
 COPY . .
 
 RUN composer dump-autoload --optimize
 
 # ----------------------------------------------------------
-# STAGE 3: Final Production Image
+# STAGE 3: Production
 # ----------------------------------------------------------
 FROM base AS production
 
@@ -63,11 +76,14 @@ WORKDIR /var/www/html
 
 COPY --from=vendor /var/www/html /var/www/html
 
-# Crear symlink manual
 RUN ln -s /var/www/html/storage/app/public /var/www/html/public/storage
 
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data \
+    /var/www/html/storage \
+    /var/www/html/bootstrap/cache \
+    && chmod -R 775 \
+    /var/www/html/storage \
+    /var/www/html/bootstrap/cache
 
 EXPOSE 9000
 
