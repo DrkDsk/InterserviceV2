@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ReceptionController;
 use App\Http\Controllers\RepairController;
 use App\Http\Controllers\RepairLogController;
+use App\Http\Controllers\RepairPDFGeneratorController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -22,6 +23,10 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{repair}', [RepairController::class, 'destroy'])->name('destroy');
         Route::get('/{repair}/settings', [RepairController::class, 'settings'])->name('settings');
         Route::delete('/{repair}/logs', [RepairController::class, 'destroyLogs'])->name('logs.clear');
+
+        Route::prefix('pdf')->name('pdf.')->group(function () {
+            Route::get('/{repair}', [RepairPDFGeneratorController::class, 'generate'])->name('generate');
+        });
 
         Route::prefix('logs')->name('logs.')->group(function () {
             Route::post('/{repair}', [RepairLogController::class, 'store'])->name('store');
