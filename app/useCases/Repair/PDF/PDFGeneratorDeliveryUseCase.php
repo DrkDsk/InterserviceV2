@@ -31,6 +31,7 @@ class PDFGeneratorDeliveryUseCase extends PDFDownloadUseCase implements PDFGener
 
         $data = [
             'repair' => $repairDTO->toArray(),
+            'reception' => $receptionDTO->toArray(),
             'setup_company' => $setupCompany,
             'days_stored' => $daysStored,
         ];
