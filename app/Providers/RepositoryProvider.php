@@ -9,6 +9,7 @@ use App\Repositories\Contract\ReceptionRepositoryInterface;
 use App\Repositories\Contract\RepairRepositoryInterface;
 use App\Repositories\Contract\ServiceCategoryRepositoryInterface;
 use App\Repositories\Contract\ServiceRepositoryInterface;
+use App\Repositories\Contract\SetUpCompanyRepositoryInterface;
 use App\Repositories\Contract\UserRepositoryInterface;
 use App\Repositories\Eloquent\ClientRepository;
 use App\Repositories\Eloquent\DeviceCategoryRepository;
@@ -17,6 +18,7 @@ use App\Repositories\Eloquent\ReceptionRepository;
 use App\Repositories\Eloquent\RepairRepository;
 use App\Repositories\Eloquent\ServiceCategoryRepository;
 use App\Repositories\Eloquent\ServiceRepository;
+use App\Repositories\Eloquent\SetupCompanyRepository;
 use App\Repositories\Eloquent\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -35,6 +37,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(ReceptionRepositoryInterface::class, ReceptionRepository::class);
         $this->app->bind(ServiceCategoryRepositoryInterface::class, ServiceCategoryRepository::class);
         $this->app->bind(ServiceRepositoryInterface::class, ServiceRepository::class);
+        $this->app->bind(SetUpCompanyRepositoryInterface::class, SetupCompanyRepository::class);
     }
 
     /**

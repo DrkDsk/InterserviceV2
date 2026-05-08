@@ -13,5 +13,6 @@ return [
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
     'key' => env('APP_KEY'),
     'cipher' => 'AES-256-CBC',
+    'chrome_path' => env('CHROME_PATH', '/usr/bin/chromium'),
 ];
 
