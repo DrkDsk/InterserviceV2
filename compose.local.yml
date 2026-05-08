@@ -36,6 +36,9 @@ services:
     networks:
       - laravel
 
+  gotenberg:
+    image: gotenberg/gotenberg:8
+
   mailtip:
     image: axllent/mailpit
     ports:
