@@ -6,9 +6,13 @@ use App\actions\Pdf\PDFGenerateAction;
 use App\Enums\PDFRepairTypeEnum;
 use App\Http\Requests\RepairPDFGeneratorRequest;
 use App\Models\Repair;
+use Exception;
 
 class RepairPDFGeneratorController extends Controller
 {
+    /**
+     * @throws Exception
+     */
     public function generate(Repair $repair, RepairPDFGeneratorRequest $request, PDFGenerateAction $PDFGenerateAction)
     {
         $type = $request->validated('type');
