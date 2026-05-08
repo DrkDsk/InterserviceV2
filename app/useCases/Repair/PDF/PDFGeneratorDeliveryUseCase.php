@@ -36,6 +36,11 @@ class PDFGeneratorDeliveryUseCase extends PDFDownloadUseCase implements PDFGener
             'days_stored' => $daysStored,
         ];
 
-        return Pdf::view('layouts.pdf.delivery', $data);
+        return Pdf::view('layouts.pdf.delivery', $data)
+            ->withBrowsershot(function ($browser) {
+                $browser
+                    ->noSandbox()
+                    ->setChromePath(config('app.chrome_path'));
+            });
     }
 }
