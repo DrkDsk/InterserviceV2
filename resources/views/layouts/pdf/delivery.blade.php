@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrega de reparación</title>
-    @vite('resources/css/app.css')
+    <style>
+        {!! Vite::content('resources/css/app.css') !!}
+    </style>
 
     <style>
         @page {
@@ -23,9 +25,8 @@
 
         .pdf-shell {
             min-height: 100%;
-            background:
-                radial-gradient(circle at top left, color-mix(in srgb, var(--primary) 12%, white), transparent 30%),
-                linear-gradient(180deg, white 0%, rgb(248 250 252) 100%);
+            background: radial-gradient(circle at top left, color-mix(in srgb, var(--primary) 12%, white), transparent 30%),
+            linear-gradient(180deg, white 0%, rgb(248 250 252) 100%);
         }
 
         .pdf-card {
@@ -146,7 +147,8 @@
             <div class="flex items-start justify-between gap-6">
                 <div class="max-w-[68%]">
                     <div class="mb-5 flex items-center gap-4">
-                        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-500 text-lg font-semibold text-white shadow-lg shadow-primary-500/20">
+                        <div
+                            class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-500 text-lg font-semibold text-white shadow-lg shadow-primary-500/20">
                             {{ $companyInitial }}
                         </div>
 
@@ -161,7 +163,8 @@
                     </div>
 
                     <p class="max-w-2xl text-sm leading-6 text-neutral-500">
-                        Documento de control administrativo con trazabilidad de recepción, diagnóstico y entrega final del equipo.
+                        Documento de control administrativo con trazabilidad de recepción, diagnóstico y entrega final
+                        del equipo.
                     </p>
                 </div>
 
@@ -188,7 +191,8 @@
 
             <article class="pdf-card metric-accent rounded-3xl border border-neutral-200 bg-neutral-50 px-5 py-4">
                 <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-400">Estado reparación</p>
-                <div class="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold {{ $repairBadge['wrap'] }}">
+                <div
+                    class="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold {{ $repairBadge['wrap'] }}">
                     <span class="h-2 w-2 rounded-full {{ $repairBadge['dot'] }}"></span>
                     {{ $formatStatusLabel($repairStatusValue) }}
                 </div>
@@ -197,17 +201,20 @@
 
             <article class="pdf-card metric-accent rounded-3xl border border-neutral-200 bg-neutral-50 px-5 py-4">
                 <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-400">Estado recepción</p>
-                <div class="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold {{ $receptionBadge['wrap'] }}">
+                <div
+                    class="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold {{ $receptionBadge['wrap'] }}">
                     <span class="h-2 w-2 rounded-full {{ $receptionBadge['dot'] }}"></span>
                     {{ $formatStatusLabel($receptionStatusValue) }}
                 </div>
-                <p class="mt-2 text-xs text-neutral-500">Ingreso: {{ $formatDate($reception['received_at'] ?? null) }}</p>
+                <p class="mt-2 text-xs text-neutral-500">
+                    Ingreso: {{ $formatDate($reception['received_at'] ?? null) }}</p>
             </article>
 
             <article class="pdf-card metric-accent rounded-3xl border border-neutral-200 bg-neutral-50 px-5 py-4">
                 <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-400">Días en resguardo</p>
                 <p class="mt-3 text-3xl font-semibold tracking-tight text-neutral-900">{{ $days_stored ?? 0 }}</p>
-                <p class="mt-1 text-xs text-neutral-500">Entrega: {{ $formatDate($reception['delivered_at'] ?? now()) }}</p>
+                <p class="mt-1 text-xs text-neutral-500">
+                    Entrega: {{ $formatDate($reception['delivered_at'] ?? now()) }}</p>
             </article>
         </div>
 
@@ -219,12 +226,15 @@
             <section class="pdf-card col-span-7 rounded-[26px] border border-neutral-200 bg-white p-6 shadow-sm">
                 <div class="mb-6 flex items-center justify-between gap-4">
                     <div>
-                        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-500">Resumen técnico</p>
-                        <h2 class="mt-2 text-xl font-semibold tracking-tight text-neutral-900">Detalle del equipo y reparación</h2>
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-500">Resumen
+                            técnico</p>
+                        <h2 class="mt-2 text-xl font-semibold tracking-tight text-neutral-900">Detalle del equipo y
+                            reparación</h2>
                     </div>
 
                     <div class="rounded-2xl bg-primary-50 px-3 py-2 text-right">
-                        <p class="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary-500">ID reparación</p>
+                        <p class="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary-500">ID
+                            reparación</p>
                         <p class="mt-1 text-sm font-semibold text-neutral-900">#{{ $repair['id'] ?? 'N/A' }}</p>
                     </div>
                 </div>
@@ -247,7 +257,8 @@
 
                     <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
                         <p class="text-xs font-medium text-neutral-400">Recepción ID</p>
-                        <p class="mt-2 text-sm font-semibold text-neutral-900">#{{ $repair['reception_id'] ?? 'N/A' }}</p>
+                        <p class="mt-2 text-sm font-semibold text-neutral-900">
+                            #{{ $repair['reception_id'] ?? 'N/A' }}</p>
                     </div>
                 </div>
 
@@ -280,7 +291,8 @@
 
             <aside class="pdf-card col-span-5 space-y-6">
                 <section class="rounded-[26px] border border-neutral-200 bg-neutral-50 p-6 shadow-sm">
-                    <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-500">Cliente y recepción</p>
+                    <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-500">Cliente y
+                        recepción</p>
                     <h2 class="mt-2 text-xl font-semibold tracking-tight text-neutral-900">Datos administrativos</h2>
 
                     <div class="mt-6 space-y-4">
@@ -309,34 +321,45 @@
                 <section class="rounded-[26px] border border-neutral-200 bg-white p-6 shadow-sm">
                     <div class="flex items-center justify-between gap-4">
                         <div>
-                            <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-500">Contacto</p>
-                            <h2 class="mt-2 text-lg font-semibold tracking-tight text-neutral-900">Información de la sucursal</h2>
+                            <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-500">
+                                Contacto</p>
+                            <h2 class="mt-2 text-lg font-semibold tracking-tight text-neutral-900">Información de la
+                                sucursal</h2>
                         </div>
 
-                        <div class="rounded-2xl bg-success-50 px-3 py-2 text-xs font-semibold text-success-500 ring-1 ring-inset ring-success-500/20">
+                        <div
+                            class="rounded-2xl bg-success-50 px-3 py-2 text-xs font-semibold text-success-500 ring-1 ring-inset ring-success-500/20">
                             Activo
                         </div>
                     </div>
 
                     <div class="mt-6 space-y-3 text-sm text-neutral-600">
-                        <div class="flex items-start justify-between gap-4 rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3">
+                        <div
+                            class="flex items-start justify-between gap-4 rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3">
                             <span class="font-medium text-neutral-500">Teléfono</span>
-                            <span class="text-right font-semibold text-neutral-900">{{ $setup_company->phone ?? 'No disponible' }}</span>
+                            <span
+                                class="text-right font-semibold text-neutral-900">{{ $setup_company->phone ?? 'No disponible' }}</span>
                         </div>
 
-                        <div class="flex items-start justify-between gap-4 rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3">
+                        <div
+                            class="flex items-start justify-between gap-4 rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3">
                             <span class="font-medium text-neutral-500">WhatsApp</span>
-                            <span class="text-right font-semibold text-neutral-900">{{ $setup_company->WhatsApp ?? 'No disponible' }}</span>
+                            <span
+                                class="text-right font-semibold text-neutral-900">{{ $setup_company->WhatsApp ?? 'No disponible' }}</span>
                         </div>
 
-                        <div class="flex items-start justify-between gap-4 rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3">
+                        <div
+                            class="flex items-start justify-between gap-4 rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3">
                             <span class="font-medium text-neutral-500">Correo</span>
-                            <span class="text-right font-semibold text-neutral-900">{{ $setup_company->email ?? 'No disponible' }}</span>
+                            <span
+                                class="text-right font-semibold text-neutral-900">{{ $setup_company->email ?? 'No disponible' }}</span>
                         </div>
 
-                        <div class="flex items-start justify-between gap-4 rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3">
+                        <div
+                            class="flex items-start justify-between gap-4 rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3">
                             <span class="font-medium text-neutral-500">Facebook</span>
-                            <span class="text-right font-semibold text-neutral-900">{{ $setup_company->facebook ?? 'No disponible' }}</span>
+                            <span
+                                class="text-right font-semibold text-neutral-900">{{ $setup_company->facebook ?? 'No disponible' }}</span>
                         </div>
 
                         <div class="rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3">
@@ -357,9 +380,11 @@
             <div class="rounded-[26px] border border-neutral-200 bg-neutral-950 px-6 py-5 text-white">
                 <div class="flex items-end justify-between gap-6">
                     <div class="max-w-2xl">
-                        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-500">Cierre administrativo</p>
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-500">Cierre
+                            administrativo</p>
                         <p class="mt-2 text-sm leading-6 text-neutral-300">
-                            Este comprobante respalda la entrega del equipo y resume la información registrada dentro del flujo operativo de Interservice.
+                            Este comprobante respalda la entrega del equipo y resume la información registrada dentro
+                            del flujo operativo de Interservice.
                         </p>
                     </div>
 
