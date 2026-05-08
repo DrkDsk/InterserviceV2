@@ -4,11 +4,11 @@ namespace App\Enums;
 
 enum PDFRepairTypeEnum: string
 {
-    case DELIVERY = 'DELIVERY';
+    case DELIVERY = 'delivery';
 
-    case PICKUP = 'PICKUP';
+    case PICKUP = 'pickup';
 
-    case RECEPTION = 'RECEPTION';
+    case RECEPTION = 'reception';
 
     public static function values(): array
     {
