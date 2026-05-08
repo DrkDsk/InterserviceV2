@@ -24,8 +24,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/{repair}/settings', [RepairController::class, 'settings'])->name('settings');
         Route::delete('/{repair}/logs', [RepairController::class, 'destroyLogs'])->name('logs.clear');
 
-        Route::prefix('pdf')->name('pdf.')->group(function () {
-            Route::get('/{repair}', [RepairPDFGeneratorController::class, 'generate'])->name('generate');
+        Route::prefix('/{repair}')->name('pdf.')->group(function () {
+            Route::get('/pdf', [RepairPDFGeneratorController::class, 'generate'])->name('generate');
         });
 
         Route::prefix('logs')->name('logs.')->group(function () {
