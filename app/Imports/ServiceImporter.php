@@ -65,7 +65,7 @@ class ServiceImporter implements ToCollection,
     protected function processBatch(
         array $rows): void
     {
-        DB::transaction(function () use ($rows) {
+        DB::transaction(static function () use ($rows) {
             try {
                 $now = now();
 
@@ -86,7 +86,7 @@ class ServiceImporter implements ToCollection,
                         continue;
                     }
 
-                    $isLocal = $type == ServiceCategoryType::Local->value;
+                    $isLocal = $type === ServiceCategoryType::Local->value;
 
                     $services[] = [
                         'service_category_id' => $serviceCategory->id,
