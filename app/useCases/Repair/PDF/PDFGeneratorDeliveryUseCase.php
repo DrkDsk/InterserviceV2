@@ -38,6 +38,22 @@ class PDFGeneratorDeliveryUseCase extends PDFDownloadUseCase implements PDFGener
 
         $receptionStatusValue = $this->normalizeStatus($receptionDTO->status);
         $repairStatusNormalized = $this->normalizeStatus($repairDTO->status);
+        $repairBadgeWrap = $repairBadge['wrap'] ?? '';
+        $receptionBadgeWrap = $receptionBadge['wrap'] ?? '';
+
+        $repairBadgeTone = match (true) {
+            str_contains($repairBadgeWrap, 'success') => 'is-success',
+            str_contains($repairBadgeWrap, 'warning') => 'is-warning',
+            str_contains($repairBadgeWrap, 'danger')  => 'is-danger',
+            default => 'is-primary',
+        };
+
+        $receptionBadgeTone = match (true) {
+            str_contains($receptionBadgeWrap, 'success') => 'is-success',
+            str_contains($receptionBadgeWrap, 'warning') => 'is-warning',
+            str_contains($receptionBadgeWrap, 'danger')  => 'is-danger',
+            default => 'is-primary',
+        };
 
         $data = [
             'repair' => $repairDTO->toArray(),
@@ -55,6 +71,8 @@ class PDFGeneratorDeliveryUseCase extends PDFDownloadUseCase implements PDFGener
             "receptionDate" => $this->formatDate($receptionDate) ?? "---",
             "deliveredDate" => $this->formatDate($deliveredDate) ?? 'Pendiente',
             "repairedDate" => $this->formatDate($repairDTO->repaired_date) ?? 'Pendiente',
+            "repairBadgeTone" => $repairBadgeTone,
+            "receptionBadgeTone" => $receptionBadgeTone,
         ];
 
         if (!Storage::disk('public')->exists($filePath)) {
@@ -122,9 +140,9 @@ class PDFGeneratorDeliveryUseCase extends PDFDownloadUseCase implements PDFGener
         return '$' . number_format((float) $value, 2);
     }
 
-    private function formatDate($value, string $format = 'd M Y, h:i A'): string {
+    private function formatDate($value): string {
         if ($value instanceof CarbonInterface) {
-            return $value->translatedFormat($format);
+            return $value->translatedFormat('d M Y, h:i A');
         }
 
         if (blank($value)) {
@@ -132,7 +150,7 @@ class PDFGeneratorDeliveryUseCase extends PDFDownloadUseCase implements PDFGener
         }
 
         try {
-            return Carbon::parse($value)->translatedFormat($format);
+            return Carbon::parse($value)->translatedFormat('d M Y, h:i A');
         } catch (Throwable) {
             return (string) $value;
         }
