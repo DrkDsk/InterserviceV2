@@ -7,7 +7,9 @@ use App\DTO\RepairDTO;
 use App\Enums\PDFRepairTypeEnum;
 use App\Models\Repair;
 use App\useCases\Repair\PDF\PDFGeneratorDeliveryUseCase;
-use Spatie\LaravelPdf\PdfBuilder;
+use Exception;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 
 readonly class PDFGenerateAction
 {
@@ -16,7 +18,10 @@ readonly class PDFGenerateAction
     {
     }
 
-    public function execute(Repair $repair, PDFRepairTypeEnum $type, bool $isStream = true): PdfBuilder
+    /**
+     * @throws Exception
+     */
+    public function execute(Repair $repair, PDFRepairTypeEnum $type, bool $isStream = true): Redirector|RedirectResponse
     {
         $reception = $repair->reception;
         $repairDTO = RepairDTO::fromRepair($repair);
@@ -24,8 +29,8 @@ readonly class PDFGenerateAction
 
         return match ($type) {
             PDFRepairTypeEnum::DELIVERY => $this->PDFGeneratorDeliveryUseCase->generate($repairDTO, $receptionDTO),
-            PDFRepairTypeEnum::PICKUP => throw new \Exception('To be implemented'),
-            PDFRepairTypeEnum::RECEPTION => throw new \Exception('To be implemented'),
+            PDFRepairTypeEnum::PICKUP => throw new Exception('To be implemented'),
+            PDFRepairTypeEnum::RECEPTION => throw new Exception('To be implemented'),
         };
     }
 }
