@@ -18,7 +18,7 @@ enum RepairStatus: string
 
     public function label(): string
     {
-        return __("repair.{$this->value}");
+        return __("repair.$this->value");
     }
 
     public static function options(): array
