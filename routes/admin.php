@@ -36,23 +36,23 @@ Route::middleware('auth')->group(function () {
         });
     });
 
-    Route::get('/tables', function () {
+    Route::get('/tables', static function () {
         return Inertia::render('Tables');
     })->name('tables');
 
-    Route::get('/forms', function () {
+    Route::get('/forms', static function () {
         return Inertia::render('Forms');
     })->name('forms');
 
-    Route::get('/charts', function () {
+    Route::get('/charts', static function () {
         return Inertia::render('Charts');
     })->name('charts');
 
-    Route::get('/components', function () {
+    Route::get('/components', static function () {
         return Inertia::render('Components');
     })->name('components');
 
-    Route::get('/settings', function () {
+    Route::get('/settings', static function () {
         return Inertia::render('Settings');
     })->name('settings');
 
