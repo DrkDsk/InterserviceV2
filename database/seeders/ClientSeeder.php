@@ -13,6 +13,6 @@ class ClientSeeder extends Seeder
      */
     public function run(): void
     {
-        Excel::import(new ClientImporter, base_path("storage/app/imports/clients.csv"));
+        Excel::import(new ClientImporter, base_path("database/data/clientes.csv"));
     }
 }

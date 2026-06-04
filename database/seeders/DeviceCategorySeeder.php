@@ -13,6 +13,6 @@ class DeviceCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Excel::import(new DeviceCategoryImporter, base_path("storage/app/imports/tablaEquipos.csv"));
+        Excel::import(new DeviceCategoryImporter, base_path("database/data/tablaEquipos.csv"));
     }
 }

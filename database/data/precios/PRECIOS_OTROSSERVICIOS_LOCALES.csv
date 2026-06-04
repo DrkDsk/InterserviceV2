@@ -1,0 +1,15 @@
+type_id,name,price
+5,Respaldo en CD,75.00
+5,Respaldo en DVD,150.00
+5,Configuración de tabletas,200.00
+5,Reparación de monitores planos,500.00
+5,Quitar contraseña,200.00
+5,Desbloqueo de BIOS para portátil,550.00
+5,Asesoría de punto de venta ,250.00
+5,Revisión de pantalla plana,200.00
+5,Desinsectación y vacunación de memorias (USB),100.00
+5,Respaldo de disco duro pc,250.00
+5,Mantenimiento Preventivo a Video proyector,550.00
+5,Mantenimiento correctivo,700.00
+5,Instalación de Video proyector (base),400.00
+5,Otros,0.00

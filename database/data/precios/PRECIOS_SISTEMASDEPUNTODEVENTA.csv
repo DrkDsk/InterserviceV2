@@ -1,0 +1,9 @@
+type_id,name,price
+4,Instalación de Mybusiness por equipo,800.00
+4,Asesoría por hora,250.00
+4,Instalación de impresora de ticket,350.00
+4,Instalación de cajón de dinero,250.00
+4,Instalación de lector de código de barras,250.00
+4,Conversión de base de datos (cambio de versión de my business),600.00
+4,Recuperación de base de datos (daño en disco duro),600.00
+4,Configuración de MYCFDI (facturación electrónica),600.00
