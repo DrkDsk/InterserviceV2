@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Storage;
 use Spatie\LaravelPdf\Facades\Pdf;
 use Throwable;
 
-class PDFGeneratorDeliveryUseCase extends PDFDownloadUseCase implements PDFGeneratorInterface
+class PDFGeneratorReceptionUseCase extends PDFDownloadUseCase implements PDFGeneratorInterface
 {
     public function __construct(private readonly SetUpCompanyRepositoryInterface $setupCompanyRepository)
     {
@@ -25,31 +25,15 @@ class PDFGeneratorDeliveryUseCase extends PDFDownloadUseCase implements PDFGener
     public function generate(RepairDTO $repairDTO, ReceptionDTO $receptionDTO): Redirector|RedirectResponse
     {
         $setupCompany = $this->setupCompanyRepository->find(1);
-        $deliveredDate = $receptionDTO->delivered_at;
-
-        if (!$deliveredDate) {
-            $deliveredDate = Carbon::now();
-        }
-
         $receptionDate = $receptionDTO->received_at;
-        $daysStored = $receptionDate->diffInDays($deliveredDate);
-        $daysStored = (int)max($daysStored, 0);
-        $fileName = "delivery-$repairDTO->id.pdf";
-        $filePath = "pdfs/deliveries/$fileName";
+        $fileName = "reception-$repairDTO->id.pdf";
+        $filePath = "pdfs/receptions/$fileName";
         $fullPath = storage_path("app/public/$filePath");
         $directory = dirname($fullPath);
 
         $receptionStatusValue = $this->normalizeStatus($receptionDTO->status);
         $repairStatusNormalized = $this->normalizeStatus($repairDTO->status);
-        $repairBadgeWrap = $repairBadge['wrap'] ?? '';
         $receptionBadgeWrap = $receptionBadge['wrap'] ?? '';
-
-        $repairBadgeTone = match (true) {
-            str_contains($repairBadgeWrap, 'success') => 'is-success',
-            str_contains($repairBadgeWrap, 'warning') => 'is-warning',
-            str_contains($repairBadgeWrap, 'danger')  => 'is-danger',
-            default => 'is-primary',
-        };
 
         $receptionBadgeTone = match (true) {
             str_contains($receptionBadgeWrap, 'success') => 'is-success',
@@ -62,7 +46,6 @@ class PDFGeneratorDeliveryUseCase extends PDFDownloadUseCase implements PDFGener
             'repair' => $repairDTO->toArray(),
             'reception' => $receptionDTO->toArray(),
             'setup_company' => $setupCompany,
-            'days_stored' => $daysStored,
             "companyInitial" => str($setup_company->email ?? 'I')->substr(0, 1)->upper(),
             "receptionStatusValue" => $receptionStatusValue,
             "receptionBadge" => $this->statusBadge($receptionStatusValue),
@@ -72,9 +55,6 @@ class PDFGeneratorDeliveryUseCase extends PDFDownloadUseCase implements PDFGener
             "repairCost" => $this->formatCurrency($repairDTO->cost),
             "generatedAt" => $this->formatDate(now()),
             "receptionDate" => $this->formatDate($receptionDate) ?? "---",
-            "deliveredDate" => $this->formatDate($deliveredDate) ?? 'Pendiente',
-            "repairedDate" => $this->formatDate($repairDTO->repaired_date) ?? 'Pendiente',
-            "repairBadgeTone" => $repairBadgeTone,
             "receptionBadgeTone" => $receptionBadgeTone,
         ];
 
@@ -83,7 +63,7 @@ class PDFGeneratorDeliveryUseCase extends PDFDownloadUseCase implements PDFGener
         }
 
         if (!Storage::disk('public')->exists($filePath)) {
-            Pdf::view('layouts.pdf.delivery', $data)
+            Pdf::view('layouts.pdf.reception', $data)
                 ->withBrowsershot(function ($browser) {
                     $browser
                         ->noSandbox()

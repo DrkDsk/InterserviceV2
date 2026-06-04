@@ -103,7 +103,25 @@ class RepairController extends Controller
 
     public function update(Repair $repair, UpdateRepairRequest $request): RedirectResponse
     {
-        $repair->update($request->validated());
+        $validated = $request->validated();
+
+        $repairCompleted = $repair->status === RepairStatus::Completed->value;
+
+        if (!$repairCompleted) {
+            $data = [
+                'created_by' => auth()->id(),
+                'message' => $validated['solution'],
+            ];
+
+            $repair->logs()->create($data);
+            $repair->update([
+                'status' => $validated['status'],
+            ]);
+
+            return redirect()->back()->with('info', 'Reparación actualizada');
+        }
+
+        $repair->update($validated);
 
         return redirect()->back()->with('info', 'Reparación actualizada');
     }
