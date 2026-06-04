@@ -7,139 +7,8 @@
     <style>
         {!! Vite::content('resources/css/app.css') !!}
     </style>
-
-    <style>
-        @page {
-            margin: 20px;
-            size: A4;
-        }
-
-        * {
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-        }
-
-        body {
-            background: white !important;
-        }
-
-        .pdf-shell {
-            min-height: 100%;
-            background: radial-gradient(circle at top left, color-mix(in srgb, var(--primary) 12%, white), transparent 30%),
-            linear-gradient(180deg, white 0%, rgb(248 250 252) 100%);
-        }
-
-        .pdf-card {
-            break-inside: avoid;
-            page-break-inside: avoid;
-        }
-
-        .pdf-divider {
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent 0%,
-                color-mix(in srgb, var(--primary) 10%, rgb(203 213 225)) 14%,
-                color-mix(in srgb, var(--primary) 10%, rgb(203 213 225)) 86%,
-                transparent 100%
-            );
-        }
-
-        .metric-accent {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .metric-accent::before {
-            content: "";
-            position: absolute;
-            inset: 0 auto 0 0;
-            width: 4px;
-            background: var(--primary);
-        }
-    </style>
 </head>
 <body class="font-sans text-neutral-900">
-@php
-    use Carbon\CarbonInterface;
-
-    $repairStatus = $repair['status'] ?? null;
-    $receptionStatus = $reception['status'] ?? null;
-
-    $normalizeStatus = static function ($status): ?string {
-        if ($status instanceof \BackedEnum) {
-            return $status->value;
-        }
-
-        return $status ? (string) $status : null;
-    };
-
-    $formatStatusLabel = static function (?string $status): string {
-        return match ($status) {
-            'pending' => 'Pendiente',
-            'diagnosing' => 'Diagnóstico',
-            'waiting_parts' => 'Esperando refacciones',
-            'in_progress' => 'En proceso',
-            'completed' => 'Completada',
-            'cancelled' => 'Cancelada',
-            'received' => 'Recibido',
-            'repairing' => 'En reparación',
-            'delivered' => 'Entregado',
-            default => $status ? str($status)->replace('_', ' ')->title()->toString() : 'Sin estado',
-        };
-    };
-
-    $statusBadge = static function (?string $status): array {
-        return match ($status) {
-            'completed', 'delivered' => [
-                'wrap' => 'bg-success-50 text-success-500 ring-1 ring-inset ring-success-500/20',
-                'dot' => 'bg-success-500',
-            ],
-            'pending', 'received', 'waiting_parts' => [
-                'wrap' => 'bg-warning-50 text-warning-500 ring-1 ring-inset ring-warning-500/20',
-                'dot' => 'bg-warning-500',
-            ],
-            'cancelled' => [
-                'wrap' => 'bg-danger-50 text-danger-500 ring-1 ring-inset ring-danger-500/20',
-                'dot' => 'bg-danger-500',
-            ],
-            default => [
-                'wrap' => 'bg-primary-50 text-primary-500 ring-1 ring-inset ring-primary-500/20',
-                'dot' => 'bg-primary-500',
-            ],
-        };
-    };
-
-    $formatDate = static function ($value, string $format = 'd M Y, h:i A'): string {
-        if ($value instanceof CarbonInterface) {
-            return $value->translatedFormat($format);
-        }
-
-        if (blank($value)) {
-            return 'No disponible';
-        }
-
-        try {
-            return \Carbon\Carbon::parse($value)->translatedFormat($format);
-        } catch (\Throwable) {
-            return (string) $value;
-        }
-    };
-
-    $formatCurrency = static function ($value): string {
-        if (blank($value)) {
-            return 'Pendiente';
-        }
-
-        return '$' . number_format((float) $value, 2);
-    };
-
-    $repairStatusValue = $normalizeStatus($repairStatus);
-    $receptionStatusValue = $normalizeStatus($receptionStatus);
-    $repairBadge = $statusBadge($repairStatusValue);
-    $receptionBadge = $statusBadge($receptionStatusValue);
-    $companyInitial = str($setup_company->email ?? 'I')->substr(0, 1)->upper();
-@endphp
 
 <main class="pdf-shell px-6 py-6">
     <section class="pdf-card overflow-hidden rounded-[28px] border border-neutral-200 bg-white shadow-soft">
@@ -154,7 +23,7 @@
 
                         <div>
                             <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-primary-500">
-                                Interservice Repair Center
+                                Interservice
                             </p>
                             <h1 class="mt-1 text-3xl font-semibold tracking-tight text-neutral-900">
                                 Comprobante de entrega
@@ -168,7 +37,7 @@
                     </p>
                 </div>
 
-                <div class="min-w-[230px] rounded-3xl border border-primary-100 bg-white/90 p-5 text-right shadow-sm">
+                <div class="min-w-57.5 rounded-3xl border border-primary-100 bg-white/90 p-5 text-right shadow-sm">
                     <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-neutral-400">
                         Folio de servicio
                     </p>
@@ -176,7 +45,7 @@
                         {{ $reception['folio'] ?? 'Sin folio' }}
                     </p>
                     <p class="mt-3 text-xs text-neutral-500">
-                        Generado el {{ $formatDate(now()) }}
+                        Generado el {{ $generatedAt }}
                     </p>
                 </div>
             </div>
@@ -194,7 +63,7 @@
                 <div
                     class="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold {{ $repairBadge['wrap'] }}">
                     <span class="h-2 w-2 rounded-full {{ $repairBadge['dot'] }}"></span>
-                    {{ $formatStatusLabel($repairStatusValue) }}
+                    {{ $repairLabel }}
                 </div>
                 <p class="mt-2 text-xs text-neutral-500">Técnico: {{ $repair['technician_name'] ?? 'No asignado' }}</p>
             </article>
@@ -204,17 +73,17 @@
                 <div
                     class="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold {{ $receptionBadge['wrap'] }}">
                     <span class="h-2 w-2 rounded-full {{ $receptionBadge['dot'] }}"></span>
-                    {{ $formatStatusLabel($receptionStatusValue) }}
+                    {{ $statusLabel }}
                 </div>
                 <p class="mt-2 text-xs text-neutral-500">
-                    Ingreso: {{ $formatDate($reception['received_at'] ?? null) }}</p>
+                    Ingreso: {{ $receptionDate }}</p>
             </article>
 
             <article class="pdf-card metric-accent rounded-3xl border border-neutral-200 bg-neutral-50 px-5 py-4">
                 <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-400">Días en resguardo</p>
                 <p class="mt-3 text-3xl font-semibold tracking-tight text-neutral-900">{{ $days_stored ?? 0 }}</p>
                 <p class="mt-1 text-xs text-neutral-500">
-                    Entrega: {{ $formatDate($reception['delivered_at'] ?? now()) }}</p>
+                    Entrega: {{ $deliveredDate }}</p>
             </article>
         </div>
 
@@ -247,12 +116,12 @@
 
                     <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
                         <p class="text-xs font-medium text-neutral-400">Costo</p>
-                        <p class="mt-2 text-sm font-semibold text-neutral-900">{{ $formatCurrency($repair['cost'] ?? null) }}</p>
+                        <p class="mt-2 text-sm font-semibold text-neutral-900">{{ $repairCost }}</p>
                     </div>
 
                     <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
                         <p class="text-xs font-medium text-neutral-400">Fecha de reparación</p>
-                        <p class="mt-2 text-sm font-semibold text-neutral-900">{{ $formatDate($repair['repaired_date'] ?? null) }}</p>
+                        <p class="mt-2 text-sm font-semibold text-neutral-900">{{ $repairedDate }}</p>
                     </div>
 
                     <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
@@ -296,19 +165,10 @@
                     <h2 class="mt-2 text-xl font-semibold tracking-tight text-neutral-900">Datos administrativos</h2>
 
                     <div class="mt-6 space-y-4">
-                        <div class="rounded-2xl border border-neutral-200 bg-white p-4">
-                            <p class="text-xs font-medium text-neutral-400">Cliente</p>
-                            <p class="mt-1 text-sm font-semibold text-neutral-900">{{ $reception['customer_name'] ?? 'No registrado' }}</p>
-                        </div>
 
                         <div class="rounded-2xl border border-neutral-200 bg-white p-4">
                             <p class="text-xs font-medium text-neutral-400">Teléfono</p>
                             <p class="mt-1 text-sm font-semibold text-neutral-900">{{ $reception['customer_phone'] ?? 'No registrado' }}</p>
-                        </div>
-
-                        <div class="rounded-2xl border border-neutral-200 bg-white p-4">
-                            <p class="text-xs font-medium text-neutral-400">Fecha de recepción</p>
-                            <p class="mt-1 text-sm font-semibold text-neutral-900">{{ $formatDate($reception['received_at'] ?? null) }}</p>
                         </div>
 
                         <div class="rounded-2xl border border-neutral-200 bg-white p-4">
@@ -386,11 +246,6 @@
                             Este comprobante respalda la entrega del equipo y resume la información registrada dentro
                             del flujo operativo de Interservice.
                         </p>
-                    </div>
-
-                    <div class="text-right">
-                        <p class="text-xs text-neutral-400">Documento generado por el sistema</p>
-                        <p class="mt-1 text-sm font-semibold text-white">{{ $formatDate(now()) }}</p>
                     </div>
                 </div>
             </div>
