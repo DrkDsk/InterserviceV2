@@ -13,14 +13,14 @@ class ServiceSeeder extends Seeder
      */
     public function run(): void
     {
-        Excel::import(new ServiceImporter, base_path("storage/app/imports/precios/PRECIOS_CPU.csv"));
-        Excel::import(new ServiceImporter, base_path("storage/app/imports/precios/PRECIOS_PORTATILES.csv"));
-        Excel::import(new ServiceImporter, base_path("storage/app/imports/precios/PRECIOS_IMPRESORAS.csv"));
-        Excel::import(new ServiceImporter, base_path("storage/app/imports/precios/PRECIOS_SISTEMASDEPUNTODEVENTA.csv"));
-        Excel::import(new ServiceImporter, base_path("storage/app/imports/precios/PRECIOS_OTROSSERVICIOS_LOCALES.csv"));
-        Excel::import(new ServiceImporter, base_path("storage/app/imports/precios/PRECIOS_REDESEINTERNET.csv"));
-        Excel::import(new ServiceImporter, base_path("storage/app/imports/precios/PRECIOS_SERVICIOSCAMARAS_CCTV.csv"));
-        Excel::import(new ServiceImporter, base_path("storage/app/imports/precios/PRECIOS_ENLACESDEINTERNET.csv"));
-        Excel::import(new ServiceImporter, base_path("storage/app/imports/precios/PRECIOS_OTROSSERVICIOS_FORANEOS.csv"));
+        Excel::import(new ServiceImporter, base_path("database/data/precios/PRECIOS_CPU.csv"));
+        Excel::import(new ServiceImporter, base_path("database/data/precios/PRECIOS_PORTATILES.csv"));
+        Excel::import(new ServiceImporter, base_path("database/data/precios/PRECIOS_IMPRESORAS.csv"));
+        Excel::import(new ServiceImporter, base_path("database/data/precios/PRECIOS_SISTEMASDEPUNTODEVENTA.csv"));
+        Excel::import(new ServiceImporter, base_path("database/data/precios/PRECIOS_OTROSSERVICIOS_LOCALES.csv"));
+        Excel::import(new ServiceImporter, base_path("database/data/precios/PRECIOS_REDESEINTERNET.csv"));
+        Excel::import(new ServiceImporter, base_path("database/data/precios/PRECIOS_SERVICIOSCAMARAS_CCTV.csv"));
+        Excel::import(new ServiceImporter, base_path("database/data/precios/PRECIOS_ENLACESDEINTERNET.csv"));
+        Excel::import(new ServiceImporter, base_path("database/data/precios/PRECIOS_OTROSSERVICIOS_FORANEOS.csv"));
     }
 }
