@@ -38,6 +38,22 @@ class PDFGeneratorDeliveryUseCase extends PDFDownloadUseCase implements PDFGener
 
         $receptionStatusValue = $this->normalizeStatus($receptionDTO->status);
         $repairStatusNormalized = $this->normalizeStatus($repairDTO->status);
+        $repairBadgeWrap = $repairBadge['wrap'] ?? '';
+        $receptionBadgeWrap = $receptionBadge['wrap'] ?? '';
+
+        $repairBadgeTone = match (true) {
+            str_contains($repairBadgeWrap, 'success') => 'is-success',
+            str_contains($repairBadgeWrap, 'warning') => 'is-warning',
+            str_contains($repairBadgeWrap, 'danger')  => 'is-danger',
+            default => 'is-primary',
+        };
+
+        $receptionBadgeTone = match (true) {
+            str_contains($receptionBadgeWrap, 'success') => 'is-success',
+            str_contains($receptionBadgeWrap, 'warning') => 'is-warning',
+            str_contains($receptionBadgeWrap, 'danger')  => 'is-danger',
+            default => 'is-primary',
+        };
 
         $data = [
             'repair' => $repairDTO->toArray(),
@@ -55,6 +71,8 @@ class PDFGeneratorDeliveryUseCase extends PDFDownloadUseCase implements PDFGener
             "receptionDate" => $this->formatDate($receptionDate) ?? "---",
             "deliveredDate" => $this->formatDate($deliveredDate) ?? 'Pendiente',
             "repairedDate" => $this->formatDate($repairDTO->repaired_date) ?? 'Pendiente',
+            "repairBadgeTone" => $repairBadgeTone,
+            "receptionBadgeTone" => $receptionBadgeTone,
         ];
 
         if (!Storage::disk('public')->exists($filePath)) {
