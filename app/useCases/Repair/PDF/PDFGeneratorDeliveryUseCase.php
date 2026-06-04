@@ -140,9 +140,9 @@ class PDFGeneratorDeliveryUseCase extends PDFDownloadUseCase implements PDFGener
         return '$' . number_format((float) $value, 2);
     }
 
-    private function formatDate($value, string $format = 'd M Y, h:i A'): string {
+    private function formatDate($value): string {
         if ($value instanceof CarbonInterface) {
-            return $value->translatedFormat($format);
+            return $value->translatedFormat('d M Y, h:i A');
         }
 
         if (blank($value)) {
@@ -150,7 +150,7 @@ class PDFGeneratorDeliveryUseCase extends PDFDownloadUseCase implements PDFGener
         }
 
         try {
-            return Carbon::parse($value)->translatedFormat($format);
+            return Carbon::parse($value)->translatedFormat('d M Y, h:i A');
         } catch (Throwable) {
             return (string) $value;
         }
