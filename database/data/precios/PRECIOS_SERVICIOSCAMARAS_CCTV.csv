@@ -1,14 +1,14 @@
 type_id,name,price
-7,Instalación de cámara /cable 20mtrs,350
-7,Mantenimiento DVR,200
-7,Reubicación de cámaras ,350
-7,Configuración de DVR/internet (otros proved.),700
-7,Configuración de  cámara PTZ,500
-7,Instalación de cámaras ip local,350
-7,Instalación de cámaras ip /internet,500
-7,Instalación de una sola cámara sin cable,200
-7,Revisión de DVR,200
-7,Mantenimiento de cámaras,150
-7,Cambio de DVR,250
-7,Cambio de video valum,150
-7,Configuración de aplicación,200
+SERVICIOS DE CÁMARAS CCTV,Instalación de cámara /cable 20mtrs,350
+SERVICIOS DE CÁMARAS CCTV,Mantenimiento DVR,200
+SERVICIOS DE CÁMARAS CCTV,Reubicación de cámaras ,350
+SERVICIOS DE CÁMARAS CCTV,Configuración de DVR/internet (otros proved.),700
+SERVICIOS DE CÁMARAS CCTV,Configuración de  cámara PTZ,500
+SERVICIOS DE CÁMARAS CCTV,Instalación de cámaras ip local,350
+SERVICIOS DE CÁMARAS CCTV,Instalación de cámaras ip /internet,500
+SERVICIOS DE CÁMARAS CCTV,Instalación de una sola cámara sin cable,200
+SERVICIOS DE CÁMARAS CCTV,Revisión de DVR,200
+SERVICIOS DE CÁMARAS CCTV,Mantenimiento de cámaras,150
+SERVICIOS DE CÁMARAS CCTV,Cambio de DVR,250
+SERVICIOS DE CÁMARAS CCTV,Cambio de video valum,150
+SERVICIOS DE CÁMARAS CCTV,Configuración de aplicación,200

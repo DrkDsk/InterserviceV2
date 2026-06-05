@@ -1,10 +1,10 @@
 type_id,name,price
-2,Formateo local e instalación de paquetería completa c/licencia ,550.00
-2,Instalación de antivirus c/licencia,325.00
-2,Instalación de paquetería del office,225.00
-2,Instalación de paquetería completa,500.00
-2,"Instalación de un programa (AutoCAD, Corel)",300.00
-2,Mantenimiento a portátil,500.00
-2,Revisión de portátil,250.00
-2,"Cambio de hardware,  teclado, pantalla",280.00
-2,Cambio de tarjeta madre,400.00
+PORTÁTILES,Formateo local e instalación de paquetería completa c/licencia ,550.00
+PORTÁTILES,Instalación de antivirus c/licencia,325.00
+PORTÁTILES,Instalación de paquetería del office,225.00
+PORTÁTILES,Instalación de paquetería completa,500.00
+PORTÁTILES,"Instalación de un programa (AutoCAD, Corel)",300.00
+PORTÁTILES,Mantenimiento a portátil,500.00
+PORTÁTILES,Revisión de portátil,250.00
+PORTÁTILES,"Cambio de hardware,  teclado, pantalla",280.00
+PORTÁTILES,Cambio de tarjeta madre,400.00

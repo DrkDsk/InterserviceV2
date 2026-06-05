@@ -37,23 +37,23 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/tables', static function () {
-        return Inertia::render('Tables', []);
+        return Inertia::render('Tables');
     })->name('tables');
 
     Route::get('/forms', static function () {
-        return Inertia::render('Forms', []);
+        return Inertia::render('Forms');
     })->name('forms');
 
     Route::get('/charts', static function () {
-        return Inertia::render('Charts', []);
+        return Inertia::render('Charts');
     })->name('charts');
 
     Route::get('/components', static function () {
-        return Inertia::render('Components', []);
+        return Inertia::render('Components');
     })->name('components');
 
     Route::get('/settings', static function () {
-        return Inertia::render('Settings', []);
+        return Inertia::render('Settings');
     })->name('settings');
 
     Route::get('reception', [ReceptionController::class, 'index']);

@@ -1,8 +1,8 @@
 type_id,name,price
-9,"Formateo a CPU, incluye  Lic antivirus y respaldo",700
-9,"Formateo a LAP TOP, incluye  Lic antivirus y respaldo",800
-9,Instalación de software (paquetería),450
-9,Instalación de Lic. Antivirus,425
-9,Instalación de impresora,250
-9,Instalación de Router/acces,350
-9,Otros,0.00
+OTROS SERVICIOS FORÁNEOS,"Formateo a CPU, incluye  Lic antivirus y respaldo",700
+OTROS SERVICIOS FORÁNEOS,"Formateo a LAP TOP, incluye  Lic antivirus y respaldo",800
+OTROS SERVICIOS FORÁNEOS,Instalación de software (paquetería),450
+OTROS SERVICIOS FORÁNEOS,Instalación de Lic. Antivirus,425
+OTROS SERVICIOS FORÁNEOS,Instalación de impresora,250
+OTROS SERVICIOS FORÁNEOS,Instalación de Router/acces,350
+OTROS SERVICIOS FORÁNEOS,Otros,0.00
