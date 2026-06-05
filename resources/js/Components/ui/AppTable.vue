@@ -114,8 +114,8 @@ const setPage = (page) => {
     </div>
 
     <div class="overflow-x-auto">
-      <table class="min-w-full divide-y divide-[color:var(--border)]">
-        <thead class="bg-[var(--surface-muted)]">
+      <table class="min-w-full divide-y divide-(--border)">
+        <thead class="bg-(--surface-muted)">
         <tr>
           <th
             v-for="column in columns"
@@ -126,7 +126,7 @@ const setPage = (page) => {
           </th>
         </tr>
         </thead>
-        <tbody class="divide-y divide-[color:var(--border)]">
+        <tbody class="divide-y divide-(--border)">
         <tr v-if="!paginatedRows.length">
           <td :colspan="columns.length" class="px-5 py-10 text-center text-sm text-slate-500 dark:text-slate-400">
             <slot name="empty">
@@ -137,7 +137,7 @@ const setPage = (page) => {
         <tr
           v-for="row in paginatedRows"
           :key="row[rowKey]"
-          class="transition hover:bg-[var(--primary-soft)]"
+          class="transition hover:bg-(--primary-soft)"
         >
           <td
             v-for="column in columns"

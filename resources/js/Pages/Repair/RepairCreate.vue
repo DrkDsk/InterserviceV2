@@ -382,7 +382,7 @@ const submit = () => {
                     <div
                       class="flex h-10 w-10 items-center justify-center rounded-sm border text-sm font-semibold transition-all duration-200"
                       :class="step.id === currentStep
-                        ? 'border-slate-200 bg-primary-500 text-slate-500 dark:text-slate-200 shadow-sm'
+                        ? 'border-slate-200 bg-primary-500 text-slate-200 dark:text-slate-200 shadow-sm'
                         : step.id < currentStep
                           ? 'border-slate-400 dark:border-gray-700 bg-primary-500/10 text-slate-400 dark:text-slate-400'
                           : 'border-slate-200 bg-white text-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-500'"
