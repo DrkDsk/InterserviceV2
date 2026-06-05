@@ -40,7 +40,7 @@ const sizes = {
 };
 
 const classes = computed(() => [
-  'inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-4 focus:ring-primary-500/15 dark:focus:ring-primary-400/15 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-4 focus:ring-primary-500/15 dark:focus:ring-primary-400/15 disabled:pointer-events-none disabled:opacity-50',
   variants[props.variant] ?? variants.primary,
   sizes[props.size] ?? sizes.md,
   props.fullWidth ? 'w-full' : '',
