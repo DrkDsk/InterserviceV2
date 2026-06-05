@@ -35,6 +35,8 @@ const clientName = computed(() => {
     .join(' ');
 });
 
+const availableDelivery = computed(() => props.repair.status === "completed")
+
 const technicianName = computed(() => {
   const name = (props.repair.technician.name).toLowerCase();
   return name
@@ -60,10 +62,6 @@ const form = useForm({
   model: props.repair.device.model,
 })
 
-const goToRepairLogs = () => {
-  router.visit(route("repairs.logs.index", props.repair.id))
-}
-
 const breadcrumbs = [
   {label: 'Home', href: route('dashboard')},
   {label: 'Reparaciones', href: route('repairs.index')},
@@ -79,13 +77,14 @@ const submitSolution = () => {
   solutionForm.put(route('repairs.update', props.repair.id), options)
 }
 
-const deliveryPdfUrl = computed(() => route('repairs.pdf.generate', {
-  repair: props.repair.id,
-  type: 'delivery',
-}));
+const openPdf = (type) => {
 
-const openDeliveryPdf = () => {
-  window.open(deliveryPdfUrl.value, '_blank', 'noopener,noreferrer');
+  const url = route('repairs.pdf.generate', {
+    repair: props.repair.id,
+    type,
+  })
+
+  window.open(url, '_blank', 'noopener,noreferrer');
 }
 
 </script>
@@ -203,7 +202,35 @@ const openDeliveryPdf = () => {
                 </div>
               </div>
 
-              <section class="rounded-[28px] border border-success-200/80 bg-gradient-to-br from-success-50 via-white to-white p-5 shadow-[0_18px_45px_rgba(47,159,115,0.08)] dark:border-success-400/15 dark:bg-gradient-to-br dark:from-success-500/10 dark:via-[rgba(18,29,51,0.96)] dark:to-[rgba(18,29,51,0.92)]">
+              <section class="rounded-[28px] border border-info-200/80 bg-linear-to-br from-info-50 via-white to-white p-5 shadow-[0_18px_45px_rgba(18, 98, 204, 0.11)] dark:border-info-400/15 dark:bg-linear-to-br dark:from-info-500/10 dark:via-[rgba(18,29,51,0.96)] dark:to-[rgba(18,29,51,0.92)]">
+                <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                  <div class="space-y-3">
+                    <div class="inline-flex items-center gap-2 rounded-full bg-info-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-info-600 dark:bg-info-500/14 dark:text-info-200">
+                      PDF Recepción
+                    </div>
+
+                    <div class="space-y-2">
+                      <h4 class="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
+                        Visualiza el comprobante de entrega en una nueva pestaña
+                      </h4>
+                      <p class="max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
+                        Abre una vista PDF lista para revisión, impresión o envío al cliente con el diseño premium del módulo administrativo.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="flex flex-col items-stretch gap-3 lg:min-w-65">
+                    <AppButton variant="info" size="lg" @click="openPdf('reception')">
+                      Ver PDF de recepción
+                    </AppButton>
+                    <p class="text-center text-xs text-slate-500 dark:text-slate-400">
+                      Se abrirá en otra pestaña
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <section v-if="availableDelivery" class="rounded-[28px] border border-success-200/80 bg-gradient-to-br from-success-50 via-white to-white p-5 shadow-[0_18px_45px_rgba(47,159,115,0.08)] dark:border-success-400/15 dark:bg-gradient-to-br dark:from-success-500/10 dark:via-[rgba(18,29,51,0.96)] dark:to-[rgba(18,29,51,0.92)]">
                 <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                   <div class="space-y-3">
                     <div class="inline-flex items-center gap-2 rounded-full bg-success-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-success-600 dark:bg-success-500/14 dark:text-success-200">
@@ -220,8 +247,8 @@ const openDeliveryPdf = () => {
                     </div>
                   </div>
 
-                  <div class="flex flex-col items-stretch gap-3 lg:min-w-[260px]">
-                    <AppButton variant="success" size="lg" @click="openDeliveryPdf">
+                  <div class="flex flex-col items-stretch gap-3 lg:min-w-65">
+                    <AppButton variant="success" size="lg" @click="openPdf('delivery')">
                       Ver PDF de entrega
                     </AppButton>
                     <p class="text-center text-xs text-slate-500 dark:text-slate-400">

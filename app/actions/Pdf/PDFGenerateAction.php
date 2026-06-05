@@ -7,6 +7,7 @@ use App\DTO\RepairDTO;
 use App\Enums\PDFRepairTypeEnum;
 use App\Models\Repair;
 use App\useCases\Repair\PDF\PDFGeneratorDeliveryUseCase;
+use App\useCases\Repair\PDF\PDFGeneratorReceptionUseCase;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
@@ -14,7 +15,9 @@ use Illuminate\Routing\Redirector;
 readonly class PDFGenerateAction
 {
     public function __construct(
-        private PDFGeneratorDeliveryUseCase $PDFGeneratorDeliveryUseCase)
+        private PDFGeneratorDeliveryUseCase $PDFGeneratorDeliveryUseCase,
+        private PDFGeneratorReceptionUseCase $PDFGeneratorReceptionUseCase
+    )
     {
     }
 
@@ -27,10 +30,11 @@ readonly class PDFGenerateAction
         $repairDTO = RepairDTO::fromRepair($repair);
         $receptionDTO = ReceptionDTO::fromReception($reception);
 
+
         return match ($type) {
             PDFRepairTypeEnum::DELIVERY => $this->PDFGeneratorDeliveryUseCase->generate($repairDTO, $receptionDTO),
-            PDFRepairTypeEnum::PICKUP => throw new Exception('To be implemented'),
-            PDFRepairTypeEnum::RECEPTION => throw new Exception('To be implemented'),
+            PDFRepairTypeEnum::PICKUP =>  throw new Exception('To be implemented'),
+            PDFRepairTypeEnum::RECEPTION => $this->PDFGeneratorReceptionUseCase->generate($repairDTO, $receptionDTO),
         };
     }
 }

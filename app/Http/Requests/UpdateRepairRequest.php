@@ -25,7 +25,7 @@ class UpdateRepairRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'solution' => ['sometimes', 'string', 'max:255'],
+            'solution' => ['nullable', 'string', 'max:255'],
             'status' => ['sometimes', 'string', Rule::in(RepairStatus::values())],
         ];
     }
