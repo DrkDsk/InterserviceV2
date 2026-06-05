@@ -1,5 +1,5 @@
 <template>
-    <section class="ui-panel rounded-2xl">
+    <section class="ui-panel rounded-md">
         <slot />
     </section>
 </template>

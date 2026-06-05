@@ -211,10 +211,10 @@ const openPdf = (type) => {
 
                     <div class="space-y-2">
                       <h4 class="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
-                        Visualiza el comprobante de entrega en una nueva pestaña
+                        Visualiza el comprobante de recepción
                       </h4>
                       <p class="max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
-                        Abre una vista PDF lista para revisión, impresión o envío al cliente con el diseño premium del módulo administrativo.
+                        Abre una vista PDF lista para revisión, impresión o envío al cliente.
                       </p>
                     </div>
                   </div>
@@ -239,10 +239,10 @@ const openPdf = (type) => {
 
                     <div class="space-y-2">
                       <h4 class="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
-                        Visualiza el comprobante de entrega en una nueva pestaña
+                        Visualiza el comprobante de entrega
                       </h4>
                       <p class="max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
-                        Abre una vista PDF lista para revisión, impresión o envío al cliente con el diseño premium del módulo administrativo.
+                        Abre una vista PDF lista para revisión, impresión o envío al cliente.
                       </p>
                     </div>
                   </div>

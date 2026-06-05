@@ -41,10 +41,6 @@ const handleAssignUpdating = (id) => {
   router.visit(route('repairs.edit', id));
 }
 
-const handleOpenSettings = (id) => {
-  router.visit(route('repairs.settings', id));
-}
-
 </script>
 
 <template>
