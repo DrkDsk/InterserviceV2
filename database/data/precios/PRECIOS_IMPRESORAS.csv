@@ -1,19 +1,19 @@
 type_id,name,price
-3,Mantenimiento preventivo a impresora láser a color,650.00
-3,Mantenimiento preventivo a impresora láser Pequeóa,450.00
-3,Mantenimiento preventivo a impresora láser Grande ,700.00
-3,Mantenimiento preventivo a impresora de inyección de tinta,400.00
-3,Mantenimiento de matriz de punto,470.00
-3,Revisión de impresora,250.00
-3,Reciclado de tinta,60.00
-3,Instalación de impresora en red para un equipo,180.00
-3,Instalación de impresora,180.00
-3,Mantenimiento y reseteo impresora de tinta continua ,850.00
-3,Mantenimiento correctivo impresora de tinta continua,750.00
-3,Mantenimiento preventivo o reseteo impresora de tinta continua,450.00
-3,"Corrección menor (atasco de hoja, acomodo de gomas, ajustes de engranes, ajustes de mecanismos) ",300.00
-3,Cambio de fusor chica,250.00
-3,Cambio de fusor grande,350.00
-3,Colocación de gomas chica,300.00
-3,Colocación de gomas grande,400.00
-3,Mantenimiento de impresora de ticket,400.00
+IMPRESORAS,Mantenimiento preventivo a impresora láser a color,650.00
+IMPRESORAS,Mantenimiento preventivo a impresora láser Pequeóa,450.00
+IMPRESORAS,Mantenimiento preventivo a impresora láser Grande ,700.00
+IMPRESORAS,Mantenimiento preventivo a impresora de inyección de tinta,400.00
+IMPRESORAS,Mantenimiento de matriz de punto,470.00
+IMPRESORAS,Revisión de impresora,250.00
+IMPRESORAS,Reciclado de tinta,60.00
+IMPRESORAS,Instalación de impresora en red para un equipo,180.00
+IMPRESORAS,Instalación de impresora,180.00
+IMPRESORAS,Mantenimiento y reseteo impresora de tinta continua ,850.00
+IMPRESORAS,Mantenimiento correctivo impresora de tinta continua,750.00
+IMPRESORAS,Mantenimiento preventivo o reseteo impresora de tinta continua,450.00
+IMPRESORAS,"Corrección menor (atasco de hoja, acomodo de gomas, ajustes de engranes, ajustes de mecanismos) ",300.00
+IMPRESORAS,Cambio de fusor chica,250.00
+IMPRESORAS,Cambio de fusor grande,350.00
+IMPRESORAS,Colocación de gomas chica,300.00
+IMPRESORAS,Colocación de gomas grande,400.00
+IMPRESORAS,Mantenimiento de impresora de ticket,400.00

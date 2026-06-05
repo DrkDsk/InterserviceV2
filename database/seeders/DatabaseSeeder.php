@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             DeviceCategorySeeder::class,
             ServiceCategorySeeder::class,
             ServiceSeeder::class,
+            SetupCompanySeeder::class,
         ]);
     }
 }
