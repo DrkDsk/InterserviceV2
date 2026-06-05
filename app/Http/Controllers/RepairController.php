@@ -17,6 +17,7 @@ use App\useCases\Repair\DeleteRepairLogsUseCase;
 use App\useCases\Repair\DeleteRepairUseCase;
 use App\useCases\Repair\PaginateRepairsUseCase;
 use App\useCases\Repair\StoreRepairUseCase;
+use App\useCases\Repair\UpdateRepairUseCase;
 use App\useCases\Service\GetServiceUseCase;
 use Exception;
 use Illuminate\Http\RedirectResponse;
@@ -101,27 +102,9 @@ class RepairController extends Controller
         ]);
     }
 
-    public function update(Repair $repair, UpdateRepairRequest $request): RedirectResponse
+    public function update(Repair $repair, UpdateRepairRequest $request, UpdateRepairUseCase $updateRepairUseCase): RedirectResponse
     {
-        $validated = $request->validated();
-        $logMessage = $validated['solution'];
-        $repairCompleted = (
-            $validated["status"] === RepairStatus::Completed->value &&
-            $repair->status !== RepairStatus::Completed->value
-        );
-
-        if (!$repairCompleted) {
-            $repair->update(['solution' => null]);
-            unset($validated['solution']);
-        }
-
-        $data = [
-            'created_by' => auth()->id(),
-            'message' => $logMessage
-        ];
-
-        $repair->logs()->create($data);
-        $repair->update($validated);
+        $updateRepairUseCase->execute($repair, $request);
 
         return redirect()->back()->with('info', 'Reparación actualizada');
     }
