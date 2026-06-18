@@ -1,11 +1,11 @@
 <script setup>
 
-import AppLayout from "@/Layouts/AppLayout.vue";
-import AppCard from "@/Components/ui/AppCard.vue";
-import AppSelect from "@/Components/ui/AppSelect.vue";
-import AppButton from "@/Components/ui/AppButton.vue";
-import AppTextarea from "@/Components/ui/AppTextarea.vue";
-import AppInput from "@/Components/ui/AppInput.vue";
+import AppLayout from "@/layouts/AppLayout.vue";
+import AppCard from "@/components/ui/AppCard.vue";
+import AppSelect from "@/components/ui/AppSelect.vue";
+import AppButton from "@/components/ui/AppButton.vue";
+import AppTextarea from "@/components/ui/AppTextarea.vue";
+import AppInput from "@/components/ui/AppInput.vue";
 import {router, useForm} from "@inertiajs/vue3";
 import {route} from "ziggy-js"
 import {computed} from "vue";

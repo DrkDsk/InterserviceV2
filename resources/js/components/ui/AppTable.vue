@@ -1,7 +1,7 @@
 <script setup>
 import {computed, ref, watch} from 'vue';
 import AppIcon from '../AppIcon.vue';
-import AppCard from "@/Components/ui/AppCard.vue";
+import AppCard from "@/components/ui/AppCard.vue";
 
 const props = defineProps({
   title: {

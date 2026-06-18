@@ -1,13 +1,13 @@
 <script setup>
 
-import AppLayout from "../../Layouts/AppLayout.vue";
-import AppButton from "../../Components/ui/AppButton.vue";
+import AppLayout from "@/layouts/AppLayout.vue";
+import AppButton from "@/components/ui/AppButton.vue";
 import {router} from '@inertiajs/vue3'
 import {route} from 'ziggy-js'
-import AppTable from "@/Components/ui/AppTable.vue";
-import EmptyState from "@/Components/ui/EmptyState.vue";
-import AppBadge from "@/Components/ui/AppBadge.vue";
-import AppIcon from "@/Components/AppIcon.vue";
+import AppTable from "@/components/ui/AppTable.vue";
+import EmptyState from "@/components/ui/EmptyState.vue";
+import AppBadge from "@/components/ui/AppBadge.vue";
+import AppIcon from "@/components/AppIcon.vue";
 
 const props = defineProps({
   repairs: {

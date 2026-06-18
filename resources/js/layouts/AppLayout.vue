@@ -1,13 +1,13 @@
 <script setup>
 import {computed, onBeforeUnmount, onMounted, ref, watch} from 'vue';
 import {router, usePage} from '@inertiajs/vue3';
-import AppIcon from '../Components/AppIcon.vue';
-import AppButton from '../Components/ui/AppButton.vue';
-import AppModal from '../Components/ui/AppModal.vue';
-import Breadcrumbs from '../Components/ui/Breadcrumbs.vue';
-import EntityTabs from '../Components/ui/EntityTabs.vue';
-import SidebarNavItem from '../Components/ui/SidebarNavItem.vue';
-import ToastStack from '../Components/ui/ToastStack.vue';
+import AppIcon from '@/components/AppIcon.vue';
+import AppButton from '@/components/ui/AppButton.vue';
+import AppModal from '@/components/ui/AppModal.vue';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.vue';
+import EntityTabs from '@/components/ui/EntityTabs.vue';
+import SidebarNavItem from '@/components/ui/SidebarNavItem.vue';
+import ToastStack from '@/components/ui/ToastStack.vue';
 import {useTheme} from '../composables/useTheme';
 
 const props = defineProps({
@@ -54,7 +54,7 @@ const navItems = [
   {label: 'Tables', href: 'tables', icon: 'fa-table-cells'},
   {label: 'Forms', href: 'forms', icon: 'fa-file'},
   {label: 'Charts', href: 'charts', icon: 'fa-chart-pie'},
-  {label: 'UI Components', href: 'components', icon: 'fa-brands fa-vuejs'},
+  {label: 'UI components', href: 'components', icon: 'fa-brands fa-vuejs'},
   {label: 'Settings', href: 'settings', icon: 'fa-gear'},
   {label: 'Reparaciones', href: 'repairs.index', icon: 'fa-screwdriver-wrench'},
 ];

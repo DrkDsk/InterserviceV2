@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
     })->name('charts');
 
     Route::get('/components', static function () {
-        return Inertia::render('Components');
+        return Inertia::render('components');
     })->name('components');
 
     Route::get('/settings', static function () {

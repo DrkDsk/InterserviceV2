@@ -3,13 +3,13 @@ import {computed, ref} from "vue";
 import {useForm} from "@inertiajs/vue3";
 import {route} from "ziggy-js";
 
-import AppLayout from "@/Layouts/AppLayout.vue";
-import AppAlert from "@/Components/ui/AppAlert.vue";
-import AppButton from "@/Components/ui/AppButton.vue";
-import AppCard from "@/Components/ui/AppCard.vue";
-import AppIcon from "@/Components/AppIcon.vue";
-import AppInput from "@/Components/ui/AppInput.vue";
-import AppModal from "@/Components/ui/AppModal.vue";
+import AppLayout from "@/layouts/AppLayout.vue";
+import AppAlert from "@/components/ui/AppAlert.vue";
+import AppButton from "@/components/ui/AppButton.vue";
+import AppCard from "@/components/ui/AppCard.vue";
+import AppIcon from "@/components/AppIcon.vue";
+import AppInput from "@/components/ui/AppInput.vue";
+import AppModal from "@/components/ui/AppModal.vue";
 import {useRepairTabs} from "@/composables/useRepairTabs";
 
 const confirmationWord = 'Eliminar';

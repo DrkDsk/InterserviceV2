@@ -1,9 +1,9 @@
 <script setup>
 import {computed} from 'vue';
-import AppLayout from '../Layouts/AppLayout.vue';
-import AppCard from '../Components/ui/AppCard.vue';
-import ChartPanel from '../Components/charts/ChartPanel.vue';
-import AppBadge from '../Components/ui/AppBadge.vue';
+import AppLayout from '@/layouts/AppLayout.vue';
+import AppCard from '@/components/ui/AppCard.vue';
+import ChartPanel from '@/components/charts/ChartPanel.vue';
+import AppBadge from '@/components/ui/AppBadge.vue';
 import {useTheme} from '../composables/useTheme';
 
 const breadcrumbs = [
