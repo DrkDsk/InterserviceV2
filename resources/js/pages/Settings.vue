@@ -1,12 +1,12 @@
 <script setup>
 import {reactive, ref} from 'vue';
-import AppLayout from '../Layouts/AppLayout.vue';
-import AppAlert from '../Components/ui/AppAlert.vue';
-import AppButton from '../Components/ui/AppButton.vue';
-import AppCard from '../Components/ui/AppCard.vue';
-import AppInput from '../Components/ui/AppInput.vue';
-import AppSelect from '../Components/ui/AppSelect.vue';
-import AppBadge from '../Components/ui/AppBadge.vue';
+import AppLayout from '@/layouts/AppLayout.vue';
+import AppAlert from '@/components/ui/AppAlert.vue';
+import AppButton from '@/components/ui/AppButton.vue';
+import AppCard from '@/components/ui/AppCard.vue';
+import AppInput from '@/components/ui/AppInput.vue';
+import AppSelect from '@/components/ui/AppSelect.vue';
+import AppBadge from '@/components/ui/AppBadge.vue';
 import {useTheme} from '../composables/useTheme';
 
 const breadcrumbs = [

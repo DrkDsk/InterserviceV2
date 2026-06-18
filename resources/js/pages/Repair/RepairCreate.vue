@@ -1,13 +1,13 @@
 <script setup>
 import {computed, nextTick, reactive, ref, watch} from 'vue'
 import {router, useForm} from '@inertiajs/vue3'
-import AppLayout from '@/Layouts/AppLayout.vue'
-import AppIcon from '@/Components/AppIcon.vue'
-import AppCard from '@/Components/ui/AppCard.vue'
-import AppButton from '@/Components/ui/AppButton.vue'
-import AppInput from '@/Components/ui/AppInput.vue'
-import AppTextarea from '@/Components/ui/AppTextarea.vue'
-import AppSelect from '@/Components/ui/AppSelect.vue'
+import AppLayout from '@/layouts/AppLayout.vue'
+import AppIcon from '@/components/AppIcon.vue'
+import AppCard from '@/components/ui/AppCard.vue'
+import AppButton from '@/components/ui/AppButton.vue'
+import AppInput from '@/components/ui/AppInput.vue'
+import AppTextarea from '@/components/ui/AppTextarea.vue'
+import AppSelect from '@/components/ui/AppSelect.vue'
 
 const props = defineProps({
   clients: {

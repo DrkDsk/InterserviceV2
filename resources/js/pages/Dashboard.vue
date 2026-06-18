@@ -1,11 +1,11 @@
 <script setup>
 import {computed} from 'vue';
-import AppLayout from '../Layouts/AppLayout.vue';
-import AppBadge from '../Components/ui/AppBadge.vue';
-import AppButton from '../Components/ui/AppButton.vue';
-import AppCard from '../Components/ui/AppCard.vue';
-import AppIcon from '../Components/AppIcon.vue';
-import ChartPanel from '../Components/charts/ChartPanel.vue';
+import AppLayout from '@/layouts/AppLayout.vue';
+import AppBadge from '@/components/ui/AppBadge.vue';
+import AppButton from '@/components/ui/AppButton.vue';
+import AppCard from '@/components/ui/AppCard.vue';
+import AppIcon from '@/components/AppIcon.vue';
+import ChartPanel from '@/components/charts/ChartPanel.vue';
 import {useTheme} from '../composables/useTheme';
 
 const {isDark} = useTheme();

@@ -1,16 +1,16 @@
 <script setup>
 import {ref} from 'vue';
-import AppLayout from '../Layouts/AppLayout.vue';
-import AppAlert from '../Components/ui/AppAlert.vue';
-import AppBadge from '../Components/ui/AppBadge.vue';
-import AppButton from '../Components/ui/AppButton.vue';
-import AppCard from '../Components/ui/AppCard.vue';
-import AppModal from '../Components/ui/AppModal.vue';
-import AppIcon from '../Components/AppIcon.vue';
+import AppLayout from '@/layouts/AppLayout.vue';
+import AppAlert from '@/components/ui/AppAlert.vue';
+import AppBadge from '@/components/ui/AppBadge.vue';
+import AppButton from '@/components/ui/AppButton.vue';
+import AppCard from '@/components/ui/AppCard.vue';
+import AppModal from '@/components/ui/AppModal.vue';
+import AppIcon from '@/components/AppIcon.vue';
 
 const breadcrumbs = [
   {label: 'Home', href: 'dashboard'},
-  {label: 'UI Components'},
+  {label: 'UI components'},
 ];
 
 const showModal = ref(false);

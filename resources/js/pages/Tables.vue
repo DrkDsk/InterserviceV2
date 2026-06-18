@@ -1,11 +1,11 @@
 <script setup>
-import AppLayout from '../Layouts/AppLayout.vue';
-import AppBadge from '../Components/ui/AppBadge.vue';
-import AppButton from '../Components/ui/AppButton.vue';
-import AppCard from '../Components/ui/AppCard.vue';
-import AppTable from '../Components/ui/AppTable.vue';
-import AppIcon from '../Components/AppIcon.vue';
-import EmptyState from '../Components/ui/EmptyState.vue';
+import AppLayout from '@/layouts/AppLayout.vue';
+import AppBadge from '@/components/ui/AppBadge.vue';
+import AppButton from '@/components/ui/AppButton.vue';
+import AppCard from '@/components/ui/AppCard.vue';
+import AppTable from '@/components/ui/AppTable.vue';
+import AppIcon from '@/components/AppIcon.vue';
+import EmptyState from '@/components/ui/EmptyState.vue';
 
 const breadcrumbs = [
   {label: 'Home', href: 'dashboard'},

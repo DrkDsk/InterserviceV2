@@ -1,13 +1,13 @@
 <script setup>
 
-import AppLayout from "@/Layouts/AppLayout.vue";
-import AppCard from "@/Components/ui/AppCard.vue";
-import AppTextarea from "@/Components/ui/AppTextarea.vue";
-import AppIcon from "@/Components/AppIcon.vue";
-import AppButton from "@/Components/ui/AppButton.vue";
+import AppLayout from "@/layouts/AppLayout.vue";
+import AppCard from "@/components/ui/AppCard.vue";
+import AppTextarea from "@/components/ui/AppTextarea.vue";
+import AppIcon from "@/components/AppIcon.vue";
+import AppButton from "@/components/ui/AppButton.vue";
 import {router} from "@inertiajs/vue3";
 import {route} from "ziggy-js"
-import EmptyState from "@/Components/ui/EmptyState.vue";
+import EmptyState from "@/components/ui/EmptyState.vue";
 import {computed, ref, watch} from "vue";
 import {useRepairTabs} from "@/composables/useRepairTabs";
 

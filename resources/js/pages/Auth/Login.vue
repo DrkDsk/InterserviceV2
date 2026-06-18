@@ -1,11 +1,11 @@
 <script setup>
 import {computed, reactive, ref} from 'vue';
 import {Head, router, usePage} from '@inertiajs/vue3';
-import AppLayout from '@/Layouts/AppLayout.vue';
-import AppCard from '@/Components/ui/AppCard.vue';
-import AppButton from '@/Components/ui/AppButton.vue';
-import AppInput from '@/Components/ui/AppInput.vue';
-import AppAlert from '@/Components/ui/AppAlert.vue';
+import AppLayout from '@/layouts/AppLayout.vue';
+import AppCard from '@/components/ui/AppCard.vue';
+import AppButton from '@/components/ui/AppButton.vue';
+import AppInput from '@/components/ui/AppInput.vue';
+import AppAlert from '@/components/ui/AppAlert.vue';
 
 const form = reactive({
   email: '',

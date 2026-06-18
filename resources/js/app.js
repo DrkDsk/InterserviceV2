@@ -16,7 +16,7 @@ initTheme();
 
 createInertiaApp({
   resolve: (name) =>
-    resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+    resolvePageComponent(`./pages/${name}.vue`, import.meta.glob('./pages/**/*.vue')),
   setup({el, App, props, plugin}) {
     createApp({render: () => h(App, props)})
       .use(plugin)
